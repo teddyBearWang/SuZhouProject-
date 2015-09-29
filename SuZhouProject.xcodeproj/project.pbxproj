@@ -9,12 +9,17 @@
 /* Begin PBXBuildFile section */
 		9FD16CC21BBA6ECB0004F7FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CC11BBA6ECB0004F7FA /* main.m */; };
 		9FD16CC51BBA6ECB0004F7FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CC41BBA6ECB0004F7FA /* AppDelegate.m */; };
-		9FD16CC81BBA6ECB0004F7FA /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CC71BBA6ECB0004F7FA /* FirstViewController.m */; };
-		9FD16CCB1BBA6ECB0004F7FA /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CCA1BBA6ECB0004F7FA /* SecondViewController.m */; };
 		9FD16CCE1BBA6ECB0004F7FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FD16CCC1BBA6ECB0004F7FA /* Main.storyboard */; };
 		9FD16CD01BBA6ECB0004F7FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FD16CCF1BBA6ECB0004F7FA /* Images.xcassets */; };
 		9FD16CD31BBA6ECB0004F7FA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD16CD11BBA6ECB0004F7FA /* LaunchScreen.xib */; };
 		9FD16CDF1BBA6ECB0004F7FA /* SuZhouProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CDE1BBA6ECB0004F7FA /* SuZhouProjectTests.m */; };
+		9FD16CEA1BBA74AF0004F7FA /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CE91BBA74AF0004F7FA /* NavViewController.m */; };
+		9FD16CED1BBA74E30004F7FA /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CEC1BBA74E30004F7FA /* RootViewController.m */; };
+		9FD16CF01BBA752E0004F7FA /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CEF1BBA752E0004F7FA /* FirstViewController.m */; };
+		9FD16CF31BBA75390004F7FA /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CF21BBA75390004F7FA /* SecondViewController.m */; };
+		9FD16CF61BBA75E60004F7FA /* CustomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CF51BBA75E60004F7FA /* CustomTabBarController.m */; };
+		9FD16CF91BBA769A0004F7FA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CF81BBA769A0004F7FA /* LoginViewController.m */; };
+		9FD16CFC1BBA76DE0004F7FA /* ChangePasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CFB1BBA76DE0004F7FA /* ChangePasswordController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,16 +38,26 @@
 		9FD16CC11BBA6ECB0004F7FA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9FD16CC31BBA6ECB0004F7FA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9FD16CC41BBA6ECB0004F7FA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9FD16CC61BBA6ECB0004F7FA /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		9FD16CC71BBA6ECB0004F7FA /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		9FD16CC91BBA6ECB0004F7FA /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		9FD16CCA1BBA6ECB0004F7FA /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		9FD16CCD1BBA6ECB0004F7FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9FD16CCF1BBA6ECB0004F7FA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9FD16CD21BBA6ECB0004F7FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9FD16CD81BBA6ECB0004F7FA /* SuZhouProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuZhouProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD16CDD1BBA6ECB0004F7FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FD16CDE1BBA6ECB0004F7FA /* SuZhouProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuZhouProjectTests.m; sourceTree = "<group>"; };
+		9FD16CE81BBA74AF0004F7FA /* NavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavViewController.h; sourceTree = "<group>"; };
+		9FD16CE91BBA74AF0004F7FA /* NavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavViewController.m; sourceTree = "<group>"; };
+		9FD16CEB1BBA74E30004F7FA /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		9FD16CEC1BBA74E30004F7FA /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		9FD16CEE1BBA752E0004F7FA /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		9FD16CEF1BBA752E0004F7FA /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		9FD16CF11BBA75390004F7FA /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		9FD16CF21BBA75390004F7FA /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		9FD16CF41BBA75E60004F7FA /* CustomTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBarController.h; sourceTree = "<group>"; };
+		9FD16CF51BBA75E60004F7FA /* CustomTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBarController.m; sourceTree = "<group>"; };
+		9FD16CF71BBA769A0004F7FA /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		9FD16CF81BBA769A0004F7FA /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		9FD16CFA1BBA76DE0004F7FA /* ChangePasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordController.h; sourceTree = "<group>"; };
+		9FD16CFB1BBA76DE0004F7FA /* ChangePasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,16 +99,23 @@
 		9FD16CBE1BBA6ECB0004F7FA /* SuZhouProject */ = {
 			isa = PBXGroup;
 			children = (
+				9FD16CFD1BBA76E30004F7FA /* login */,
 				9FD16CC31BBA6ECB0004F7FA /* AppDelegate.h */,
 				9FD16CC41BBA6ECB0004F7FA /* AppDelegate.m */,
-				9FD16CC61BBA6ECB0004F7FA /* FirstViewController.h */,
-				9FD16CC71BBA6ECB0004F7FA /* FirstViewController.m */,
-				9FD16CC91BBA6ECB0004F7FA /* SecondViewController.h */,
-				9FD16CCA1BBA6ECB0004F7FA /* SecondViewController.m */,
+				9FD16CF41BBA75E60004F7FA /* CustomTabBarController.h */,
+				9FD16CF51BBA75E60004F7FA /* CustomTabBarController.m */,
+				9FD16CEE1BBA752E0004F7FA /* FirstViewController.h */,
+				9FD16CEF1BBA752E0004F7FA /* FirstViewController.m */,
+				9FD16CF11BBA75390004F7FA /* SecondViewController.h */,
+				9FD16CF21BBA75390004F7FA /* SecondViewController.m */,
 				9FD16CCC1BBA6ECB0004F7FA /* Main.storyboard */,
 				9FD16CCF1BBA6ECB0004F7FA /* Images.xcassets */,
 				9FD16CD11BBA6ECB0004F7FA /* LaunchScreen.xib */,
 				9FD16CBF1BBA6ECB0004F7FA /* Supporting Files */,
+				9FD16CE81BBA74AF0004F7FA /* NavViewController.h */,
+				9FD16CE91BBA74AF0004F7FA /* NavViewController.m */,
+				9FD16CEB1BBA74E30004F7FA /* RootViewController.h */,
+				9FD16CEC1BBA74E30004F7FA /* RootViewController.m */,
 			);
 			path = SuZhouProject;
 			sourceTree = "<group>";
@@ -122,6 +144,17 @@
 				9FD16CDD1BBA6ECB0004F7FA /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9FD16CFD1BBA76E30004F7FA /* login */ = {
+			isa = PBXGroup;
+			children = (
+				9FD16CF71BBA769A0004F7FA /* LoginViewController.h */,
+				9FD16CF81BBA769A0004F7FA /* LoginViewController.m */,
+				9FD16CFA1BBA76DE0004F7FA /* ChangePasswordController.h */,
+				9FD16CFB1BBA76DE0004F7FA /* ChangePasswordController.m */,
+			);
+			name = login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,10 +257,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FD16CCB1BBA6ECB0004F7FA /* SecondViewController.m in Sources */,
+				9FD16CF91BBA769A0004F7FA /* LoginViewController.m in Sources */,
+				9FD16CF31BBA75390004F7FA /* SecondViewController.m in Sources */,
 				9FD16CC51BBA6ECB0004F7FA /* AppDelegate.m in Sources */,
-				9FD16CC81BBA6ECB0004F7FA /* FirstViewController.m in Sources */,
+				9FD16CFC1BBA76DE0004F7FA /* ChangePasswordController.m in Sources */,
+				9FD16CF61BBA75E60004F7FA /* CustomTabBarController.m in Sources */,
+				9FD16CED1BBA74E30004F7FA /* RootViewController.m in Sources */,
+				9FD16CF01BBA752E0004F7FA /* FirstViewController.m in Sources */,
 				9FD16CC21BBA6ECB0004F7FA /* main.m in Sources */,
+				9FD16CEA1BBA74AF0004F7FA /* NavViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +392,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SuZhouProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -364,6 +403,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SuZhouProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

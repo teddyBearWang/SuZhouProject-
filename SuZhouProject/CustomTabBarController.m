@@ -1,18 +1,18 @@
 //
-//  SecondViewController.m
+//  CustomTabBarController.m
 //  SuZhouProject
 //
 //  Created by teddy on 15/9/29.
 //  Copyright (c) 2015年 teddy. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "CustomTabBarController.h"
 
-@interface SecondViewController ()
+@interface CustomTabBarController ()
 
 @end
 
-@implementation SecondViewController
+@implementation CustomTabBarController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

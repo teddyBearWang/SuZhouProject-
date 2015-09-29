@@ -1,22 +1,24 @@
 //
-//  SecondViewController.m
+//  RootViewController.m
 //  SuZhouProject
 //
 //  Created by teddy on 15/9/29.
 //  Copyright (c) 2015年 teddy. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "RootViewController.h"
 
-@interface SecondViewController ()
+@interface RootViewController ()
 
 @end
 
-@implementation SecondViewController
+@implementation RootViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = [UIColor colorWithRed:247/255.0 green:247/255.0 blue:247/255.0 alpha:1.0];
 }
 
 - (void)didReceiveMemoryWarning {

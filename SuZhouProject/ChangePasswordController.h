@@ -1,5 +1,5 @@
 //
-//  SecondViewController.h
+//  ChangePasswordController.h
 //  SuZhouProject
 //
 //  Created by teddy on 15/9/29.
@@ -8,6 +8,6 @@
 
 #import "RootViewController.h"
 
-@interface SecondViewController : RootViewController
+@interface ChangePasswordController : RootViewController
 
 @end
