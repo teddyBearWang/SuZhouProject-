@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4BF16C0B-EE13-4555-89AC-E1B9C82107E4</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SuZhouProject</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E2BBFB7E2F5612A04DDB51FD1C044104A5A102F8</key>
+		<string>https://github.com/teddyBearWang/SuZhouProject-.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SuZhouProject.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E2BBFB7E2F5612A04DDB51FD1C044104A5A102F8</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/teddyBearWang/SuZhouProject-.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E2BBFB7E2F5612A04DDB51FD1C044104A5A102F8</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E2BBFB7E2F5612A04DDB51FD1C044104A5A102F8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SuZhouProject</string>
+		</dict>
+	</array>
+</dict>
+</plist>

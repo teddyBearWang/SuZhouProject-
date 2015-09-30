@@ -47,7 +47,7 @@
 //登录
 - (IBAction)loginAction:(id)sender
 {
-    
+    [self performSegueWithIdentifier:@"Login" sender:nil];
 }
 
 //点击背景取消键盘

@@ -1,7 +1,7 @@
 //
 //  FirstViewController.m
 //  SuZhouProject
-//
+//  **********消息**************
 //  Created by teddy on 15/9/29.
 //  Copyright (c) 2015年 teddy. All rights reserved.
 //
@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"消息";
 }
 
 - (void)didReceiveMemoryWarning {

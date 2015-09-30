@@ -11,7 +11,6 @@
 		9FD16CC51BBA6ECB0004F7FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CC41BBA6ECB0004F7FA /* AppDelegate.m */; };
 		9FD16CCE1BBA6ECB0004F7FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FD16CCC1BBA6ECB0004F7FA /* Main.storyboard */; };
 		9FD16CD01BBA6ECB0004F7FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FD16CCF1BBA6ECB0004F7FA /* Images.xcassets */; };
-		9FD16CD31BBA6ECB0004F7FA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD16CD11BBA6ECB0004F7FA /* LaunchScreen.xib */; };
 		9FD16CDF1BBA6ECB0004F7FA /* SuZhouProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CDE1BBA6ECB0004F7FA /* SuZhouProjectTests.m */; };
 		9FD16CEA1BBA74AF0004F7FA /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CE91BBA74AF0004F7FA /* NavViewController.m */; };
 		9FD16CED1BBA74E30004F7FA /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CEC1BBA74E30004F7FA /* RootViewController.m */; };
@@ -20,6 +19,12 @@
 		9FD16CF61BBA75E60004F7FA /* CustomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CF51BBA75E60004F7FA /* CustomTabBarController.m */; };
 		9FD16CF91BBA769A0004F7FA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CF81BBA769A0004F7FA /* LoginViewController.m */; };
 		9FD16CFC1BBA76DE0004F7FA /* ChangePasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CFB1BBA76DE0004F7FA /* ChangePasswordController.m */; };
+		9FD16D101BBBB7360004F7FA /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16D0F1BBBB7360004F7FA /* ThirdViewController.m */; };
+		9FD16D131BBBB7550004F7FA /* ForthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16D121BBBB7550004F7FA /* ForthViewController.m */; };
+		9FD16D1C1BBBBA6C0004F7FA /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16D1B1BBBBA6C0004F7FA /* TaskCell.m */; };
+		9FD16D1E1BBBBA7C0004F7FA /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD16D1D1BBBBA7C0004F7FA /* TaskCell.xib */; };
+		9FD16D211BBBBF2C0004F7FA /* TaskDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16D201BBBBF2C0004F7FA /* TaskDetailController.m */; };
+		E61C4DD736D0924DB277F1A1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BED042795B2A491575352C /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		65BED042795B2A491575352C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD16CBC1BBA6ECB0004F7FA /* SuZhouProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuZhouProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD16CC01BBA6ECB0004F7FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FD16CC11BBA6ECB0004F7FA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,7 +46,6 @@
 		9FD16CC41BBA6ECB0004F7FA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9FD16CCD1BBA6ECB0004F7FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9FD16CCF1BBA6ECB0004F7FA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9FD16CD21BBA6ECB0004F7FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9FD16CD81BBA6ECB0004F7FA /* SuZhouProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuZhouProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD16CDD1BBA6ECB0004F7FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FD16CDE1BBA6ECB0004F7FA /* SuZhouProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuZhouProjectTests.m; sourceTree = "<group>"; };
@@ -58,6 +63,17 @@
 		9FD16CF81BBA769A0004F7FA /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9FD16CFA1BBA76DE0004F7FA /* ChangePasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordController.h; sourceTree = "<group>"; };
 		9FD16CFB1BBA76DE0004F7FA /* ChangePasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordController.m; sourceTree = "<group>"; };
+		9FD16D0E1BBBB7360004F7FA /* ThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
+		9FD16D0F1BBBB7360004F7FA /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
+		9FD16D111BBBB7550004F7FA /* ForthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForthViewController.h; sourceTree = "<group>"; };
+		9FD16D121BBBB7550004F7FA /* ForthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForthViewController.m; sourceTree = "<group>"; };
+		9FD16D1A1BBBBA6C0004F7FA /* TaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCell.h; sourceTree = "<group>"; };
+		9FD16D1B1BBBBA6C0004F7FA /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
+		9FD16D1D1BBBBA7C0004F7FA /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
+		9FD16D1F1BBBBF2C0004F7FA /* TaskDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailController.h; sourceTree = "<group>"; };
+		9FD16D201BBBBF2C0004F7FA /* TaskDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailController.m; sourceTree = "<group>"; };
+		DCEA0BB5ECCF9EA4855411E3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E79B0B490794D6F11F512556 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E61C4DD736D0924DB277F1A1 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,12 +95,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		88CAE84D0DD51EC78D967947 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DCEA0BB5ECCF9EA4855411E3 /* Pods.debug.xcconfig */,
+				E79B0B490794D6F11F512556 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9FD16CB31BBA6ECB0004F7FA = {
 			isa = PBXGroup;
 			children = (
 				9FD16CBE1BBA6ECB0004F7FA /* SuZhouProject */,
 				9FD16CDB1BBA6ECB0004F7FA /* SuZhouProjectTests */,
 				9FD16CBD1BBA6ECB0004F7FA /* Products */,
+				88CAE84D0DD51EC78D967947 /* Pods */,
+				A245CAABD7AB40E4A6C63C32 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,23 +127,22 @@
 		9FD16CBE1BBA6ECB0004F7FA /* SuZhouProject */ = {
 			isa = PBXGroup;
 			children = (
-				9FD16CFD1BBA76E30004F7FA /* login */,
 				9FD16CC31BBA6ECB0004F7FA /* AppDelegate.h */,
 				9FD16CC41BBA6ECB0004F7FA /* AppDelegate.m */,
-				9FD16CF41BBA75E60004F7FA /* CustomTabBarController.h */,
-				9FD16CF51BBA75E60004F7FA /* CustomTabBarController.m */,
-				9FD16CEE1BBA752E0004F7FA /* FirstViewController.h */,
-				9FD16CEF1BBA752E0004F7FA /* FirstViewController.m */,
-				9FD16CF11BBA75390004F7FA /* SecondViewController.h */,
-				9FD16CF21BBA75390004F7FA /* SecondViewController.m */,
+				9FD16CFD1BBA76E30004F7FA /* login */,
+				9FD16D161BBBB7930004F7FA /* Task */,
+				9FD16D141BBBB76B0004F7FA /* message */,
+				9FD16D171BBBB7B00004F7FA /* Data */,
+				9FD16D181BBBB7C60004F7FA /* mine */,
 				9FD16CCC1BBA6ECB0004F7FA /* Main.storyboard */,
 				9FD16CCF1BBA6ECB0004F7FA /* Images.xcassets */,
-				9FD16CD11BBA6ECB0004F7FA /* LaunchScreen.xib */,
 				9FD16CBF1BBA6ECB0004F7FA /* Supporting Files */,
 				9FD16CE81BBA74AF0004F7FA /* NavViewController.h */,
 				9FD16CE91BBA74AF0004F7FA /* NavViewController.m */,
 				9FD16CEB1BBA74E30004F7FA /* RootViewController.h */,
 				9FD16CEC1BBA74E30004F7FA /* RootViewController.m */,
+				9FD16CF41BBA75E60004F7FA /* CustomTabBarController.h */,
+				9FD16CF51BBA75E60004F7FA /* CustomTabBarController.m */,
 			);
 			path = SuZhouProject;
 			sourceTree = "<group>";
@@ -157,6 +184,63 @@
 			name = login;
 			sourceTree = "<group>";
 		};
+		9FD16D141BBBB76B0004F7FA /* message */ = {
+			isa = PBXGroup;
+			children = (
+				9FD16CEE1BBA752E0004F7FA /* FirstViewController.h */,
+				9FD16CEF1BBA752E0004F7FA /* FirstViewController.m */,
+			);
+			name = message;
+			sourceTree = "<group>";
+		};
+		9FD16D161BBBB7930004F7FA /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				9FD16D191BBBBA430004F7FA /* CustomCell */,
+				9FD16CF11BBA75390004F7FA /* SecondViewController.h */,
+				9FD16CF21BBA75390004F7FA /* SecondViewController.m */,
+				9FD16D1F1BBBBF2C0004F7FA /* TaskDetailController.h */,
+				9FD16D201BBBBF2C0004F7FA /* TaskDetailController.m */,
+			);
+			name = Task;
+			sourceTree = "<group>";
+		};
+		9FD16D171BBBB7B00004F7FA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				9FD16D0E1BBBB7360004F7FA /* ThirdViewController.h */,
+				9FD16D0F1BBBB7360004F7FA /* ThirdViewController.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		9FD16D181BBBB7C60004F7FA /* mine */ = {
+			isa = PBXGroup;
+			children = (
+				9FD16D111BBBB7550004F7FA /* ForthViewController.h */,
+				9FD16D121BBBB7550004F7FA /* ForthViewController.m */,
+			);
+			name = mine;
+			sourceTree = "<group>";
+		};
+		9FD16D191BBBBA430004F7FA /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				9FD16D1A1BBBBA6C0004F7FA /* TaskCell.h */,
+				9FD16D1B1BBBBA6C0004F7FA /* TaskCell.m */,
+				9FD16D1D1BBBBA7C0004F7FA /* TaskCell.xib */,
+			);
+			name = CustomCell;
+			sourceTree = "<group>";
+		};
+		A245CAABD7AB40E4A6C63C32 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				65BED042795B2A491575352C /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -164,9 +248,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9FD16CE21BBA6ECB0004F7FA /* Build configuration list for PBXNativeTarget "SuZhouProject" */;
 			buildPhases = (
+				4B9169E47D60232C88BB0562 /* Check Pods Manifest.lock */,
 				9FD16CB81BBA6ECB0004F7FA /* Sources */,
 				9FD16CB91BBA6ECB0004F7FA /* Frameworks */,
 				9FD16CBA1BBA6ECB0004F7FA /* Resources */,
+				7216A3DFB4E02B09973CD83F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -237,8 +323,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FD16D1E1BBBBA7C0004F7FA /* TaskCell.xib in Resources */,
 				9FD16CCE1BBA6ECB0004F7FA /* Main.storyboard in Resources */,
-				9FD16CD31BBA6ECB0004F7FA /* LaunchScreen.xib in Resources */,
 				9FD16CD01BBA6ECB0004F7FA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,20 +338,57 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4B9169E47D60232C88BB0562 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7216A3DFB4E02B09973CD83F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9FD16CB81BBA6ECB0004F7FA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FD16D1C1BBBBA6C0004F7FA /* TaskCell.m in Sources */,
 				9FD16CF91BBA769A0004F7FA /* LoginViewController.m in Sources */,
 				9FD16CF31BBA75390004F7FA /* SecondViewController.m in Sources */,
 				9FD16CC51BBA6ECB0004F7FA /* AppDelegate.m in Sources */,
 				9FD16CFC1BBA76DE0004F7FA /* ChangePasswordController.m in Sources */,
 				9FD16CF61BBA75E60004F7FA /* CustomTabBarController.m in Sources */,
 				9FD16CED1BBA74E30004F7FA /* RootViewController.m in Sources */,
+				9FD16D211BBBBF2C0004F7FA /* TaskDetailController.m in Sources */,
+				9FD16D101BBBB7360004F7FA /* ThirdViewController.m in Sources */,
 				9FD16CF01BBA752E0004F7FA /* FirstViewController.m in Sources */,
 				9FD16CC21BBA6ECB0004F7FA /* main.m in Sources */,
 				9FD16CEA1BBA74AF0004F7FA /* NavViewController.m in Sources */,
+				9FD16D131BBBB7550004F7FA /* ForthViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,14 +417,6 @@
 				9FD16CCD1BBA6ECB0004F7FA /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		9FD16CD11BBA6ECB0004F7FA /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9FD16CD21BBA6ECB0004F7FA /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -389,8 +504,10 @@
 		};
 		9FD16CE31BBA6ECB0004F7FA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCEA0BB5ECCF9EA4855411E3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SuZhouProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -400,8 +517,10 @@
 		};
 		9FD16CE41BBA6ECB0004F7FA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E79B0B490794D6F11F512556 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SuZhouProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -462,6 +581,7 @@
 				9FD16CE41BBA6ECB0004F7FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9FD16CE51BBA6ECB0004F7FA /* Build configuration list for PBXNativeTarget "SuZhouProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -470,6 +590,7 @@
 				9FD16CE71BBA6ECB0004F7FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
