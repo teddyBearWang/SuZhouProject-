@@ -7,6 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F38CD3E1BC60A2F009A3EEF /* bg_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD3D1BC60A2F009A3EEF /* bg_image.png */; };
+		9F38CD401BC60A34009A3EEF /* bg_image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD3F1BC60A34009A3EEF /* bg_image@3x.png */; };
+		9F38CD421BC60A3B009A3EEF /* bg_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD411BC60A3B009A3EEF /* bg_image@2x.png */; };
+		9F38CD451BC60E3B009A3EEF /* user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD441BC60E3B009A3EEF /* user@2x.png */; };
+		9F38CD471BC60E3F009A3EEF /* user@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD461BC60E3F009A3EEF /* user@3x.png */; };
+		9F38CD491BC60E42009A3EEF /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD481BC60E42009A3EEF /* user.png */; };
+		9F38CD4B1BC60ECF009A3EEF /* password@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD4A1BC60ECF009A3EEF /* password@2x.png */; };
+		9F38CD4D1BC60ED2009A3EEF /* password@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD4C1BC60ED2009A3EEF /* password@3x.png */; };
+		9F38CD4F1BC60ED7009A3EEF /* password.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD4E1BC60ED7009A3EEF /* password.png */; };
+		9F38CD521BC6395E009A3EEF /* task.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD511BC6395E009A3EEF /* task.png */; };
+		9F38CD541BC63962009A3EEF /* task@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD531BC63962009A3EEF /* task@2x.png */; };
+		9F38CD561BC63967009A3EEF /* task@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD551BC63967009A3EEF /* task@3x.png */; };
+		9F38CD581BC639E9009A3EEF /* message.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD571BC639E9009A3EEF /* message.png */; };
+		9F38CD5A1BC639ED009A3EEF /* message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD591BC639ED009A3EEF /* message@2x.png */; };
+		9F38CD5C1BC639F1009A3EEF /* message@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD5B1BC639F1009A3EEF /* message@3x.png */; };
+		9F38CD5E1BC63A4A009A3EEF /* data@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD5D1BC63A4A009A3EEF /* data@3x.png */; };
+		9F38CD601BC63A4D009A3EEF /* data.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD5F1BC63A4D009A3EEF /* data.png */; };
+		9F38CD621BC63A50009A3EEF /* data@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD611BC63A50009A3EEF /* data@2x.png */; };
+		9F38CD641BC63A8C009A3EEF /* mine.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD631BC63A8C009A3EEF /* mine.png */; };
+		9F38CD661BC63A8E009A3EEF /* mine@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD651BC63A8E009A3EEF /* mine@3x.png */; };
+		9F38CD681BC63A92009A3EEF /* mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD671BC63A92009A3EEF /* mine@2x.png */; };
+		9F38CD6A1BC64B7E009A3EEF /* TaskDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD691BC64B7E009A3EEF /* TaskDetail.xib */; };
+		9F38CD6D1BC64B99009A3EEF /* TaskDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38CD6C1BC64B99009A3EEF /* TaskDetail.m */; };
+		9F38CD701BC64F3B009A3EEF /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38CD6F1BC64F3B009A3EEF /* UploadViewController.m */; };
+		9F38CD721BC6605D009A3EEF /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD711BC6605D009A3EEF /* list.png */; };
 		9FD16CC21BBA6ECB0004F7FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CC11BBA6ECB0004F7FA /* main.m */; };
 		9FD16CC51BBA6ECB0004F7FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CC41BBA6ECB0004F7FA /* AppDelegate.m */; };
 		9FD16CCE1BBA6ECB0004F7FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FD16CCC1BBA6ECB0004F7FA /* Main.storyboard */; };
@@ -39,6 +64,34 @@
 
 /* Begin PBXFileReference section */
 		65BED042795B2A491575352C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F38CD3D1BC60A2F009A3EEF /* bg_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_image.png; sourceTree = "<group>"; };
+		9F38CD3F1BC60A34009A3EEF /* bg_image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_image@3x.png"; sourceTree = "<group>"; };
+		9F38CD411BC60A3B009A3EEF /* bg_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_image@2x.png"; sourceTree = "<group>"; };
+		9F38CD441BC60E3B009A3EEF /* user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user@2x.png"; sourceTree = "<group>"; };
+		9F38CD461BC60E3F009A3EEF /* user@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user@3x.png"; sourceTree = "<group>"; };
+		9F38CD481BC60E42009A3EEF /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		9F38CD4A1BC60ECF009A3EEF /* password@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password@2x.png"; sourceTree = "<group>"; };
+		9F38CD4C1BC60ED2009A3EEF /* password@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password@3x.png"; sourceTree = "<group>"; };
+		9F38CD4E1BC60ED7009A3EEF /* password.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = password.png; sourceTree = "<group>"; };
+		9F38CD501BC611C4009A3EEF /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		9F38CD511BC6395E009A3EEF /* task.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task.png; sourceTree = "<group>"; };
+		9F38CD531BC63962009A3EEF /* task@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "task@2x.png"; sourceTree = "<group>"; };
+		9F38CD551BC63967009A3EEF /* task@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "task@3x.png"; sourceTree = "<group>"; };
+		9F38CD571BC639E9009A3EEF /* message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message.png; sourceTree = "<group>"; };
+		9F38CD591BC639ED009A3EEF /* message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message@2x.png"; sourceTree = "<group>"; };
+		9F38CD5B1BC639F1009A3EEF /* message@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message@3x.png"; sourceTree = "<group>"; };
+		9F38CD5D1BC63A4A009A3EEF /* data@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "data@3x.png"; sourceTree = "<group>"; };
+		9F38CD5F1BC63A4D009A3EEF /* data.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = data.png; sourceTree = "<group>"; };
+		9F38CD611BC63A50009A3EEF /* data@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "data@2x.png"; sourceTree = "<group>"; };
+		9F38CD631BC63A8C009A3EEF /* mine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mine.png; sourceTree = "<group>"; };
+		9F38CD651BC63A8E009A3EEF /* mine@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mine@3x.png"; sourceTree = "<group>"; };
+		9F38CD671BC63A92009A3EEF /* mine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mine@2x.png"; sourceTree = "<group>"; };
+		9F38CD691BC64B7E009A3EEF /* TaskDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskDetail.xib; sourceTree = "<group>"; };
+		9F38CD6B1BC64B99009A3EEF /* TaskDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetail.h; sourceTree = "<group>"; };
+		9F38CD6C1BC64B99009A3EEF /* TaskDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetail.m; sourceTree = "<group>"; };
+		9F38CD6E1BC64F3B009A3EEF /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
+		9F38CD6F1BC64F3B009A3EEF /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
+		9F38CD711BC6605D009A3EEF /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
 		9FD16CBC1BBA6ECB0004F7FA /* SuZhouProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuZhouProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD16CC01BBA6ECB0004F7FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FD16CC11BBA6ECB0004F7FA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -104,6 +157,49 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9F38CD391BC60804009A3EEF /* image */ = {
+			isa = PBXGroup;
+			children = (
+				9F38CD511BC6395E009A3EEF /* task.png */,
+				9F38CD4E1BC60ED7009A3EEF /* password.png */,
+				9F38CD631BC63A8C009A3EEF /* mine.png */,
+				9F38CD711BC6605D009A3EEF /* list.png */,
+				9F38CD571BC639E9009A3EEF /* message.png */,
+				9F38CD5F1BC63A4D009A3EEF /* data.png */,
+				9F38CD3D1BC60A2F009A3EEF /* bg_image.png */,
+				9F38CD481BC60E42009A3EEF /* user.png */,
+			);
+			name = image;
+			sourceTree = "<group>";
+		};
+		9F38CD3B1BC60817009A3EEF /* image@2x */ = {
+			isa = PBXGroup;
+			children = (
+				9F38CD531BC63962009A3EEF /* task@2x.png */,
+				9F38CD591BC639ED009A3EEF /* message@2x.png */,
+				9F38CD611BC63A50009A3EEF /* data@2x.png */,
+				9F38CD671BC63A92009A3EEF /* mine@2x.png */,
+				9F38CD411BC60A3B009A3EEF /* bg_image@2x.png */,
+				9F38CD4A1BC60ECF009A3EEF /* password@2x.png */,
+				9F38CD441BC60E3B009A3EEF /* user@2x.png */,
+			);
+			name = "image@2x";
+			sourceTree = "<group>";
+		};
+		9F38CD3C1BC6081E009A3EEF /* image@3x */ = {
+			isa = PBXGroup;
+			children = (
+				9F38CD551BC63967009A3EEF /* task@3x.png */,
+				9F38CD5B1BC639F1009A3EEF /* message@3x.png */,
+				9F38CD651BC63A8E009A3EEF /* mine@3x.png */,
+				9F38CD461BC60E3F009A3EEF /* user@3x.png */,
+				9F38CD3F1BC60A34009A3EEF /* bg_image@3x.png */,
+				9F38CD5D1BC63A4A009A3EEF /* data@3x.png */,
+				9F38CD4C1BC60ED2009A3EEF /* password@3x.png */,
+			);
+			name = "image@3x";
+			sourceTree = "<group>";
+		};
 		9FD16CB31BBA6ECB0004F7FA = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +239,9 @@
 				9FD16CEC1BBA74E30004F7FA /* RootViewController.m */,
 				9FD16CF41BBA75E60004F7FA /* CustomTabBarController.h */,
 				9FD16CF51BBA75E60004F7FA /* CustomTabBarController.m */,
+				9F38CD3C1BC6081E009A3EEF /* image@3x */,
+				9F38CD3B1BC60817009A3EEF /* image@2x */,
+				9F38CD391BC60804009A3EEF /* image */,
 			);
 			path = SuZhouProject;
 			sourceTree = "<group>";
@@ -150,6 +249,7 @@
 		9FD16CBF1BBA6ECB0004F7FA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9F38CD501BC611C4009A3EEF /* PrefixHeader.pch */,
 				9FD16CC01BBA6ECB0004F7FA /* Info.plist */,
 				9FD16CC11BBA6ECB0004F7FA /* main.m */,
 			);
@@ -159,8 +259,8 @@
 		9FD16CDB1BBA6ECB0004F7FA /* SuZhouProjectTests */ = {
 			isa = PBXGroup;
 			children = (
-				9FD16CDE1BBA6ECB0004F7FA /* SuZhouProjectTests.m */,
 				9FD16CDC1BBA6ECB0004F7FA /* Supporting Files */,
+				9FD16CDE1BBA6ECB0004F7FA /* SuZhouProjectTests.m */,
 			);
 			path = SuZhouProjectTests;
 			sourceTree = "<group>";
@@ -171,7 +271,8 @@
 				9FD16CDD1BBA6ECB0004F7FA /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
+			path = SuZhouProjectTests;
+			sourceTree = SOURCE_ROOT;
 		};
 		9FD16CFD1BBA76E30004F7FA /* login */ = {
 			isa = PBXGroup;
@@ -201,6 +302,8 @@
 				9FD16CF21BBA75390004F7FA /* SecondViewController.m */,
 				9FD16D1F1BBBBF2C0004F7FA /* TaskDetailController.h */,
 				9FD16D201BBBBF2C0004F7FA /* TaskDetailController.m */,
+				9F38CD6E1BC64F3B009A3EEF /* UploadViewController.h */,
+				9F38CD6F1BC64F3B009A3EEF /* UploadViewController.m */,
 			);
 			name = Task;
 			sourceTree = "<group>";
@@ -229,6 +332,9 @@
 				9FD16D1A1BBBBA6C0004F7FA /* TaskCell.h */,
 				9FD16D1B1BBBBA6C0004F7FA /* TaskCell.m */,
 				9FD16D1D1BBBBA7C0004F7FA /* TaskCell.xib */,
+				9F38CD691BC64B7E009A3EEF /* TaskDetail.xib */,
+				9F38CD6B1BC64B99009A3EEF /* TaskDetail.h */,
+				9F38CD6C1BC64B99009A3EEF /* TaskDetail.m */,
 			);
 			name = CustomCell;
 			sourceTree = "<group>";
@@ -323,9 +429,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F38CD471BC60E3F009A3EEF /* user@3x.png in Resources */,
+				9F38CD601BC63A4D009A3EEF /* data.png in Resources */,
+				9F38CD5E1BC63A4A009A3EEF /* data@3x.png in Resources */,
+				9F38CD521BC6395E009A3EEF /* task.png in Resources */,
+				9F38CD4D1BC60ED2009A3EEF /* password@3x.png in Resources */,
+				9F38CD581BC639E9009A3EEF /* message.png in Resources */,
+				9F38CD621BC63A50009A3EEF /* data@2x.png in Resources */,
 				9FD16D1E1BBBBA7C0004F7FA /* TaskCell.xib in Resources */,
+				9F38CD491BC60E42009A3EEF /* user.png in Resources */,
+				9F38CD541BC63962009A3EEF /* task@2x.png in Resources */,
+				9F38CD561BC63967009A3EEF /* task@3x.png in Resources */,
 				9FD16CCE1BBA6ECB0004F7FA /* Main.storyboard in Resources */,
+				9F38CD3E1BC60A2F009A3EEF /* bg_image.png in Resources */,
+				9F38CD4F1BC60ED7009A3EEF /* password.png in Resources */,
+				9F38CD661BC63A8E009A3EEF /* mine@3x.png in Resources */,
+				9F38CD641BC63A8C009A3EEF /* mine.png in Resources */,
+				9F38CD5C1BC639F1009A3EEF /* message@3x.png in Resources */,
+				9F38CD721BC6605D009A3EEF /* list.png in Resources */,
+				9F38CD681BC63A92009A3EEF /* mine@2x.png in Resources */,
+				9F38CD421BC60A3B009A3EEF /* bg_image@2x.png in Resources */,
+				9F38CD451BC60E3B009A3EEF /* user@2x.png in Resources */,
 				9FD16CD01BBA6ECB0004F7FA /* Images.xcassets in Resources */,
+				9F38CD401BC60A34009A3EEF /* bg_image@3x.png in Resources */,
+				9F38CD5A1BC639ED009A3EEF /* message@2x.png in Resources */,
+				9F38CD6A1BC64B7E009A3EEF /* TaskDetail.xib in Resources */,
+				9F38CD4B1BC60ECF009A3EEF /* password@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +508,7 @@
 				9FD16D1C1BBBBA6C0004F7FA /* TaskCell.m in Sources */,
 				9FD16CF91BBA769A0004F7FA /* LoginViewController.m in Sources */,
 				9FD16CF31BBA75390004F7FA /* SecondViewController.m in Sources */,
+				9F38CD701BC64F3B009A3EEF /* UploadViewController.m in Sources */,
 				9FD16CC51BBA6ECB0004F7FA /* AppDelegate.m in Sources */,
 				9FD16CFC1BBA76DE0004F7FA /* ChangePasswordController.m in Sources */,
 				9FD16CF61BBA75E60004F7FA /* CustomTabBarController.m in Sources */,
@@ -387,6 +517,7 @@
 				9FD16D101BBBB7360004F7FA /* ThirdViewController.m in Sources */,
 				9FD16CF01BBA752E0004F7FA /* FirstViewController.m in Sources */,
 				9FD16CC21BBA6ECB0004F7FA /* main.m in Sources */,
+				9F38CD6D1BC64B99009A3EEF /* TaskDetail.m in Sources */,
 				9FD16CEA1BBA74AF0004F7FA /* NavViewController.m in Sources */,
 				9FD16D131BBBB7550004F7FA /* ForthViewController.m in Sources */,
 			);
@@ -508,6 +639,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/SuZhouProject/PrefixHeader.pch";
 				INFOPLIST_FILE = SuZhouProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -521,6 +655,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/SuZhouProject/PrefixHeader.pch";
 				INFOPLIST_FILE = SuZhouProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

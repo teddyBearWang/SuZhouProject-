@@ -14,6 +14,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *userTextFiled; //用户名
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField; //密码
 @property (weak, nonatomic) IBOutlet UIButton *login_btn; //登录按钮
+@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *passwordImageView;
+
+
 //登录操作
 - (IBAction)loginAction:(id)sender;
 
@@ -36,6 +40,19 @@
     
     self.login_btn.layer.cornerRadius = 8.0f;
     [self.login_btn setBackgroundColor:[UIColor colorWithRed:49/255.0 green:65/255.0 blue:96/255.0 alpha:1.0]];
+    
+//    UIImageView *userImage = [[UIImageView alloc] initWithFrame:(CGRect){0,0,UserImageWidth, UserImageHeight}];
+//    userImage.image = [UIImage imageNamed:@"user"];
+  //  self.userTextFiled.leftViewMode = UITextFieldViewModeAlways;
+   // self.userTextFiled.leftView = userImage;
+    self.userImageView.image = [UIImage imageNamed:@"user"];
+    
+//    UIImageView *passwordImage = [[UIImageView alloc] initWithFrame:(CGRect){0,0,UserImageWidth, UserImageHeight}];
+//    passwordImage.image = [UIImage imageNamed:@"password"];
+   // self.passwordTextField.leftViewMode = UITextFieldViewModeAlways;
+   // self.passwordTextField.leftView = passwordImage;
+    self.passwordTextField.secureTextEntry = YES;
+    self.passwordImageView.image = [UIImage imageNamed:@"password"];
     
 }
 

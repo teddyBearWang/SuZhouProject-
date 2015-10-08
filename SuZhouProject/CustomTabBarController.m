@@ -21,31 +21,36 @@
     [self.navigationItem setHidesBackButton:YES];
     [self.navigationController.navigationBar setHidden:NO];
     
+    
     self.delegate = self;
     self.title = @"消息";
+    
+    //修改选中的图片颜色和字体颜色
+    self.tabBar.selectedImageTintColor = [UIColor redColor];
+    
     //构造方法生成UITabBarItem
     UITabBarItem *item1 = [self.tabBar.items objectAtIndex:0];
     item1.title = @"消息";
    // item1.selectedImage = ;
-    //item1.image = ;
+    item1.image = [UIImage imageNamed:@"message"];
     
     //构造方法生成UITabBarItem
     UITabBarItem *item2 = [self.tabBar.items objectAtIndex:1];
     item2.title = @"任务";
-    // item2.selectedImage = ;
-    //item2.image = ;
+    item2.badgeValue = @"3";
+    item2.image = [UIImage imageNamed:@"task"];
     
     //构造方法生成UITabBarItem
     UITabBarItem *item3 = [self.tabBar.items objectAtIndex:2];
     item3.title = @"资料";
     // item3.selectedImage = ;
-    //item3.image = ;
+    item3.image = [UIImage imageNamed:@"data"];
     
     //构造方法生成UITabBarItem
     UITabBarItem *item4= [self.tabBar.items objectAtIndex:3];
     item4.title = @"我的";
     // item4.selectedImage = ;
-    //item4.image = ;
+    item4.image = [UIImage imageNamed:@"mine"];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -34,6 +34,14 @@
     
     self.confirm_btn.layer.cornerRadius = 8.0;
     [self.confirm_btn setBackgroundColor:[UIColor colorWithRed:49/255.0 green:65/255.0 blue:96/255.0 alpha:1.0]];
+    
+    self.passwordTextField.secureTextEntry = YES;
+    self.passwordTextField.layer.borderWidth = 0.3;
+    self.passwordTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    
+    self.confirmTextField.secureTextEntry = YES;
+    self.confirmTextField.layer.borderWidth = 0.3;
+    self.confirmTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,7 +52,11 @@
 //确认修改密码
 - (IBAction)confirmPasswordAction:(id)sender
 {
-    
+    if ([self.passwordTextField.text isEqual:self.confirmTextField.text]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"两次输入的密码不一致" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
 }
 
 //点击背景取消键盘
