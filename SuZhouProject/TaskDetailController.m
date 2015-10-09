@@ -41,6 +41,7 @@
     self.taskTable.dataSource = self;
     self.taskTable.scrollEnabled = NO;//禁止滑动
     
+    
 }
 
 - (void)viewWillLayoutSubviews
@@ -97,6 +98,7 @@
         {
             cell.positionLabel.text = @"巡查水域";
             cell.contentLabel.text = @"钱塘江沿岸";
+            cell.postionButton.hidden = NO;//显示按钮
         }
             break;
         case 1:
@@ -115,13 +117,12 @@
         {
             cell.positionLabel.text = @"任务内容";
             cell.contentLabel.text = @"观察水域变化，上报情况";
-            cell.postionButton.hidden = NO;//显示按钮
-            
         }
             break;
         default:
             break;
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

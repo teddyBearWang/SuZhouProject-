@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F3556141BC7500600798C02 /* PasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3556131BC7500600798C02 /* PasswordCell.m */; };
+		9F3556171BC7502C00798C02 /* PasswordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F3556161BC7502C00798C02 /* PasswordCell.xib */; };
+		9F35561A1BC7554900798C02 /* confirmPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3556191BC7554900798C02 /* confirmPasswordController.m */; };
+		9F35561D1BC75B2B00798C02 /* ChangeTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F35561C1BC75B2B00798C02 /* ChangeTypeController.m */; };
+		9F3556521BC7AB8300798C02 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3556511BC7AB8300798C02 /* RecordCell.m */; };
+		9F3556541BC7AB8F00798C02 /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F3556531BC7AB8F00798C02 /* RecordCell.xib */; };
+		9F3556581BC7B05C00798C02 /* LongPressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3556571BC7B05C00798C02 /* LongPressButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9F38CD3E1BC60A2F009A3EEF /* bg_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD3D1BC60A2F009A3EEF /* bg_image.png */; };
 		9F38CD401BC60A34009A3EEF /* bg_image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD3F1BC60A34009A3EEF /* bg_image@3x.png */; };
 		9F38CD421BC60A3B009A3EEF /* bg_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD411BC60A3B009A3EEF /* bg_image@2x.png */; };
@@ -64,6 +71,18 @@
 
 /* Begin PBXFileReference section */
 		65BED042795B2A491575352C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F3556121BC7500600798C02 /* PasswordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordCell.h; sourceTree = "<group>"; };
+		9F3556131BC7500600798C02 /* PasswordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordCell.m; sourceTree = "<group>"; };
+		9F3556161BC7502C00798C02 /* PasswordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCell.xib; sourceTree = "<group>"; };
+		9F3556181BC7554900798C02 /* confirmPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = confirmPasswordController.h; sourceTree = "<group>"; };
+		9F3556191BC7554900798C02 /* confirmPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = confirmPasswordController.m; sourceTree = "<group>"; };
+		9F35561B1BC75B2B00798C02 /* ChangeTypeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeTypeController.h; sourceTree = "<group>"; };
+		9F35561C1BC75B2B00798C02 /* ChangeTypeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeTypeController.m; sourceTree = "<group>"; };
+		9F3556501BC7AB8300798C02 /* RecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordCell.h; sourceTree = "<group>"; };
+		9F3556511BC7AB8300798C02 /* RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
+		9F3556531BC7AB8F00798C02 /* RecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordCell.xib; sourceTree = "<group>"; };
+		9F3556561BC7B05C00798C02 /* LongPressButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongPressButton.h; sourceTree = "<group>"; };
+		9F3556571BC7B05C00798C02 /* LongPressButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LongPressButton.m; sourceTree = "<group>"; };
 		9F38CD3D1BC60A2F009A3EEF /* bg_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_image.png; sourceTree = "<group>"; };
 		9F38CD3F1BC60A34009A3EEF /* bg_image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_image@3x.png"; sourceTree = "<group>"; };
 		9F38CD411BC60A3B009A3EEF /* bg_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_image@2x.png"; sourceTree = "<group>"; };
@@ -157,6 +176,31 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9F3556151BC7500B00798C02 /* customCell */ = {
+			isa = PBXGroup;
+			children = (
+				9F3556121BC7500600798C02 /* PasswordCell.h */,
+				9F3556131BC7500600798C02 /* PasswordCell.m */,
+				9F3556161BC7502C00798C02 /* PasswordCell.xib */,
+			);
+			name = customCell;
+			sourceTree = "<group>";
+		};
+		9F3556551BC7B03B00798C02 /* until */ = {
+			isa = PBXGroup;
+			children = (
+				9F3556561BC7B05C00798C02 /* LongPressButton.h */,
+				9F3556571BC7B05C00798C02 /* LongPressButton.m */,
+				9FD16CE81BBA74AF0004F7FA /* NavViewController.h */,
+				9FD16CE91BBA74AF0004F7FA /* NavViewController.m */,
+				9FD16CEB1BBA74E30004F7FA /* RootViewController.h */,
+				9FD16CEC1BBA74E30004F7FA /* RootViewController.m */,
+				9FD16CF41BBA75E60004F7FA /* CustomTabBarController.h */,
+				9FD16CF51BBA75E60004F7FA /* CustomTabBarController.m */,
+			);
+			name = until;
+			sourceTree = "<group>";
+		};
 		9F38CD391BC60804009A3EEF /* image */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,12 +277,6 @@
 				9FD16CCC1BBA6ECB0004F7FA /* Main.storyboard */,
 				9FD16CCF1BBA6ECB0004F7FA /* Images.xcassets */,
 				9FD16CBF1BBA6ECB0004F7FA /* Supporting Files */,
-				9FD16CE81BBA74AF0004F7FA /* NavViewController.h */,
-				9FD16CE91BBA74AF0004F7FA /* NavViewController.m */,
-				9FD16CEB1BBA74E30004F7FA /* RootViewController.h */,
-				9FD16CEC1BBA74E30004F7FA /* RootViewController.m */,
-				9FD16CF41BBA75E60004F7FA /* CustomTabBarController.h */,
-				9FD16CF51BBA75E60004F7FA /* CustomTabBarController.m */,
 				9F38CD3C1BC6081E009A3EEF /* image@3x */,
 				9F38CD3B1BC60817009A3EEF /* image@2x */,
 				9F38CD391BC60804009A3EEF /* image */,
@@ -249,6 +287,7 @@
 		9FD16CBF1BBA6ECB0004F7FA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9F3556551BC7B03B00798C02 /* until */,
 				9F38CD501BC611C4009A3EEF /* PrefixHeader.pch */,
 				9FD16CC01BBA6ECB0004F7FA /* Info.plist */,
 				9FD16CC11BBA6ECB0004F7FA /* main.m */,
@@ -277,10 +316,13 @@
 		9FD16CFD1BBA76E30004F7FA /* login */ = {
 			isa = PBXGroup;
 			children = (
+				9F3556151BC7500B00798C02 /* customCell */,
 				9FD16CF71BBA769A0004F7FA /* LoginViewController.h */,
 				9FD16CF81BBA769A0004F7FA /* LoginViewController.m */,
 				9FD16CFA1BBA76DE0004F7FA /* ChangePasswordController.h */,
 				9FD16CFB1BBA76DE0004F7FA /* ChangePasswordController.m */,
+				9F3556181BC7554900798C02 /* confirmPasswordController.h */,
+				9F3556191BC7554900798C02 /* confirmPasswordController.m */,
 			);
 			name = login;
 			sourceTree = "<group>";
@@ -304,6 +346,8 @@
 				9FD16D201BBBBF2C0004F7FA /* TaskDetailController.m */,
 				9F38CD6E1BC64F3B009A3EEF /* UploadViewController.h */,
 				9F38CD6F1BC64F3B009A3EEF /* UploadViewController.m */,
+				9F35561B1BC75B2B00798C02 /* ChangeTypeController.h */,
+				9F35561C1BC75B2B00798C02 /* ChangeTypeController.m */,
 			);
 			name = Task;
 			sourceTree = "<group>";
@@ -335,6 +379,9 @@
 				9F38CD691BC64B7E009A3EEF /* TaskDetail.xib */,
 				9F38CD6B1BC64B99009A3EEF /* TaskDetail.h */,
 				9F38CD6C1BC64B99009A3EEF /* TaskDetail.m */,
+				9F3556501BC7AB8300798C02 /* RecordCell.h */,
+				9F3556511BC7AB8300798C02 /* RecordCell.m */,
+				9F3556531BC7AB8F00798C02 /* RecordCell.xib */,
 			);
 			name = CustomCell;
 			sourceTree = "<group>";
@@ -431,9 +478,11 @@
 			files = (
 				9F38CD471BC60E3F009A3EEF /* user@3x.png in Resources */,
 				9F38CD601BC63A4D009A3EEF /* data.png in Resources */,
+				9F3556171BC7502C00798C02 /* PasswordCell.xib in Resources */,
 				9F38CD5E1BC63A4A009A3EEF /* data@3x.png in Resources */,
 				9F38CD521BC6395E009A3EEF /* task.png in Resources */,
 				9F38CD4D1BC60ED2009A3EEF /* password@3x.png in Resources */,
+				9F3556541BC7AB8F00798C02 /* RecordCell.xib in Resources */,
 				9F38CD581BC639E9009A3EEF /* message.png in Resources */,
 				9F38CD621BC63A50009A3EEF /* data@2x.png in Resources */,
 				9FD16D1E1BBBBA7C0004F7FA /* TaskCell.xib in Resources */,
@@ -506,6 +555,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FD16D1C1BBBBA6C0004F7FA /* TaskCell.m in Sources */,
+				9F35561D1BC75B2B00798C02 /* ChangeTypeController.m in Sources */,
 				9FD16CF91BBA769A0004F7FA /* LoginViewController.m in Sources */,
 				9FD16CF31BBA75390004F7FA /* SecondViewController.m in Sources */,
 				9F38CD701BC64F3B009A3EEF /* UploadViewController.m in Sources */,
@@ -513,10 +563,14 @@
 				9FD16CFC1BBA76DE0004F7FA /* ChangePasswordController.m in Sources */,
 				9FD16CF61BBA75E60004F7FA /* CustomTabBarController.m in Sources */,
 				9FD16CED1BBA74E30004F7FA /* RootViewController.m in Sources */,
+				9F35561A1BC7554900798C02 /* confirmPasswordController.m in Sources */,
 				9FD16D211BBBBF2C0004F7FA /* TaskDetailController.m in Sources */,
+				9F3556521BC7AB8300798C02 /* RecordCell.m in Sources */,
 				9FD16D101BBBB7360004F7FA /* ThirdViewController.m in Sources */,
+				9F3556581BC7B05C00798C02 /* LongPressButton.m in Sources */,
 				9FD16CF01BBA752E0004F7FA /* FirstViewController.m in Sources */,
 				9FD16CC21BBA6ECB0004F7FA /* main.m in Sources */,
+				9F3556141BC7500600798C02 /* PasswordCell.m in Sources */,
 				9F38CD6D1BC64B99009A3EEF /* TaskDetail.m in Sources */,
 				9FD16CEA1BBA74AF0004F7FA /* NavViewController.m in Sources */,
 				9FD16D131BBBB7550004F7FA /* ForthViewController.m in Sources */,
