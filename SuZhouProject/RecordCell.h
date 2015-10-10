@@ -12,6 +12,7 @@
 @interface RecordCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *recordImageView;
 @property (weak, nonatomic) IBOutlet LongPressButton *recordButton;
+@property (weak, nonatomic) IBOutlet UIButton *tapButton;
 
 
 @end

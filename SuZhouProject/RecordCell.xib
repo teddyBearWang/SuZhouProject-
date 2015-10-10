@@ -16,15 +16,17 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQo-Pc-EMt">
                         <rect key="frame" x="8" y="7" width="30" height="30"/>
                     </imageView>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7dw-9o-WtC" customClass="LongPressButton">
-                        <rect key="frame" x="54" y="2" width="260" height="40"/>
-                        <color key="backgroundColor" red="1" green="0.31098124630000001" blue="0.1007501616" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lj7-IG-I48">
+                        <rect key="frame" x="66" y="7" width="246" height="30"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="recordButton" destination="7dw-9o-WtC" id="cCN-h0-oVG"/>
                 <outlet property="recordImageView" destination="mQo-Pc-EMt" id="kNN-Qs-806"/>
+                <outlet property="tapButton" destination="Lj7-IG-I48" id="yiS-1K-ffY"/>
             </connections>
             <point key="canvasLocation" x="521" y="411"/>
         </tableViewCell>
