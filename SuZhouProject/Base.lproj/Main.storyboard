@@ -486,15 +486,39 @@
                                     <constraint firstAttribute="height" constant="220" id="v0j-Hl-Fx5"/>
                                 </constraints>
                             </tableView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="O0W-DC-BLw">
+                                <rect key="frame" x="0.0" y="220" width="320" height="308"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zQf-3L-sBa">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="1MY-gX-3Ho">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.1003104204" green="1" blue="0.96923083539999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="O0W-DC-BLw" firstAttribute="top" secondItem="VZz-9y-Sed" secondAttribute="bottom" id="4WI-1V-jtn"/>
                             <constraint firstAttribute="centerX" secondItem="qXj-L5-oEE" secondAttribute="centerX" id="692-m5-ERh"/>
                             <constraint firstItem="qXj-L5-oEE" firstAttribute="leading" secondItem="caZ-y8-e3B" secondAttribute="leading" id="7QW-We-U1H"/>
+                            <constraint firstItem="qXj-L5-oEE" firstAttribute="top" secondItem="O0W-DC-BLw" secondAttribute="bottom" id="C2u-R3-UoB"/>
                             <constraint firstAttribute="centerX" secondItem="VZz-9y-Sed" secondAttribute="centerX" id="LKS-5n-9mo"/>
+                            <constraint firstAttribute="trailing" secondItem="O0W-DC-BLw" secondAttribute="trailing" id="LpG-9J-ZEI"/>
                             <constraint firstAttribute="trailing" secondItem="VZz-9y-Sed" secondAttribute="trailing" id="NB6-bn-Q8B"/>
                             <constraint firstItem="VZz-9y-Sed" firstAttribute="top" secondItem="caZ-y8-e3B" secondAttribute="top" id="VXi-5W-3q2"/>
                             <constraint firstItem="VZz-9y-Sed" firstAttribute="leading" secondItem="caZ-y8-e3B" secondAttribute="leading" id="dmc-84-kDm"/>
+                            <constraint firstItem="O0W-DC-BLw" firstAttribute="leading" secondItem="caZ-y8-e3B" secondAttribute="leading" id="hAs-B1-EKp"/>
                             <constraint firstAttribute="bottom" secondItem="qXj-L5-oEE" secondAttribute="bottom" id="k0y-Cf-iU4"/>
                             <constraint firstAttribute="trailing" secondItem="qXj-L5-oEE" secondAttribute="trailing" id="pmp-D2-cqP"/>
                         </constraints>
@@ -507,6 +531,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="detailTable" destination="VZz-9y-Sed" id="e9U-AJ-58l"/>
+                        <outlet property="imagesCollection" destination="O0W-DC-BLw" id="lEc-S6-BDh"/>
                         <segue destination="i2D-FN-kBm" kind="push" identifier="changeType" id="rlr-nb-1W6"/>
                     </connections>
                 </viewController>

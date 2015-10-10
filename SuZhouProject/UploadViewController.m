@@ -11,11 +11,13 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
 
+#import "CBProfilePhotoViewCell.h"
+
 //语音视图的高度
 #define RecordImageViewHeight 75
 //语音视图的宽度
 #define RecordImageViewWidth 50
-@interface UploadViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,AVAudioRecorderDelegate>
+@interface UploadViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UIActionSheetDelegate>
 {
     NSString *_recordInfo;//录音信息，“录音2015-09-10 08:32:35”
     BOOL _isRecording;//是否正在进行录音
@@ -25,8 +27,15 @@
     NSString *_existRecordFileUrl;//存在录音文件的地址
     
     UIImageView *_voiceImageView;//显示音量的图片视图
+    
+    NSMutableArray *_images;//collectionViews的数据源
 }
+//详细列表
 @property (weak, nonatomic) IBOutlet UITableView *detailTable;
+
+//显示图片
+@property (weak, nonatomic) IBOutlet UICollectionView *imagesCollection;
+
 
 //确认上报
 - (IBAction)comfirnUploadAction:(id)sender;
@@ -41,15 +50,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    //详细列表的数据源和代理
     self.detailTable.delegate = self;
     self.detailTable.dataSource = self;
     self.detailTable.scrollEnabled = NO;//禁止滚动
     self.view.backgroundColor = [UIColor greenColor];
     
+    //图片模块的数据源和代理
+    self.imagesCollection.dataSource = self;
+    self.imagesCollection.delegate = self;
+    self.imagesCollection.scrollEnabled = NO;
+    
     _voiceImageView = [[UIImageView alloc] initWithFrame:(CGRect){(kScreenWidth - RecordImageViewWidth)/2,RecordImageViewWidth,RecordImageViewWidth,RecordImageViewHeight}];
     _voiceImageView.alpha = 0.8;
     _voiceImageView.hidden = YES;//显示隐藏
     [self.view addSubview:_voiceImageView];
+    
+    _images = [NSMutableArray arrayWithObject:[UIImage imageNamed:@"plus"]];
     
     //录音准备
     [self audioPrepare];
@@ -305,13 +322,8 @@
     _recorder = [[AVAudioRecorder alloc] initWithURL:fileUrl settings:recordSetting error:&error];
     //开启音量监测
     _recorder.meteringEnabled = YES;
-    _recorder.delegate = self;
+    //_recorder.delegate = self;
 }
-
-//- (NSString *)createFilePath
-//{
-//   
-//}
 
 //获取当前录音时刻的时间
 - (NSString *)getCurrentTime
@@ -369,6 +381,76 @@
         [_voiceImageView setImage:[UIImage imageNamed:@"record_animate_13.png"]];
     }else {
         [_voiceImageView setImage:[UIImage imageNamed:@"record_animate_14.png"]];
+    }
+}
+
+#pragma mark - UICollectionViewDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return _images.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CBProfilePhotoViewCell *myCell = (CBProfilePhotoViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"PhotoCell" owner:nil options:nil] lastObject];
+    
+    myCell.profileImageView.image = _images[indexPath.row];
+    myCell.profileImageView.tag = [indexPath row];
+    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapProfileImage:)];
+    singleTap.numberOfTapsRequired = 1;
+    myCell.profileImageView.userInteractionEnabled = YES;
+    [myCell.profileImageView  addGestureRecognizer:singleTap];
+    
+    myCell.closeBtn.tag = [indexPath row];
+    
+    if ([indexPath row] == (_images.count - 1)){
+        [myCell.closeBtn setHidden:YES];
+    }
+    [myCell.closeBtn addTarget:self action:@selector(deletePhoto:)
+                 forControlEvents:UIControlEventTouchUpInside];
+    return myCell;
+
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(20, 8, 10, 8);
+}
+
+#pragma mark - delegate image Action
+//添加图片
+- (void)tapProfileImage:(UIGestureRecognizer *)gesture
+{
+    UIImageView *tableGridImage = (UIImageView*)gesture.view;
+    NSInteger index = tableGridImage.tag;
+    //点击了“+”号
+    if (index == _images.count - 1) {
+        //添加图片
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从手机相册选择", nil];
+        [actionSheet showInView:self.view];
+    }
+}
+
+//删除图片
+- (void)deletePhoto:(UIButton *)button
+{
+    [_images removeObjectAtIndex:button.tag];
+    [self.imagesCollection reloadData];
+}
+
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            //拍照
+            break;
+        case 1:
+            //从相册中选择
+            break;
+        default:
+            break;
     }
 }
 
