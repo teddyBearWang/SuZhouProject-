@@ -1,7 +1,7 @@
 //
 //  UploadViewController.m
 //  SuZhouProject
-//
+//  **********巡查上报**************
 //  Created by teddy on 15/10/8.
 //  Copyright (c) 2015年 teddy. All rights reserved.
 //
@@ -13,11 +13,15 @@
 
 #import "CBProfilePhotoViewCell.h"
 
+#import "ELCImagePickerHeader.h"
+#import <MobileCoreServices/UTCoreTypes.h>
+
+
 //语音视图的高度
 #define RecordImageViewHeight 75
 //语音视图的宽度
 #define RecordImageViewWidth 50
-@interface UploadViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UIActionSheetDelegate>
+@interface UploadViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,ELCImagePickerControllerDelegate>
 {
     NSString *_recordInfo;//录音信息，“录音2015-09-10 08:32:35”
     BOOL _isRecording;//是否正在进行录音
@@ -29,6 +33,8 @@
     UIImageView *_voiceImageView;//显示音量的图片视图
     
     NSMutableArray *_images;//collectionViews的数据源
+    
+    AVPlayer *_play;//播放
 }
 //详细列表
 @property (weak, nonatomic) IBOutlet UITableView *detailTable;
@@ -60,6 +66,7 @@
     self.imagesCollection.dataSource = self;
     self.imagesCollection.delegate = self;
     self.imagesCollection.scrollEnabled = NO;
+    self.imagesCollection.backgroundColor = BG_COLOR;
     
     _voiceImageView = [[UIImageView alloc] initWithFrame:(CGRect){(kScreenWidth - RecordImageViewWidth)/2,RecordImageViewWidth,RecordImageViewWidth,RecordImageViewHeight}];
     _voiceImageView.alpha = 0.8;
@@ -72,6 +79,9 @@
     [self audioPrepare];
 
     _recordInfo = @"请按住进行录音";
+    //必须在viewDidLoad中加载这个方法，如果不声明，将无法加载，程序崩溃
+    //如果自定义的cell是有xib文件的，那么就应该用这个方法
+    [self.imagesCollection registerNib:[UINib nibWithNibName:@"PhotoCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"photo"];
 
 }
 
@@ -136,7 +146,7 @@
                 textField.borderStyle = UITextBorderStyleNone;
                 textField.placeholder = @"输入问题描述...";
                 textField.delegate = self;
-               // textField.returnKeyType = UIReturnKeyDone;
+                textField.returnKeyType = UIReturnKeyDone;
                 textField.font = [UIFont systemFontOfSize:14];
                 textField.tag = 101;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -147,16 +157,20 @@
             case 1:
             {
                 RecordCell *cell = (RecordCell *)[[[NSBundle mainBundle] loadNibNamed:@"RecordCell" owner:self options:nil] lastObject];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.selectionStyle = UITableViewCellSelectionStyleBlue;
                 cell.tag = 102;
                 if (!_isRecorded) {
                     //没有录过音
-                    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+                   // cell.textLabel.textAlignment = NSTextAlignmentCenter;
+                    cell.tapButton.titleLabel.textAlignment = NSTextAlignmentCenter;
                 }else{
                     //录过音
-                    cell.textLabel.textAlignment = NSTextAlignmentLeft;
+                  //  cell.textLabel.textAlignment = NSTextAlignmentLeft;
+                    cell.tapButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+                    cell.recordImageView.image = [UIImage imageNamed:@"voice"];
                 }
-                cell.textLabel.text = _recordInfo;
+                cell.tapButton.tag = 103;
+                [cell.tapButton setTitle:_recordInfo forState:UIControlStateNormal] ;
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
                 [cell.tapButton addGestureRecognizer:tap];
                 
@@ -249,6 +263,10 @@
 - (void)tapAction:(UIGestureRecognizer *)gesture
 {
     NSLog(@"播放");
+    NSURL *filePath = [NSURL fileURLWithPath:_existRecordFileUrl];
+    _play = [[AVPlayer alloc] initWithURL:filePath];
+    _play.volume = 4;
+    [_play play];
 }
 
 //按下录音，开始录音
@@ -344,6 +362,8 @@
         _isRecording = YES;
         _voiceImageView.hidden = NO;//将图片显示出来
     }
+    UIButton *button = (UIButton *)[self.view viewWithTag:103];
+    [button setTitle:@"正在录音" forState:UIControlStateHighlighted];
     NSLog(@"正在录音-----------");
     [_recorder updateMeters];//刷新音量数据
     //获取音量的平均值  [recorder averagePowerForChannel:0];
@@ -392,9 +412,10 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CBProfilePhotoViewCell *myCell = (CBProfilePhotoViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"PhotoCell" owner:nil options:nil] lastObject];
+    CBProfilePhotoViewCell *myCell = (CBProfilePhotoViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"photo" forIndexPath:indexPath];
     
     myCell.profileImageView.image = _images[indexPath.row];
+    myCell.profileImageView.contentMode = UIViewContentModeScaleAspectFit;
     myCell.profileImageView.tag = [indexPath row];
     
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapProfileImage:)];
@@ -404,13 +425,19 @@
     
     myCell.closeBtn.tag = [indexPath row];
     
-    if ([indexPath row] == (_images.count - 1)){
+    //if ([indexPath row] == (_images.count - 1)){
+    //隐藏删除按钮
         [myCell.closeBtn setHidden:YES];
-    }
+    //}
     [myCell.closeBtn addTarget:self action:@selector(deletePhoto:)
                  forControlEvents:UIControlEventTouchUpInside];
     return myCell;
 
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(80, 80);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
@@ -445,15 +472,110 @@
     switch (buttonIndex) {
         case 0:
             //拍照
+            [self ClickTakePhotoAction:nil];
             break;
         case 1:
             //从相册中选择
+            [self chooseImages];
             break;
         default:
             break;
     }
 }
 
+
+#pragma mark - take Photos Action
+//判断设备是否有摄像头
+- (BOOL)isCaremaAviable
+{
+    return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+}
+
+//判断后置摄像头是否可用
+- (BOOL)isRearCaremaAviable
+{
+    return [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear];
+}
+
+- (void)ClickTakePhotoAction:(id)sender
+{
+    //判断有摄像头并且支持拍照
+    if ([self isCaremaAviable] && [self isRearCaremaAviable]) {
+        UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+        //设置拍照类型
+        controller.sourceType = UIImagePickerControllerSourceTypeCamera;
+        controller.allowsEditing = YES;//允许编辑
+        controller.delegate = self;
+        [self presentViewController:controller animated:YES completion:nil];
+    }
+}
+
+#pragma - UIImagePickerControllerDelegate
+// 当用户取消时，调用该方法
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+//拍照后得到该方法
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo NS_DEPRECATED_IOS(2_0, 3_0)
+{
+    NSLog(@"拍照成功");
+    [_images insertObject:image atIndex:(_images.count - 1)];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        //刷新列表
+        [self.imagesCollection reloadData];
+    }];
+    
+}
+
+#pragma mark - Choose Images from Library
+//从相册中选择图片
+- (void)chooseImages
+{
+    ELCImagePickerController *elcPicker = [[ELCImagePickerController alloc] initImagePicker];
+    //允许选择的最多张图片
+    elcPicker.maximumImagesCount = 4;
+    //返回源照片
+    elcPicker.returnsOriginalImage = YES;
+    elcPicker.returnsImage = YES;
+    //按照选择顺序
+    elcPicker.onOrder = YES;
+    //只允许选择照片
+    elcPicker.mediaTypes = @[(NSString *)kUTTypeImage];
+    elcPicker.imagePickerDelegate = self;
+    
+    [self presentViewController:elcPicker animated:YES completion:nil];
+}
+
+#pragma mark ELCImagePickerControllerDelegate Methods
+- (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info
+{
+    
+    NSMutableArray *images = [NSMutableArray arrayWithCapacity:[info count]];
+    //遍历数组，取出相应的图片
+    for (NSDictionary *dict in info) {
+        //如果取出来的是照片
+        if ([dict objectForKey:UIImagePickerControllerMediaType] == ALAssetTypePhoto) {
+            if ([dict objectForKey:UIImagePickerControllerOriginalImage]) {
+                UIImage *image = [dict objectForKey:UIImagePickerControllerOriginalImage];
+                [images addObject:image];
+            }
+        }
+    }
+    //刷新界面
+    [self dismissViewControllerAnimated:YES completion:^{
+        for (UIImage *image in images) {
+            [_images insertObject:image atIndex:(_images.count -1)];
+        }
+        [self.imagesCollection reloadData];
+    }];
+}
+
+- (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {

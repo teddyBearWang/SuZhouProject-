@@ -32,10 +32,9 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s14-TF-QdV">
-                        <rect key="frame" x="290" y="10" width="30" height="30"/>
-                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <state key="normal" title="Button">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s14-TF-QdV">
+                        <rect key="frame" x="282" y="10" width="30" height="30"/>
+                        <state key="normal" image="location.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
@@ -50,4 +49,7 @@
             <point key="canvasLocation" x="944" y="504"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="location.png" width="30" height="30"/>
+    </resources>
 </document>

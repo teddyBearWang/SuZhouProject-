@@ -8,10 +8,14 @@
 
 #import "TaskDetailController.h"
 #import "TaskDetail.h"
+#import "BMapKit.h"
+#import "MapPathController.h"
 
-@interface TaskDetailController ()<UITableViewDataSource,UITableViewDelegate>
+@interface TaskDetailController ()<UITableViewDataSource,UITableViewDelegate,BMKLocationServiceDelegate>
 {
     NSArray *_dataList; //数据源
+    BMKMapView *_mapView;
+    BMKLocationService *_locationService;//定位服务
 }
 //开始巡查按钮
 @property (weak, nonatomic) IBOutlet UIButton *start_btn;
@@ -21,6 +25,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *end_btn;
 //任务列表
 @property (weak, nonatomic) IBOutlet UITableView *taskTable;
+
+//显示轨迹的地图
+@property (weak, nonatomic) IBOutlet UIView *mapShowView;
+
 
 //开始巡查
 - (IBAction)startPartrolAction:(id)sender;
@@ -41,7 +49,31 @@
     self.taskTable.dataSource = self;
     self.taskTable.scrollEnabled = NO;//禁止滑动
     
+    _mapView = [[BMKMapView alloc] initWithFrame:self.mapShowView.frame];
+    _mapView.mapType = BMKMapTypeSatellite;
+    _mapView.showsUserLocation = YES;
+    [self.mapShowView addSubview:_mapView];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    //界面即将显示的时候开始定位
+    [self startLocationAction];
+}
+
+//开始定位
+- (void)startLocationAction
+{
+    //设置定位精度。默认：kCLLocationAccuracyBest
+    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+    //指定最小距离更新(米)，默认:kCLDistanceFilterNone
+    [BMKLocationService setLocationDistanceFilter:100.f];
+    _locationService = [[BMKLocationService alloc] init];
+    _locationService.delegate = self;
+    //启动定位
+    [_locationService startUserLocationService];
 }
 
 - (void)viewWillLayoutSubviews
@@ -65,6 +97,41 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - BMKLocationServiceDelegate
+
+/**
+ *用户方向更新后，会调用此函数
+ *@param userLocation 新的用户位置
+ //处理方向变更信息
+ */
+- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
+{
+    NSLog(@"hedding is %@",userLocation.heading);
+}
+
+/**
+ *用户位置更新后，会调用此函数
+ *@param userLocation 新的用户位置
+ 处理位置坐标更新
+ */
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+{
+    BMKCoordinateRegion region;
+    region.center.latitude = userLocation.location.coordinate.latitude;
+    region.center.longitude = userLocation.location.coordinate.longitude;
+    region.span.latitudeDelta = 0.02;
+    region.span.longitudeDelta = 0.02;
+    if (_mapView) {
+        _mapView.region = region;
+
+    }
+    //加上这句话，才会显示定位的蓝圆点，否则不显示
+    [_mapView updateLocationData:userLocation];
+    [_locationService stopUserLocationService];
+}
+
+#pragma mark - Private Method
+
 //开始巡查
 - (IBAction)startPartrolAction:(id)sender
 {
@@ -83,6 +150,11 @@
 - (IBAction)endPartrolAction:(id)sender {
 }
 
+- (void)watchMapPathAction
+{
+    [self performSegueWithIdentifier:@"mapPath" sender:nil];
+}
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -99,6 +171,7 @@
             cell.positionLabel.text = @"巡查水域";
             cell.contentLabel.text = @"钱塘江沿岸";
             cell.postionButton.hidden = NO;//显示按钮
+            [cell.postionButton addTarget:self action:@selector(watchMapPathAction) forControlEvents:UIControlEventTouchUpInside];
         }
             break;
         case 1:

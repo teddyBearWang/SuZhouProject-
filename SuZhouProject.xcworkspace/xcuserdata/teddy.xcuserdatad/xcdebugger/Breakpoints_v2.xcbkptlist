@@ -10,11 +10,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SuZhouProject/UploadViewController.m"
-            timestampString = "466150149.909633"
+            timestampString = "466323597.921365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SuZhouProject/UploadViewController.m"
+            timestampString = "466323597.921365"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SuZhouProject/UploadViewController.m"
+            timestampString = "466323597.921365"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
+            landmarkName = "@implementation UploadViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SuZhouProject/UploadViewController.m"
+            timestampString = "466323597.921365"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
             landmarkName = "-buttonLongPress:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SuZhouProject/UploadViewController.m"
-            timestampString = "466149782.438501"
+            timestampString = "466323597.921365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "-buttonLongPress:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SuZhouProject/UploadViewController.m"
-            timestampString = "466149782.438501"
+            timestampString = "466323597.921365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
-            landmarkName = "-buttonLongPress:"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,12 +106,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SuZhouProject/UploadViewController.m"
-            timestampString = "466150349.398615"
+            timestampString = "466323597.921365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
-            landmarkName = "-buttonLongPress:"
+            startingLineNumber = "567"
+            endingLineNumber = "567"
+            landmarkName = "-elcImagePickerController:didFinishPickingMediaWithInfo:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UploadViewController elcImagePickerController:didFinishPickingMediaWithInfo:]"
+                  moduleName = "SuZhouProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/teddy/Desktop/%E6%B5%99%E6%B1%9F%E6%B0%B4%E5%88%A9%E6%B2%B3%E5%8F%A3%E7%A0%94%E7%A9%B6%E9%99%A2/%E6%9D%AD%E5%B7%9E%E5%AE%9A%E5%B7%9D/%E9%A1%B9%E7%9B%AE/%E8%8B%8F%E5%B7%9E%E9%A1%B9%E7%9B%AE/%E4%BB%A3%E7%A0%81/SuZhouProject/SuZhouProject/UploadViewController.m"
+                  timestampString = "466320480.366507"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "557"
+                  endingLineNumber = "557"
+                  offsetFromSymbolStart = "776">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__79-[UploadViewController elcImagePickerController:didFinishPickingMediaWithInfo:]_block_invoke"
+                  moduleName = "SuZhouProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/teddy/Desktop/%E6%B5%99%E6%B1%9F%E6%B0%B4%E5%88%A9%E6%B2%B3%E5%8F%A3%E7%A0%94%E7%A9%B6%E9%99%A2/%E6%9D%AD%E5%B7%9E%E5%AE%9A%E5%B7%9D/%E9%A1%B9%E7%9B%AE/%E8%8B%8F%E5%B7%9E%E9%A1%B9%E7%9B%AE/%E4%BB%A3%E7%A0%81/SuZhouProject/SuZhouProject/UploadViewController.m"
+                  timestampString = "466320480.366632"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "557"
+                  endingLineNumber = "557"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SuZhouProject/UploadViewController.m"
+            timestampString = "466323597.921365"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "521"
+            endingLineNumber = "521"
+            landmarkName = "@implementation UploadViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SuZhouProject/UploadViewController.m"
+            timestampString = "466323597.921365"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "515"
+            endingLineNumber = "515"
+            landmarkName = "-imagePickerControllerDidCancel:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,12 +186,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SuZhouProject/UploadViewController.m"
-            timestampString = "466150349.398615"
+            timestampString = "466323597.921365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
-            landmarkName = "-isExist"
+            startingLineNumber = "569"
+            endingLineNumber = "569"
+            landmarkName = "-elcImagePickerController:didFinishPickingMediaWithInfo:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,13 +201,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SuZhouProject/UploadViewController.m"
-            timestampString = "466149782.438501"
+            filePath = "SuZhouProject/MapPathController.m"
+            timestampString = "466320426.561306"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
-            landmarkName = "-buttonLongPress:"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SuZhouProject/MapPathController.m"
+            timestampString = "466321050.689476"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "-didUpdateBMKUserLocation:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

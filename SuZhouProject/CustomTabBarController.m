@@ -32,12 +32,13 @@
     UITabBarItem *item1 = [self.tabBar.items objectAtIndex:0];
     item1.title = @"消息";
    // item1.selectedImage = ;
+    
     item1.image = [UIImage imageNamed:@"message"];
     
     //构造方法生成UITabBarItem
     UITabBarItem *item2 = [self.tabBar.items objectAtIndex:1];
     item2.title = @"任务";
-    item2.badgeValue = @"3";
+    item2.badgeValue = @"2";
     item2.image = [UIImage imageNamed:@"task"];
     
     //构造方法生成UITabBarItem
@@ -51,6 +52,8 @@
     item4.title = @"我的";
     // item4.selectedImage = ;
     item4.image = [UIImage imageNamed:@"mine"];
+    
+    self.selectedIndex = 1;//默认显示任务列表
 }
 
 - (void)didReceiveMemoryWarning {

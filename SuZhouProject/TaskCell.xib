@@ -13,7 +13,7 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="imU-yP-r8P" id="KVg-Go-ynO">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HB2-Nf-tTG">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="status_none.png" translatesAutoresizingMaskIntoConstraints="NO" id="HB2-Nf-tTG">
                         <rect key="frame" x="16" y="6" width="25" height="25"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="任务内容：查看水域变化，开发利用变化" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlr-jZ-Sba">
@@ -38,4 +38,7 @@
             <point key="canvasLocation" x="998" y="498"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="status_none.png" width="25" height="25"/>
+    </resources>
 </document>

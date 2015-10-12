@@ -76,6 +76,25 @@
             </objects>
             <point key="canvasLocation" x="-716" y="756"/>
         </scene>
+        <!--地图显示-->
+        <scene sceneID="DSc-Rn-csI">
+            <objects>
+                <viewController storyboardIdentifier="MapPath" id="S0c-O8-d7A" customClass="MapPathController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="46a-pe-r2V"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kov-Yz-R2R"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dcW-RZ-RcR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="地图显示" id="bcu-vj-noa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hye-Jk-xOj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-734" y="1420"/>
+        </scene>
         <!--我的-->
         <scene sceneID="tcV-iS-G3K">
             <objects>
@@ -124,14 +143,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="s8g-Cq-tyq">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="苏州水域监控" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YqT-YA-RoZ">
-                                <rect key="frame" x="60" y="121" width="200" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SN5-sa-sNP">
                                 <rect key="frame" x="30" y="281" width="260" height="40"/>
                                 <color key="backgroundColor" red="0.070588235289999995" green="0.14901960780000001" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -197,7 +210,6 @@
                         <outlet property="login_btn" destination="SN5-sa-sNP" id="C3g-Ik-Om2"/>
                         <outlet property="passwordImageView" destination="qJY-ll-iGt" id="BR4-MM-jCZ"/>
                         <outlet property="passwordTextField" destination="T6I-pc-jaC" id="9i2-qt-w4u"/>
-                        <outlet property="titleLabel" destination="YqT-YA-RoZ" id="0sF-rc-KtW"/>
                         <outlet property="userImageView" destination="8NI-Q3-wYx" id="S8v-Gh-EkE"/>
                         <outlet property="userTextFiled" destination="izu-Y6-K2j" id="j9w-Ir-Sdr"/>
                         <segue destination="49e-Tb-3d3" kind="push" identifier="Login" id="qDm-CH-QrZ"/>
@@ -340,13 +352,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CbE-Yv-7Ty">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
-                                <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="ABw-RF-qJq"/>
-                                </constraints>
-                            </webView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0y-bb-lyA">
                                 <rect key="frame" x="60" y="528" width="200" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.31098124630000001" blue="0.1007501616" alpha="1" colorSpace="calibratedRGB"/>
@@ -391,12 +396,6 @@
                                     <action selector="endPartrolAction:" destination="F7i-Ld-9al" eventType="touchUpInside" id="1HN-XU-2mw"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="显示当前的位置地址.." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8A-f1-VKi">
-                                <rect key="frame" x="66" y="72" width="163" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eRP-0s-HfM">
                                 <rect key="frame" x="0.0" y="150" width="320" height="200"/>
                                 <subviews>
@@ -414,26 +413,31 @@
                                     <constraint firstItem="eot-dH-fLw" firstAttribute="top" secondItem="eRP-0s-HfM" secondAttribute="top" id="kip-XH-GjA"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wDT-4A-jRO">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                <color key="backgroundColor" red="0.4452902943" green="1" blue="0.31778418380000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="jvp-se-pPX"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CbE-Yv-7Ty" firstAttribute="top" secondItem="XPd-Kk-AP3" secondAttribute="top" id="0vS-Uv-Bp1"/>
                             <constraint firstItem="YKi-u7-nnJ" firstAttribute="leading" secondItem="o24-Hz-WkT" secondAttribute="trailing" id="4hX-T8-k05"/>
+                            <constraint firstAttribute="trailing" secondItem="wDT-4A-jRO" secondAttribute="trailing" id="8Og-Wn-Oc7"/>
                             <constraint firstAttribute="bottom" secondItem="o24-Hz-WkT" secondAttribute="bottom" id="8fm-E2-CzE"/>
                             <constraint firstItem="o24-Hz-WkT" firstAttribute="width" secondItem="YKi-u7-nnJ" secondAttribute="width" id="939-Y9-mNs"/>
-                            <constraint firstItem="eRP-0s-HfM" firstAttribute="top" secondItem="CbE-Yv-7Ty" secondAttribute="bottom" id="Agk-B6-XFh"/>
+                            <constraint firstItem="eot-dH-fLw" firstAttribute="top" secondItem="wDT-4A-jRO" secondAttribute="bottom" id="I9b-nM-7uo"/>
                             <constraint firstAttribute="centerX" secondItem="eRP-0s-HfM" secondAttribute="centerX" id="KE1-Y4-Scw"/>
                             <constraint firstAttribute="trailing" secondItem="YKi-u7-nnJ" secondAttribute="trailing" id="OgC-7e-Waj"/>
                             <constraint firstAttribute="bottom" secondItem="w0y-bb-lyA" secondAttribute="bottom" id="T1V-vL-oWk"/>
-                            <constraint firstAttribute="trailing" secondItem="CbE-Yv-7Ty" secondAttribute="trailing" id="TPK-ma-Rba"/>
                             <constraint firstAttribute="bottom" secondItem="YKi-u7-nnJ" secondAttribute="bottom" id="UMW-Gg-eKs"/>
                             <constraint firstAttribute="centerX" secondItem="w0y-bb-lyA" secondAttribute="centerX" id="dcm-Ik-Ryl"/>
-                            <constraint firstItem="eot-dH-fLw" firstAttribute="top" secondItem="CbE-Yv-7Ty" secondAttribute="bottom" id="hKt-1d-1re"/>
                             <constraint firstItem="o24-Hz-WkT" firstAttribute="height" secondItem="YKi-u7-nnJ" secondAttribute="height" id="hYG-ka-cfJ"/>
-                            <constraint firstAttribute="centerX" secondItem="CbE-Yv-7Ty" secondAttribute="centerX" id="k5S-Hn-NwB"/>
                             <constraint firstItem="o24-Hz-WkT" firstAttribute="leading" secondItem="XPd-Kk-AP3" secondAttribute="leading" id="ncx-vI-rdF"/>
+                            <constraint firstItem="wDT-4A-jRO" firstAttribute="leading" secondItem="XPd-Kk-AP3" secondAttribute="leading" id="rss-E8-PSh"/>
                             <constraint firstAttribute="trailing" secondItem="eRP-0s-HfM" secondAttribute="trailing" id="sQe-qG-0u7"/>
-                            <constraint firstItem="CbE-Yv-7Ty" firstAttribute="leading" secondItem="XPd-Kk-AP3" secondAttribute="leading" id="sas-be-C9t"/>
+                            <constraint firstItem="wDT-4A-jRO" firstAttribute="top" secondItem="XPd-Kk-AP3" secondAttribute="top" id="vDA-uO-mBh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="任务详情" id="nlS-oM-YqJ">
@@ -442,10 +446,12 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="end_btn" destination="YKi-u7-nnJ" id="5Rb-D9-nih"/>
+                        <outlet property="mapShowView" destination="wDT-4A-jRO" id="Xyy-xE-bpw"/>
                         <outlet property="start_btn" destination="w0y-bb-lyA" id="NTU-Ni-33s"/>
                         <outlet property="taskTable" destination="eot-dH-fLw" id="yKk-3b-oGz"/>
                         <outlet property="upload_btn" destination="o24-Hz-WkT" id="AGC-OB-lkV"/>
                         <segue destination="8Gh-EX-H6W" kind="push" identifier="uploadPartrol" id="R0V-uI-Fq5"/>
+                        <segue destination="S0c-O8-d7A" kind="push" identifier="mapPath" id="GWr-iK-91t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rEf-5d-jP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -593,7 +599,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg_image.png" width="320" height="170"/>
+        <image name="bg_image.png" width="320" height="147"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
