@@ -7,10 +7,11 @@
 //
 
 #import "LoginViewController.h"
+#import "RequestHttps.h"
+#import "SVProgressHUD.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *bgImageView; //顶部背景图片
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel; //标题
 @property (weak, nonatomic) IBOutlet UITextField *userTextFiled; //用户名
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField; //密码
 @property (weak, nonatomic) IBOutlet UIButton *login_btn; //登录按钮
@@ -40,17 +41,7 @@
     
     self.login_btn.layer.cornerRadius = 8.0f;
     [self.login_btn setBackgroundColor:[UIColor colorWithRed:49/255.0 green:65/255.0 blue:96/255.0 alpha:1.0]];
-    
-//    UIImageView *userImage = [[UIImageView alloc] initWithFrame:(CGRect){0,0,UserImageWidth, UserImageHeight}];
-//    userImage.image = [UIImage imageNamed:@"user"];
-  //  self.userTextFiled.leftViewMode = UITextFieldViewModeAlways;
-   // self.userTextFiled.leftView = userImage;
     self.userImageView.image = [UIImage imageNamed:@"user"];
-    
-//    UIImageView *passwordImage = [[UIImageView alloc] initWithFrame:(CGRect){0,0,UserImageWidth, UserImageHeight}];
-//    passwordImage.image = [UIImage imageNamed:@"password"];
-   // self.passwordTextField.leftViewMode = UITextFieldViewModeAlways;
-   // self.passwordTextField.leftView = passwordImage;
     self.passwordTextField.secureTextEntry = YES;
     self.passwordImageView.image = [UIImage imageNamed:@"password"];
     
@@ -64,7 +55,53 @@
 //登录
 - (IBAction)loginAction:(id)sender
 {
-    [self performSegueWithIdentifier:@"Login" sender:nil];
+    if (self.userTextFiled.text.length == 0 || self.passwordTextField.text.length == 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"用户名或密码不能为空" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    NSString *result = [NSString stringWithFormat:@"%@$%@",self.userTextFiled.text,self.passwordTextField.text];
+    [self requestWebAction:result];
+   
+}
+
+//网络验证
+- (void)requestWebAction:(NSString *)valueString
+{
+    [SVProgressHUD showWithStatus:@"登录中..."];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if ([RequestHttps fetchWithType:@"Login" Results:valueString]) {
+            [self updateUI];
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismissWithError:@"登录失败"];
+            });
+        }
+    });
+}
+
+- (void)updateUI
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSArray *requestData = [RequestHttps requrstJsonData];
+        if (requestData.count != 0) {
+            [SVProgressHUD dismissWithSuccess:@"登陆成功"];
+            //登陆成功
+            [self performSegueWithIdentifier:@"Login" sender:nil];
+            //将个人信息保存在本地
+            [self saveInfo:requestData[0]];
+        }else{
+            [SVProgressHUD dismissWithError:@"登录失败"];
+        }
+    });
+}
+
+//将登陆信息保存在本地
+- (void)saveInfo:(NSDictionary *)info
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue:info forKey:@"UserInfo"];
+    [userDefaults synchronize];
 }
 
 //点击背景取消键盘

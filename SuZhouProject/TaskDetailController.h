@@ -10,4 +10,6 @@
 
 @interface TaskDetailController : RootViewController
 
+@property (nonatomic, copy) NSString *taskId;
+
 @end

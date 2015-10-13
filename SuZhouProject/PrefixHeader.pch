@@ -24,4 +24,6 @@
 
 #define  BG_COLOR [UIColor colorWithRed:235/255.0 green:235/255.0 blue:241/255.0 alpha:1.0]
 
+//网络请求的地址
+#define REQUEST_URL @"http://115.236.2.245:48056/szsydtServ/Data.ashx"
 #endif

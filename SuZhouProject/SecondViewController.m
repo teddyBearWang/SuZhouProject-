@@ -8,10 +8,13 @@
 
 #import "SecondViewController.h"
 #import "TaskCell.h"
+#import "RequestHttps.h"
+#import "SVProgressHUD.h"
 
 @interface SecondViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSArray *_taskList;//任务数据源
+    NSString *_selectId;//选择任务的id;
 }
 @property (weak, nonatomic) IBOutlet UITableView *taskTableView;
 
@@ -35,17 +38,63 @@
 #endif
 }
 
+//切换界面的时候
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    //取消网络请求
+    if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
+        [RequestHttps cancelRequest];
+        [SVProgressHUD dismiss];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSDictionary *info = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserInfo"];
+    //加载网络数据
+    [self getRequestJsonData:[info objectForKey:@"loginid"]];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"任务";
-    
-    _taskList = @[@"太湖",@"台江"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - getWebData
+- (void)getRequestJsonData:(NSString *)results
+{
+    [SVProgressHUD showWithStatus:@"加载中"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if ([RequestHttps fetchWithType:@"GetTask" Results:results]) {
+            [self updateUI];
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismissWithError:@"加载失败"];
+            });
+        }
+    });
+}
+
+- (void)updateUI
+{
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        NSArray *list = [RequestHttps requrstJsonData];
+        if (list.count != 0) {
+            [SVProgressHUD dismissWithSuccess:@"加载成功"];
+            _taskList = list;
+            [self.taskTableView reloadData];
+        }else{
+            [SVProgressHUD dismissWithSuccess:@"加载失败"];
+        }
+    });
 }
 
 #pragma mark - UITableViewDataSource
@@ -63,7 +112,8 @@
         cell = (TaskCell *)[[[NSBundle mainBundle] loadNibNamed:@"TaskCell" owner:nil options:nil] lastObject];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.positionLabel.text = _taskList[indexPath.row];
+    NSDictionary *dict = _taskList[indexPath.row];
+    [cell updateCellUI:dict];
     return cell;
 }
 
@@ -105,9 +155,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSDictionary *dict = _taskList[indexPath.row];
+    _selectId = [dict objectForKey:@"id"];
     [self performSegueWithIdentifier:@"voteDetail" sender:nil];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+//传值
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"voteDetail"]) {
+        id theSegue = segue.destinationViewController;
+        [theSegue setValue:_selectId forKey:@"taskId"];
+    }
+}
 
 @end

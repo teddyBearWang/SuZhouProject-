@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F2FDC3A1BCCE26200BC8673 /* RequestHttps.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FDC391BCCE26200BC8673 /* RequestHttps.m */; };
+		9F2FDC3F1BCCE5EE00BC8673 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9F2FDC3C1BCCE5EE00BC8673 /* SVProgressHUD.bundle */; };
+		9F2FDC401BCCE5EE00BC8673 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FDC3E1BCCE5EE00BC8673 /* SVProgressHUD.m */; };
 		9F3556141BC7500600798C02 /* PasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3556131BC7500600798C02 /* PasswordCell.m */; };
 		9F3556171BC7502C00798C02 /* PasswordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F3556161BC7502C00798C02 /* PasswordCell.xib */; };
 		9F35561A1BC7554900798C02 /* confirmPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3556191BC7554900798C02 /* confirmPasswordController.m */; };
@@ -129,6 +132,11 @@
 
 /* Begin PBXFileReference section */
 		65BED042795B2A491575352C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F2FDC381BCCE26200BC8673 /* RequestHttps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestHttps.h; sourceTree = "<group>"; };
+		9F2FDC391BCCE26200BC8673 /* RequestHttps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestHttps.m; sourceTree = "<group>"; };
+		9F2FDC3C1BCCE5EE00BC8673 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		9F2FDC3D1BCCE5EE00BC8673 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		9F2FDC3E1BCCE5EE00BC8673 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		9F3556121BC7500600798C02 /* PasswordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordCell.h; sourceTree = "<group>"; };
 		9F3556131BC7500600798C02 /* PasswordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordCell.m; sourceTree = "<group>"; };
 		9F3556161BC7502C00798C02 /* PasswordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCell.xib; sourceTree = "<group>"; };
@@ -386,6 +394,25 @@
 				E79B0B490794D6F11F512556 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		9F2FDC371BCCE24B00BC8673 /* https */ = {
+			isa = PBXGroup;
+			children = (
+				9F2FDC381BCCE26200BC8673 /* RequestHttps.h */,
+				9F2FDC391BCCE26200BC8673 /* RequestHttps.m */,
+			);
+			name = https;
+			sourceTree = "<group>";
+		};
+		9F2FDC3B1BCCE5BE00BC8673 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				9F2FDC3C1BCCE5EE00BC8673 /* SVProgressHUD.bundle */,
+				9F2FDC3D1BCCE5EE00BC8673 /* SVProgressHUD.h */,
+				9F2FDC3E1BCCE5EE00BC8673 /* SVProgressHUD.m */,
+			);
+			name = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 		9F3556151BC7500B00798C02 /* customCell */ = {
@@ -672,6 +699,8 @@
 			children = (
 				9FD16CC31BBA6ECB0004F7FA /* AppDelegate.h */,
 				9FD16CC41BBA6ECB0004F7FA /* AppDelegate.mm */,
+				9F2FDC3B1BCCE5BE00BC8673 /* SVProgressHUD */,
+				9F2FDC371BCCE24B00BC8673 /* https */,
 				9F38C1161BCB6C7100989036 /* baiduMap */,
 				9FD16CFD1BBA76E30004F7FA /* login */,
 				9FD16D161BBBB7930004F7FA /* Task */,
@@ -915,6 +944,7 @@
 				9F3556541BC7AB8F00798C02 /* RecordCell.xib in Resources */,
 				9F6201751BC8B64100B180BD /* record_animate_04.png in Resources */,
 				9F38C1861BCB808D00989036 /* status_none@3x.png in Resources */,
+				9F2FDC3F1BCCE5EE00BC8673 /* SVProgressHUD.bundle in Resources */,
 				9F38C0911BCB553900989036 /* bg_image@2x.png in Resources */,
 				9F38CD581BC639E9009A3EEF /* message.png in Resources */,
 				9F38CD621BC63A50009A3EEF /* data@2x.png in Resources */,
@@ -1016,6 +1046,7 @@
 				9F6201ED1BC90AC400B180BD /* ELCAlbumPickerController.m in Sources */,
 				9F6201B51BC8FE8C00B180BD /* CBProfilePhotoViewCell.m in Sources */,
 				9F6201F21BC90AC400B180BD /* ELCImagePickerController.m in Sources */,
+				9F2FDC3A1BCCE26200BC8673 /* RequestHttps.m in Sources */,
 				9FD16D1C1BBBBA6C0004F7FA /* TaskCell.m in Sources */,
 				9F35561D1BC75B2B00798C02 /* ChangeTypeController.m in Sources */,
 				9FD16CF91BBA769A0004F7FA /* LoginViewController.m in Sources */,
@@ -1041,6 +1072,7 @@
 				9F3556141BC7500600798C02 /* PasswordCell.m in Sources */,
 				9F38CD6D1BC64B99009A3EEF /* TaskDetail.m in Sources */,
 				9FD16CEA1BBA74AF0004F7FA /* NavViewController.m in Sources */,
+				9F2FDC401BCCE5EE00BC8673 /* SVProgressHUD.m in Sources */,
 				9FD16D131BBBB7550004F7FA /* ForthViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
