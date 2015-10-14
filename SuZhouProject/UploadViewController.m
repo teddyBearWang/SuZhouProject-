@@ -16,6 +16,9 @@
 #import "ELCImagePickerHeader.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 
+#import <AFNetworking.h>
+#import "SVProgressHUD.h"
+
 
 //语音视图的高度
 #define RecordImageViewHeight 75
@@ -110,7 +113,9 @@
 //确认上传
 - (IBAction)comfirnUploadAction:(id)sender
 {
-    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self fetchWithImages:_images];
+    });
 }
 
 #pragma mark - UITableViewDataSource
@@ -589,5 +594,64 @@
     UITextField *textField = (UITextField *)[self.view viewWithTag:101];
     [textField resignFirstResponder];
 }
+
+#pragma mark - Upload Images and Record 
+/*
+ *上传照片
+ *images：图片数组
+ */
+- (void)fetchWithImages:(NSArray *)images
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSDictionary *parmater = @{@"t":@"UploadImg",
+                               @"returntype":@"json"};
+    [manager POST:REQUEST_URL parameters:parmater constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        //图片上传
+        for (int i=0; i<images.count; i++) {
+            UIImage *image = [images objectAtIndex:i];
+            NSData *imageData = UIImagePNGRepresentation(image);
+            [formData appendPartWithFormData:imageData name:[NSString stringWithFormat:@"%d.png",i]];
+        }
+        
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //上传成功
+        if (operation.responseData != nil) {
+            NSArray *data = [NSJSONSerialization JSONObjectWithData:operation.responseData  options:NSJSONReadingMutableContainers error:nil];
+            //开始上传录音
+            [self uploadRecord:_existRecordFileUrl];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        //上传失败
+        [SVProgressHUD dismissWithError:@"上传图片失败"];
+    }];
+}
+
+/*
+ *上传录音文件
+ *path:录音文件的地址
+ */
+- (void)uploadRecord:(NSString *)filePath
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSDictionary *parmater = @{@"t":@"UploadRecord",
+                               @"returntype":@"json"};
+    [manager POST:REQUEST_URL parameters:parmater constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        //录音文件上传
+        [formData appendPartWithFileURL:[NSURL fileURLWithPath:filePath] name:@"record" error:nil];
+        
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //上传成功
+        if (operation.responseData != nil) {
+            NSArray *data = [NSJSONSerialization JSONObjectWithData:operation.responseData  options:NSJSONReadingMutableContainers error:nil];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        //上传失败
+        [SVProgressHUD dismissWithError:@"上传录音失败"];
+    }];
+    
+}
+
 
 @end

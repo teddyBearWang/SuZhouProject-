@@ -38,7 +38,6 @@
     //构造方法生成UITabBarItem
     UITabBarItem *item2 = [self.tabBar.items objectAtIndex:1];
     item2.title = @"任务";
-    item2.badgeValue = @"2";
     item2.image = [UIImage imageNamed:@"task"];
     
     //构造方法生成UITabBarItem

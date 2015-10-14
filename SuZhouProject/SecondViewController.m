@@ -90,9 +90,10 @@
         if (list.count != 0) {
             [SVProgressHUD dismissWithSuccess:@"加载成功"];
             _taskList = list;
+            self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",list.count];
             [self.taskTableView reloadData];
         }else{
-            [SVProgressHUD dismissWithSuccess:@"加载失败"];
+            [SVProgressHUD dismissWithError:@"加载失败"];
         }
     });
 }
