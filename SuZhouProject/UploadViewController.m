@@ -18,13 +18,16 @@
 
 #import <AFNetworking.h>
 #import "SVProgressHUD.h"
+#import "SegtonInstance.h"
+
+#import <CoreLocation/CoreLocation.h>
 
 
 //语音视图的高度
 #define RecordImageViewHeight 75
 //语音视图的宽度
 #define RecordImageViewWidth 50
-@interface UploadViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,ELCImagePickerControllerDelegate>
+@interface UploadViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,ELCImagePickerControllerDelegate,CLLocationManagerDelegate,UIAlertViewDelegate>
 {
     NSString *_recordInfo;//录音信息，“录音2015-09-10 08:32:35”
     BOOL _isRecording;//是否正在进行录音
@@ -38,6 +41,10 @@
     NSMutableArray *_images;//collectionViews的数据源
     
     AVPlayer *_play;//播放
+    
+    SegtonInstance *_instance;//单例
+    
+    CLLocationManager *_locationManager;//定位
 }
 //详细列表
 @property (weak, nonatomic) IBOutlet UITableView *detailTable;
@@ -54,6 +61,15 @@
 @end
 
 @implementation UploadViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"是否需要离开界面并停止定位" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+        [alert show];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -85,7 +101,37 @@
     //必须在viewDidLoad中加载这个方法，如果不声明，将无法加载，程序崩溃
     //如果自定义的cell是有xib文件的，那么就应该用这个方法
     [self.imagesCollection registerNib:[UINib nibWithNibName:@"PhotoCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"photo"];
+    
+    _instance = [SegtonInstance shareInstance];
+    //不存在，则创建
+    if (_instance.pathsArray == nil) {
+        _instance.pathsArray = [NSMutableArray array];
+    }
+    //若没有打开定位，那么则开始启动定位
+    if ([_locationManager locationServicesEnabled]) {
+        [self startLocation];
+    }
+}
 
+//开始定位
+- (void)startLocation
+{
+//    //设置定位精度。默认：kCLLocationAccuracyBest
+//    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+//    //指定最小距离更新(米)，默认:kCLDistanceFilterNone
+//    [BMKLocationService setLocationDistanceFilter:100.f];
+//    _location = [[BMKLocationService alloc] init];
+//    _location.delegate = self;
+//    //启动定位
+//    [_location startUserLocationService];
+    
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    _locationManager.distanceFilter = 5;
+    
+    //开始定位
+    [_locationManager startUpdatingLocation];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -116,6 +162,26 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self fetchWithImages:_images];
     });
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        //离开界面停止定位
+        [_locationManager stopUpdatingLocation];
+    }
+}
+
+#pragma mark - CLLocationManagerDelegate
+// 代理方法实现
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    NSLog(@"%f,%f",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
+    [_instance.pathsArray addObject:newLocation];
+}
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSLog(@"%@",error);
 }
 
 #pragma mark - UITableViewDataSource

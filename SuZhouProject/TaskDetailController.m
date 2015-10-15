@@ -73,7 +73,7 @@
     [super viewWillAppear:animated];
     [self getRequestJsonData:self.taskId];
     //界面即将显示的时候开始定位
-    [self startLocationAction];
+  //  [self startLocationAction];
 }
 
 //开始定位

@@ -100,6 +100,7 @@
 		9F6201F31BC90AC400B180BD /* ELCOverlayImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6201EC1BC90AC400B180BD /* ELCOverlayImageView.m */; };
 		9F6201F71BC90AEF00B180BD /* Overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F6201F51BC90AEF00B180BD /* Overlay.png */; };
 		9F6201F81BC90AEF00B180BD /* Overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F6201F61BC90AEF00B180BD /* Overlay@2x.png */; };
+		9FA3F99C1BCF95BA00097B5A /* SegtonInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA3F99B1BCF95BA00097B5A /* SegtonInstance.m */; };
 		9FD16CC21BBA6ECB0004F7FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CC11BBA6ECB0004F7FA /* main.m */; };
 		9FD16CC51BBA6ECB0004F7FA /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16CC41BBA6ECB0004F7FA /* AppDelegate.mm */; };
 		9FD16CCE1BBA6ECB0004F7FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FD16CCC1BBA6ECB0004F7FA /* Main.storyboard */; };
@@ -321,6 +322,8 @@
 		9F6201EC1BC90AC400B180BD /* ELCOverlayImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCOverlayImageView.m; sourceTree = "<group>"; };
 		9F6201F51BC90AEF00B180BD /* Overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Overlay.png; sourceTree = "<group>"; };
 		9F6201F61BC90AEF00B180BD /* Overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Overlay@2x.png"; sourceTree = "<group>"; };
+		9FA3F99A1BCF95BA00097B5A /* SegtonInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegtonInstance.h; sourceTree = "<group>"; };
+		9FA3F99B1BCF95BA00097B5A /* SegtonInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegtonInstance.m; sourceTree = "<group>"; };
 		9FD16CBC1BBA6ECB0004F7FA /* SuZhouProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuZhouProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD16CC01BBA6ECB0004F7FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FD16CC11BBA6ECB0004F7FA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -699,6 +702,8 @@
 			children = (
 				9FD16CC31BBA6ECB0004F7FA /* AppDelegate.h */,
 				9FD16CC41BBA6ECB0004F7FA /* AppDelegate.mm */,
+				9FA3F99A1BCF95BA00097B5A /* SegtonInstance.h */,
+				9FA3F99B1BCF95BA00097B5A /* SegtonInstance.m */,
 				9F2FDC3B1BCCE5BE00BC8673 /* SVProgressHUD */,
 				9F2FDC371BCCE24B00BC8673 /* https */,
 				9F38C1161BCB6C7100989036 /* baiduMap */,
@@ -1059,6 +1064,7 @@
 				9FD16CFC1BBA76DE0004F7FA /* ChangePasswordController.m in Sources */,
 				9FD16CF61BBA75E60004F7FA /* CustomTabBarController.m in Sources */,
 				9FD16CED1BBA74E30004F7FA /* RootViewController.m in Sources */,
+				9FA3F99C1BCF95BA00097B5A /* SegtonInstance.m in Sources */,
 				9F35561A1BC7554900798C02 /* confirmPasswordController.m in Sources */,
 				9FD16D211BBBBF2C0004F7FA /* TaskDetailController.m in Sources */,
 				9F6201EE1BC90AC400B180BD /* ELCAsset.m in Sources */,
