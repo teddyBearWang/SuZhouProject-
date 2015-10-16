@@ -55,39 +55,31 @@
 //画轨迹
 - (void)drawPathAction
 {
+    int num = (int)_instance.pathsArray.count;
+    CLLocationCoordinate2D coors[] = {0};
+    for (int i =0; i<_instance.pathsArray.count; i++) {
+        CLLocation *location = _instance.pathsArray[i];
+        CLLocationCoordinate2D bdcoord = [self bmapCoordFromCoordinate:location.coordinate];
+        coors[i].latitude = bdcoord.latitude;
+        coors[i].longitude = bdcoord.longitude;
+    }
     
+    BMKPolyline *polyLine = [BMKPolyline polylineWithCoordinates:coors count:num];
+   // [_mapView removeOverlay:<#(id<BMKOverlay>)#>];
+    [_mapView addOverlay:polyLine];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //若是没有打开定位服务，那么则启动定位服务
-    if (!_instance._isStartLocation) {
-        //界面即将显示的时候开始定位
-    }
-    [self startLocationAction];
 }
 
-//开始定位
-- (void)startLocationAction
+//将GPS得到的经纬度点转化成百度地图上的经纬度点
+- (CLLocationCoordinate2D)bmapCoordFromCoordinate:(CLLocationCoordinate2D)coord
 {
-//    //设置定位精度。默认：kCLLocationAccuracyBest
-//    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
-//    //指定最小距离更新(米)，默认:kCLDistanceFilterNone
-//    [BMKLocationService setLocationDistanceFilter:100.f];
-//    _location = [[BMKLocationService alloc] init];
-//    _location.delegate = self;
-//    //启动定位
-//    [_location startUserLocationService];
-    
-    _locationManager = [[CLLocationManager alloc] init];
-    _locationManager.delegate = self;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    _locationManager.distanceFilter = 5;
-    
-    //开始定位
-    [_locationManager startUpdatingLocation];
-    
+    NSDictionary *dict = BMKConvertBaiduCoorFrom(coord, BMK_COORDTYPE_GPS);
+    CLLocationCoordinate2D bdcoord = BMKCoorDictionaryDecode(dict);
+    return bdcoord;
 }
 
 // 代理方法实现
@@ -96,8 +88,7 @@
     NSLog(@"%f,%f",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
     
     //将GPS得到的经纬度点转成百度地图的经纬度
-   NSDictionary *dic =  BMKConvertBaiduCoorFrom(newLocation.coordinate, BMK_COORDTYPE_GPS);
-    CLLocationCoordinate2D  coor = BMKCoorDictionaryDecode(dic);
+    CLLocationCoordinate2D  coor = [self bmapCoordFromCoordinate:newLocation.coordinate];
     BMKCoordinateRegion region;
     region.center.latitude = coor.latitude;
     region.center.longitude = coor.longitude;
@@ -105,7 +96,6 @@
     region.span.longitudeDelta = 0.02;
     if (_mapView) {
         _mapView.region = region;
-        
     }
     BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc] init];
     annotation.coordinate = coor;
@@ -126,43 +116,11 @@
     if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
         BMKPinAnnotationView *newAnnotationView = (BMKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"AnnotationView"];
         newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"AnnotationView"];
-        newAnnotationView.pinColor = BMKPinAnnotationColorPurple;
+        newAnnotationView.pinColor = BMKPinAnnotationColorRed;
       //  newAnnotationView.animatesDrop = YES;// 设置该标注点动画显示
         return newAnnotationView;
     }
     return nil;
-}
-
-#pragma mark - BMKLocationServiceDelegate
-
-/**
- *用户方向更新后，会调用此函数
- *@param userLocation 新的用户位置
- //处理方向变更信息
- */
-- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
-{
-    NSLog(@"hedding is %@",userLocation.heading);
-}
-
-/**
- *用户位置更新后，会调用此函数
- *@param userLocation 新的用户位置
- 处理位置坐标更新
- */
-- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
-{
-    BMKCoordinateRegion region;
-    region.center.latitude = userLocation.location.coordinate.latitude;
-    region.center.longitude = userLocation.location.coordinate.longitude;
-    region.span.latitudeDelta = 0.02;
-    region.span.longitudeDelta = 0.02;
-    if (_mapView) {
-        _mapView.region = region;
-        
-    }
-    //加上这句话，才会显示定位的蓝圆点，否则不显示
-    [_mapView updateLocationData:userLocation];
 }
 
 - (void)didReceiveMemoryWarning {

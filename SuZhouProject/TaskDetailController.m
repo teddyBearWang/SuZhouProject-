@@ -12,12 +12,17 @@
 #import "MapPathController.h"
 #import "SVProgressHUD.h"
 #import "RequestHttps.h"
+#import <CoreLocation/CoreLocation.h>
+#import "SegtonInstance.h"
 
-@interface TaskDetailController ()<UITableViewDataSource,UITableViewDelegate,BMKLocationServiceDelegate>
+@interface TaskDetailController ()<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate>
 {
     NSArray *_dataList; //数据源
     BMKMapView *_mapView;
-    BMKLocationService *_locationService;//定位服务
+   // BMKLocationService *_locationService;//定位服务
+    CLLocationManager *_locationManager;//自动的定位服务
+    SegtonInstance *_instance;//单例
+    
 }
 //开始巡查按钮
 @property (weak, nonatomic) IBOutlet UIButton *start_btn;
@@ -51,6 +56,11 @@
     self.taskTable.dataSource = self;
     self.taskTable.scrollEnabled = NO;//禁止滑动
     
+    _instance = [SegtonInstance shareInstance];
+    if (_instance.pathsArray == nil) {
+        _instance.pathsArray = [NSMutableArray array];
+    }
+//
     _mapView = [[BMKMapView alloc] initWithFrame:self.mapShowView.frame];
     _mapView.mapType = BMKMapTypeSatellite;
     _mapView.showsUserLocation = YES;
@@ -73,21 +83,8 @@
     [super viewWillAppear:animated];
     [self getRequestJsonData:self.taskId];
     //界面即将显示的时候开始定位
-  //  [self startLocationAction];
 }
 
-//开始定位
-- (void)startLocationAction
-{
-    //设置定位精度。默认：kCLLocationAccuracyBest
-    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
-    //指定最小距离更新(米)，默认:kCLDistanceFilterNone
-    [BMKLocationService setLocationDistanceFilter:100.f];
-    _locationService = [[BMKLocationService alloc] init];
-    _locationService.delegate = self;
-    //启动定位
-    [_locationService startUserLocationService];
-}
 
 - (void)viewWillLayoutSubviews
 {
@@ -139,39 +136,6 @@
     });
 }
 
-#pragma mark - BMKLocationServiceDelegate
-
-/**
- *用户方向更新后，会调用此函数
- *@param userLocation 新的用户位置
- //处理方向变更信息
- */
-- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
-{
-    NSLog(@"hedding is %@",userLocation.heading);
-}
-
-/**
- *用户位置更新后，会调用此函数
- *@param userLocation 新的用户位置
- 处理位置坐标更新
- */
-- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
-{
-    BMKCoordinateRegion region;
-    region.center.latitude = userLocation.location.coordinate.latitude;
-    region.center.longitude = userLocation.location.coordinate.longitude;
-    region.span.latitudeDelta = 0.02;
-    region.span.longitudeDelta = 0.02;
-    if (_mapView) {
-        _mapView.region = region;
-
-    }
-    //加上这句话，才会显示定位的蓝圆点，否则不显示
-    [_mapView updateLocationData:userLocation];
-    [_locationService stopUserLocationService];
-}
-
 #pragma mark - Private Method
 
 //开始巡查
@@ -180,6 +144,22 @@
     self.start_btn.hidden = YES;
     self.upload_btn.hidden = NO;
     self.end_btn.hidden = NO;
+    
+    //开启定位服务
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    _locationManager.distanceFilter = 5;
+#ifdef __IPHONE_8_0
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] > 8.0) {
+        [_locationManager requestWhenInUseAuthorization];//8.0以上的系统，要经过这句话的授权，才会弹框定位
+    }
+    
+#endif
+    
+    //开启定位功能
+    [_locationManager startUpdatingLocation];
+    
 }
 
 //巡查上报
@@ -189,12 +169,34 @@
 }
 
 //结束巡查
-- (IBAction)endPartrolAction:(id)sender {
+- (IBAction)endPartrolAction:(id)sender
+{
+    if (![_locationManager locationServicesEnabled]) {
+        //关闭定位服务
+        [_locationManager stopUpdatingLocation];
+    }
 }
 
 - (void)watchMapPathAction
 {
     [self performSegueWithIdentifier:@"mapPath" sender:nil];
+}
+
+#pragma mark - CLLocationManagerDelegate
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray *)locations
+{
+    CLLocation *location = [locations lastObject];
+    NSLog(@"定位得到的纬度； %lf    精度: %lf",location.coordinate.latitude,location.coordinate.longitude);
+    _instance.coord = location.coordinate;//更新
+    //将得到的经纬度对象添加到路径数组中
+    [_instance.pathsArray addObject:location];
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error
+{
+   NSLog(@"定位失败的错误是:%@",error);
 }
 
 #pragma mark - UITableViewDataSource

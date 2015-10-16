@@ -8,12 +8,12 @@
 
 #import "SegtonInstance.h"
 
-static SegtonInstance *instance = nil;
 @implementation SegtonInstance
 
 + (SegtonInstance *)shareInstance
 {
-    dispatch_once_t onceToken;
+    static SegtonInstance *instance = nil;
+   static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         if (instance == nil) {
             instance = [[SegtonInstance alloc] init];
