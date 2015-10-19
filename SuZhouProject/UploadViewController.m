@@ -19,6 +19,9 @@
 #import <AFNetworking.h>
 #import "SVProgressHUD.h"
 #import "SegtonInstance.h"
+#import "RequestHttps.h"
+
+#import "ChangeTypeController.h"
 
 
 
@@ -26,7 +29,7 @@
 #define RecordImageViewHeight 75
 //语音视图的宽度
 #define RecordImageViewWidth 50
-@interface UploadViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,ELCImagePickerControllerDelegate>
+@interface UploadViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,ELCImagePickerControllerDelegate,UIAlertViewDelegate>
 {
     NSString *_recordInfo;//录音信息，“录音2015-09-10 08:32:35”
     BOOL _isRecording;//是否正在进行录音
@@ -42,6 +45,10 @@
     AVPlayer *_play;//播放
     
     SegtonInstance *_instance;//单例
+    
+    NSString *_selectTypeString;//选择类型
+    
+    NSString *_contentString;//描述内容
     
 }
 //详细列表
@@ -63,10 +70,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"是否需要离开界面并停止定位" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
-//        [alert show];
-//    }
 }
 
 - (void)viewDidLoad {
@@ -92,6 +95,9 @@
     
     _images = [NSMutableArray arrayWithObject:[UIImage imageNamed:@"plus"]];
     
+    //创建单例
+    _instance = [SegtonInstance shareInstance];
+    
     //录音准备
     [self audioPrepare];
 
@@ -99,6 +105,8 @@
     //必须在viewDidLoad中加载这个方法，如果不声明，将无法加载，程序崩溃
     //如果自定义的cell是有xib文件的，那么就应该用这个方法
     [self.imagesCollection registerNib:[UINib nibWithNibName:@"PhotoCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"photo"];
+    
+    _selectTypeString = @"水域变化";
     
 }
 
@@ -123,15 +131,6 @@
     }
 }
 
-
-//确认上传
-- (IBAction)comfirnUploadAction:(id)sender
-{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self fetchWithImages:_images];
-    });
-}
-
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -152,7 +151,7 @@
 {
     if (indexPath.section == 0) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        cell.textLabel.text = @"水域变化";
+        cell.textLabel.text = _selectTypeString;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.imageView.image = [UIImage imageNamed:@"list"];
         return cell;
@@ -180,11 +179,9 @@
                 cell.tag = 102;
                 if (!_isRecorded) {
                     //没有录过音
-                   // cell.textLabel.textAlignment = NSTextAlignmentCenter;
                     cell.tapButton.titleLabel.textAlignment = NSTextAlignmentCenter;
                 }else{
                     //录过音
-                  //  cell.textLabel.textAlignment = NSTextAlignmentLeft;
                     cell.tapButton.titleLabel.textAlignment = NSTextAlignmentLeft;
                     cell.recordImageView.image = [UIImage imageNamed:@"voice"];
                 }
@@ -275,6 +272,15 @@
         [self performSegueWithIdentifier:@"changeType" sender:nil];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+//回调传值
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ChangeTypeController *change = segue.destinationViewController;
+    [change changeType:^(NSString *selecedType) {
+        _selectTypeString = selecedType;
+    }];
 }
 
 #pragma mark - Record Active
@@ -444,10 +450,8 @@
     
     myCell.closeBtn.tag = [indexPath row];
     
-    //if ([indexPath row] == (_images.count - 1)){
     //隐藏删除按钮
-        [myCell.closeBtn setHidden:YES];
-    //}
+    [myCell.closeBtn setHidden:YES];
     [myCell.closeBtn addTarget:self action:@selector(deletePhoto:)
                  forControlEvents:UIControlEventTouchUpInside];
     return myCell;
@@ -501,7 +505,6 @@
             break;
     }
 }
-
 
 #pragma mark - take Photos Action
 //判断设备是否有摄像头
@@ -599,6 +602,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    _contentString = textField.text;//描述内容
     return YES;
 }
 
@@ -609,63 +613,77 @@
     [textField resignFirstResponder];
 }
 
-#pragma mark - Upload Images and Record 
-/*
- *上传照片
- *images：图片数组
- */
-- (void)fetchWithImages:(NSArray *)images
+
+//确认上传
+- (IBAction)comfirnUploadAction:(id)sender
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    NSDictionary *parmater = @{@"t":@"UploadImg",
-                               @"returntype":@"json"};
-    [manager POST:REQUEST_URL parameters:parmater constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        //图片上传
-        for (int i=0; i<images.count; i++) {
-            UIImage *image = [images objectAtIndex:i];
-            NSData *imageData = UIImagePNGRepresentation(image);
-            [formData appendPartWithFormData:imageData name:[NSString stringWithFormat:@"%d.png",i]];
-        }
-        
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //上传成功
-        if (operation.responseData != nil) {
-            NSArray *data = [NSJSONSerialization JSONObjectWithData:operation.responseData  options:NSJSONReadingMutableContainers error:nil];
-            //开始上传录音
-            [self uploadRecord:_existRecordFileUrl];
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        //上传失败
-        [SVProgressHUD dismissWithError:@"上传图片失败"];
-    }];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"上报的内容是否需要审批" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"是",@"否", nil];
+    [alert show];
 }
 
-/*
- *上传录音文件
- *path:录音文件的地址
- */
-- (void)uploadRecord:(NSString *)filePath
+#pragma mark - UIALertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    NSDictionary *parmater = @{@"t":@"UploadRecord",
-                               @"returntype":@"json"};
-    [manager POST:REQUEST_URL parameters:parmater constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        //录音文件上传
-        [formData appendPartWithFileURL:[NSURL fileURLWithPath:filePath] name:@"record" error:nil];
-        
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //上传成功
-        if (operation.responseData != nil) {
-            NSArray *data = [NSJSONSerialization JSONObjectWithData:operation.responseData  options:NSJSONReadingMutableContainers error:nil];
+    switch (buttonIndex) {
+        case 0:
+            break;
+        case 1:
+        {
+            //需要上报
+            NSLog(@"需要上报");
+            [self requestWebAction:_images withFilePath:_existRecordFileUrl withFlag:@"1"];
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        //上传失败
-        [SVProgressHUD dismissWithError:@"上传录音失败"];
-    }];
-    
+            break;
+        case 2:
+        {
+            //需要上报
+            NSLog(@"不需要上报");
+             [self requestWebAction:_images withFilePath:_existRecordFileUrl withFlag:@"0"];
+        }
+            break;
+        default:
+            break;
+    }
+}
+#pragma mark - Upload Images and Record
+
+
+//得到
+- (NSString *)appendResults:(NSString *)flag
+{
+    NSData *pathData = [NSJSONSerialization dataWithJSONObject:_instance.pathsArray options:NSJSONWritingPrettyPrinted error:nil];
+    //路径字符串
+    NSString *pathString = [[NSString alloc] initWithData:pathData encoding:NSUTF8StringEncoding];
+    //任务id$flag$描述$轨迹$类型
+    NSString *result = [NSString stringWithFormat:@"%@$%@$%@$%@$%@",self.taskId,flag,_contentString,pathString,_selectTypeString];
+    return result;
 }
 
+- (void)requestWebAction:(NSMutableArray *)images withFilePath:(NSString *)filePath withFlag:(NSString *)flag
+{
+    [SVProgressHUD showWithStatus:@"上传中"];
+    NSString *result = [self appendResults:flag];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if ([RequestHttps uploadWithResults:result withImages:images withRecordPath:filePath]) {
+            [self updateUI];
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismissWithError:@"上传失败"];
+            });
+        }
+    });
+}
+
+- (void)updateUI
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSArray *list = [RequestHttps requrstJsonData];
+        if (list.count != 0) {
+            [SVProgressHUD dismissWithSuccess:@"上传成功"];
+        }else{
+            [SVProgressHUD dismissWithError:@"上传失败"];
+        }
+    });
+}
 
 @end

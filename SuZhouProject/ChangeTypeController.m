@@ -51,6 +51,11 @@
     }
 }
 
+- (void)changeType:(ChangeTypeBlock)block
+{
+    self.changBlock = block;
+}
+
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -99,6 +104,7 @@ static NSInteger _selectRow;
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     _selectRow = indexPath.row;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.changBlock(_list[indexPath.row]);//传递参数
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -15,6 +15,8 @@
 
 @property (nonatomic, assign) CLLocationCoordinate2D coord; //表示最新的一个经纬度点
 
+@property (nonatomic, strong) NSString *_taskid;//任务id;
+
 + (SegtonInstance *)shareInstance;
 
 @end

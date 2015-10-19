@@ -67,6 +67,7 @@
 		9F38CD6D1BC64B99009A3EEF /* TaskDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38CD6C1BC64B99009A3EEF /* TaskDetail.m */; };
 		9F38CD701BC64F3B009A3EEF /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38CD6F1BC64F3B009A3EEF /* UploadViewController.m */; };
 		9F38CD721BC6605D009A3EEF /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD711BC6605D009A3EEF /* list.png */; };
+		9F556B451BD4888A00726FA2 /* UserLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F556B441BD4888A00726FA2 /* UserLocation.m */; };
 		9F6201601BC8B58200B180BD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F62015F1BC8B58200B180BD /* AVFoundation.framework */; };
 		9F6201621BC8B58C00B180BD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6201611BC8B58C00B180BD /* AudioToolbox.framework */; };
 		9F6201721BC8B64100B180BD /* record_animate_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F6201641BC8B64100B180BD /* record_animate_01.png */; };
@@ -278,6 +279,8 @@
 		9F38CD6E1BC64F3B009A3EEF /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
 		9F38CD6F1BC64F3B009A3EEF /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
 		9F38CD711BC6605D009A3EEF /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
+		9F556B431BD4888A00726FA2 /* UserLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocation.h; sourceTree = "<group>"; };
+		9F556B441BD4888A00726FA2 /* UserLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocation.m; sourceTree = "<group>"; };
 		9F62015F1BC8B58200B180BD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9F6201611BC8B58C00B180BD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		9F6201641BC8B64100B180BD /* record_animate_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_01.png; sourceTree = "<group>"; };
@@ -789,6 +792,8 @@
 				9F35561C1BC75B2B00798C02 /* ChangeTypeController.m */,
 				9F38C1721BCB781800989036 /* MapPathController.h */,
 				9F38C1731BCB781800989036 /* MapPathController.m */,
+				9F556B431BD4888A00726FA2 /* UserLocation.h */,
+				9F556B441BD4888A00726FA2 /* UserLocation.m */,
 				9F6201DB1BC90A4300B180BD /* CustomImagePicker */,
 				9F6201B21BC8FE7B00B180BD /* collection */,
 			);
@@ -1071,6 +1076,7 @@
 				9F3556521BC7AB8300798C02 /* RecordCell.m in Sources */,
 				9F38C1741BCB781800989036 /* MapPathController.m in Sources */,
 				9FD16D101BBBB7360004F7FA /* ThirdViewController.m in Sources */,
+				9F556B451BD4888A00726FA2 /* UserLocation.m in Sources */,
 				9F3556581BC7B05C00798C02 /* LongPressButton.m in Sources */,
 				9F6201F01BC90AC400B180BD /* ELCAssetTablePicker.m in Sources */,
 				9FD16CF01BBA752E0004F7FA /* FirstViewController.m in Sources */,

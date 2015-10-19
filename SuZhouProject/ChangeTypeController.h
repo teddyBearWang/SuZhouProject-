@@ -8,6 +8,11 @@
 
 #import "RootViewController.h"
 
+typedef void(^ ChangeTypeBlock)(NSString * selecedType);
 @interface ChangeTypeController : RootViewController
+
+@property (nonatomic,strong) ChangeTypeBlock changBlock;
+
+- (void)changeType:(ChangeTypeBlock)block;
 
 @end

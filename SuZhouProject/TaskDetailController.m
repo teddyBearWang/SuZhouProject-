@@ -14,6 +14,7 @@
 #import "RequestHttps.h"
 #import <CoreLocation/CoreLocation.h>
 #import "SegtonInstance.h"
+#import "UserLocation.h"
 
 @interface TaskDetailController ()<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate>
 {
@@ -22,6 +23,7 @@
    // BMKLocationService *_locationService;//定位服务
     CLLocationManager *_locationManager;//自动的定位服务
     SegtonInstance *_instance;//单例
+    UserLocation *_userLocation;//用户的信息
     
 }
 //开始巡查按钮
@@ -56,6 +58,7 @@
     self.taskTable.dataSource = self;
     self.taskTable.scrollEnabled = NO;//禁止滑动
     
+    _userLocation = [[UserLocation alloc] init];
     _instance = [SegtonInstance shareInstance];
     if (_instance.pathsArray == nil) {
         _instance.pathsArray = [NSMutableArray array];
@@ -82,7 +85,6 @@
 {
     [super viewWillAppear:animated];
     [self getRequestJsonData:self.taskId];
-    //界面即将显示的时候开始定位
 }
 
 
@@ -130,6 +132,24 @@
             [SVProgressHUD dismissWithSuccess:@"加载成功"];
             _dataList = list;
             [self.taskTable reloadData];
+            
+            if ([[list[0] objectForKey:@"type"] isEqualToString:@"未巡查"]) {
+                self.start_btn.hidden = NO;
+                self.upload_btn.hidden = YES;
+                self.end_btn.hidden = YES;
+            }
+            else if ([[list[0] objectForKey:@"type"] isEqualToString:@"巡查中"])
+            {
+                self.start_btn.hidden = YES;
+                self.upload_btn.hidden = NO;
+                self.end_btn.hidden = NO;
+            }
+             else if ([[list[0] objectForKey:@"type"] isEqualToString:@"已巡查"])
+             {
+                 self.start_btn.hidden = YES;
+                 self.upload_btn.hidden = NO;
+                 self.end_btn.hidden = YES;
+             }
         }else{
             [SVProgressHUD dismissWithSuccess:@"加载失败"];
         }
@@ -168,6 +188,15 @@
     [self performSegueWithIdentifier:@"uploadPartrol" sender:nil];
 }
 
+//传值
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"uploadPartrol"]) {
+        id theSegue = segue.destinationViewController;
+        [theSegue setValue:self.taskId forKey:@"taskId"];
+    }
+}
+
 //结束巡查
 - (IBAction)endPartrolAction:(id)sender
 {
@@ -187,10 +216,17 @@
      didUpdateLocations:(NSArray *)locations
 {
     CLLocation *location = [locations lastObject];
-    NSLog(@"定位得到的纬度； %lf    精度: %lf",location.coordinate.latitude,location.coordinate.longitude);
     _instance.coord = location.coordinate;//更新
+    //修改用户的地点经纬度位置
+    _userLocation.userLat = location.coordinate.latitude;
+    _userLocation.userLng = location.coordinate.longitude;
+    NSLog(@"定位得到的纬度； %lf    精度: %lf",_userLocation.userLat,_userLocation.userLng);
+    NSNumber *lat = [NSNumber numberWithDouble:location.coordinate.latitude];
+    NSNumber *lng = [NSNumber numberWithDouble:location.coordinate.longitude];
+
     //将得到的经纬度对象添加到路径数组中
-    [_instance.pathsArray addObject:location];
+    NSArray *locationArray = [NSArray arrayWithObjects:lat, lng,nil];
+    [_instance.pathsArray addObject:locationArray];
 }
 
 - (void)locationManager:(CLLocationManager *)manager

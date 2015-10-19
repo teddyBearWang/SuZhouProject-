@@ -10,4 +10,6 @@
 
 @interface UploadViewController : RootViewController
 
+@property (nonatomic, strong) NSString *taskId;//任务Id
+
 @end

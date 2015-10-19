@@ -35,6 +35,54 @@ static AFHTTPRequestOperation *_operation = nil;
     return ret;
 }
 
+
+/*
+ *上报图片。录音
+ *results:需要上传的参数
+ *images:需要上传的图片数组
+ *filePath:录音的文件地址
+ */
++ (BOOL)uploadWithResults:(NSString *)results withImages:(NSMutableArray *)images withRecordPath:(NSString *)filePath
+{
+    BOOL ret;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //manager.requestSerializer.timeoutInterval = 30;//设置超时时间
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSDictionary *parmater = @{@"t":@"SetTask",
+                               @"results":results,
+                               @"returntype":@"json"};
+    _operation = [manager POST:REQUEST_URL parameters:parmater constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        //上传多张照片和录音
+        for (int i=0; i<images.count-1; i++) {
+            NSData *imageData = UIImagePNGRepresentation(images[i]);
+            //上传的参数名
+            NSString *name = [NSString stringWithFormat:@"image%d",i];
+            //上传的fileName
+            NSString *fileName = [NSString stringWithFormat:@"%@.png",name];
+            [formData appendPartWithFileData:imageData name:name fileName:fileName mimeType:@"application/octet-stream"];
+        }
+        
+        NSData *recordData = [[NSData alloc] initWithContentsOfFile:filePath];
+        
+        NSDate *now = [NSDate date];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *dateString = [formatter stringFromDate:now];
+        NSString *fileName = [NSString stringWithFormat:@"%@.aac",dateString];
+        
+        [formData appendPartWithFileData:recordData name:@"record" fileName:fileName mimeType:@"application/octet-stream"];
+        
+    } success:nil failure:nil];
+    [_operation waitUntilFinished];
+    if (_operation.responseData != nil) {
+        ret = YES;
+        datas = [NSJSONSerialization JSONObjectWithData:_operation.responseData  options:NSJSONReadingMutableContainers error:nil];
+    }
+    return ret;
+}
+
+
+
 /*
  *接收到得数据
  */

@@ -93,7 +93,7 @@
             self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",list.count];
             [self.taskTableView reloadData];
         }else{
-            [SVProgressHUD dismissWithError:@"加载失败"];
+            [SVProgressHUD dismissWithError:@"数据为空"];
         }
     });
 }
