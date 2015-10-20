@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AFNetworking.h>
 
+//定义一个返回block
+typedef void (^ComplettionBlock)(NSDictionary *dict);
+typedef void (^ErrorBlock)(NSError *error);
 @interface RequestHttps : NSObject
 
 /*
@@ -22,7 +26,9 @@
  *images:需要上传的图片数组
  *filePath:录音的文件地址
  */
-+ (BOOL)uploadWithResults:(NSString *)results withImages:(NSMutableArray *)images withRecordPath:(NSString *)filePath;
++ (void)uploadWithResults:(NSString *)results withImages:(NSMutableArray *)images withRecordPath:(NSString *)filePath
+               completion:(ComplettionBlock)completionBlock
+                    error:(ErrorBlock)errorBlock;
 /*
  *接收到得数据
  */

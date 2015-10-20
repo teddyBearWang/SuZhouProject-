@@ -7,7 +7,7 @@
 //
 
 #import "RequestHttps.h"
-#import <AFNetworking.h>
+
 
 static AFHTTPRequestOperation *_operation = nil;
 @implementation RequestHttps
@@ -42,11 +42,12 @@ static AFHTTPRequestOperation *_operation = nil;
  *images:需要上传的图片数组
  *filePath:录音的文件地址
  */
-+ (BOOL)uploadWithResults:(NSString *)results withImages:(NSMutableArray *)images withRecordPath:(NSString *)filePath
++ (void)uploadWithResults:(NSString *)results withImages:(NSMutableArray *)images withRecordPath:(NSString *)filePath
+               completion:(ComplettionBlock)completionBlock
+                    error:(ErrorBlock)errorBlock
 {
-    BOOL ret;
+ 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    //manager.requestSerializer.timeoutInterval = 30;//设置超时时间
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSDictionary *parmater = @{@"t":@"SetTask",
                                @"results":results,
@@ -72,16 +73,18 @@ static AFHTTPRequestOperation *_operation = nil;
         
         [formData appendPartWithFileData:recordData name:@"record" fileName:fileName mimeType:@"application/octet-stream"];
         
-    } success:nil failure:nil];
-    [_operation waitUntilFinished];
-    if (_operation.responseData != nil) {
-        ret = YES;
-        datas = [NSJSONSerialization JSONObjectWithData:_operation.responseData  options:NSJSONReadingMutableContainers error:nil];
-    }
-    return ret;
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+       NSArray *data = [NSJSONSerialization JSONObjectWithData:responseObject  options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"得到的数据时:%@",responseObject);
+        NSLog(@"得到的数据三:%@",operation.responseString);
+         NSLog(@"得到的数据时:%@",data);
+        completionBlock(data[0]);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSArray *data = [NSJSONSerialization JSONObjectWithData:operation.responseData  options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"得到的数据时:%@",error);
+        errorBlock(error);
+    }];
 }
-
-
 
 /*
  *接收到得数据

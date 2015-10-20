@@ -646,9 +646,7 @@
     }
 }
 #pragma mark - Upload Images and Record
-
-
-//得到
+//得到request上传的参数
 - (NSString *)appendResults:(NSString *)flag
 {
     NSData *pathData = [NSJSONSerialization dataWithJSONObject:_instance.pathsArray options:NSJSONWritingPrettyPrinted error:nil];
@@ -656,6 +654,7 @@
     NSString *pathString = [[NSString alloc] initWithData:pathData encoding:NSUTF8StringEncoding];
     //任务id$flag$描述$轨迹$类型
     NSString *result = [NSString stringWithFormat:@"%@$%@$%@$%@$%@",self.taskId,flag,_contentString,pathString,_selectTypeString];
+  //  NSString *result = [NSString stringWithFormat:@"%@$%@$%@$$%@",self.taskId,flag,_contentString,_selectTypeString];
     return result;
 }
 
@@ -664,25 +663,16 @@
     [SVProgressHUD showWithStatus:@"上传中"];
     NSString *result = [self appendResults:flag];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if ([RequestHttps uploadWithResults:result withImages:images withRecordPath:filePath]) {
-            [self updateUI];
-        }else{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [SVProgressHUD dismissWithError:@"上传失败"];
-            });
-        }
-    });
-}
 
-- (void)updateUI
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSArray *list = [RequestHttps requrstJsonData];
-        if (list.count != 0) {
-            [SVProgressHUD dismissWithSuccess:@"上传成功"];
-        }else{
+        [RequestHttps uploadWithResults:result withImages:images withRecordPath:filePath completion:^(NSDictionary *dict) {
+            if ([[dict objectForKey:@"success"] isEqualToString:@"true"]) {
+                [SVProgressHUD dismissWithSuccess:@"上传成功"];
+            }else{
+                [SVProgressHUD dismissWithError:@"上传失败"];
+            }
+        } error:^(NSError *error) {
             [SVProgressHUD dismissWithError:@"上传失败"];
-        }
+        }];
     });
 }
 
