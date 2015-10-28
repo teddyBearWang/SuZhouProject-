@@ -35,6 +35,28 @@ static AFHTTPRequestOperation *_operation = nil;
     return ret;
 }
 
++ (void)fetchWithType:(NSString *)requesttype Results:(NSString *)results
+           completion:(ComplettionBlock)completionBlock
+                error:(ErrorBlock)errorBlock
+{
+    //http://115.236.2.245:48056/szsydtServ/Data.ashx?t=Login&results=sys$123456&returntype=json
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer.timeoutInterval = 30;//设置超时时间
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSDictionary *parmater = @{@"t":requesttype,
+                               @"results":results,
+                               @"returntype":@"json"};
+    _operation = [manager POST:REQUEST_URL parameters:parmater success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //成功
+        NSArray *data = [NSJSONSerialization JSONObjectWithData:_operation.responseData  options:NSJSONReadingMutableContainers error:nil];
+        completionBlock(data[0]);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        //失败
+        errorBlock(error);
+    }];
+   
+}
+
 
 /*
  *上报图片。录音
@@ -60,18 +82,21 @@ static AFHTTPRequestOperation *_operation = nil;
             NSString *name = [NSString stringWithFormat:@"image%d",i];
             //上传的fileName
             NSString *fileName = [NSString stringWithFormat:@"%@.png",name];
-            [formData appendPartWithFileData:imageData name:name fileName:fileName mimeType:@"application/octet-stream"];
+            [formData appendPartWithFileData:imageData name:fileName fileName:fileName mimeType:@"application/octet-stream"];
         }
         
-        NSData *recordData = [[NSData alloc] initWithContentsOfFile:filePath];
         
-        NSDate *now = [NSDate date];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"yyyy-MM-dd"];
-        NSString *dateString = [formatter stringFromDate:now];
-        NSString *fileName = [NSString stringWithFormat:@"%@.aac",dateString];
         
-        [formData appendPartWithFileData:recordData name:@"record" fileName:fileName mimeType:@"application/octet-stream"];
+        NSFileManager *manager = [NSFileManager defaultManager];
+        if ([manager fileExistsAtPath:filePath]) {
+            NSDate *now = [NSDate date];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"yyyy-MM-dd"];
+            NSString *dateString = [formatter stringFromDate:now];
+            NSString *fileName = [NSString stringWithFormat:@"%@.aac",dateString];
+            NSData *recordData = [[NSData alloc] initWithContentsOfFile:filePath];
+            [formData appendPartWithFileData:recordData name:fileName fileName:fileName mimeType:@"application/octet-stream"];
+        }
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
        NSArray *data = [NSJSONSerialization JSONObjectWithData:responseObject  options:NSJSONReadingMutableContainers error:nil];
@@ -81,7 +106,8 @@ static AFHTTPRequestOperation *_operation = nil;
         completionBlock(data[0]);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSArray *data = [NSJSONSerialization JSONObjectWithData:operation.responseData  options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"得到的数据时:%@",error);
+        NSLog(@"得到的数据时:%@",data);
+        NSLog(@"得到的报错信息是:%@",error);
         errorBlock(error);
     }];
 }

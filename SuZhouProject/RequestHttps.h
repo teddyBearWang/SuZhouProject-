@@ -29,6 +29,17 @@ typedef void (^ErrorBlock)(NSError *error);
 + (void)uploadWithResults:(NSString *)results withImages:(NSMutableArray *)images withRecordPath:(NSString *)filePath
                completion:(ComplettionBlock)completionBlock
                     error:(ErrorBlock)errorBlock;
+
+/*
+ *新的网络请求服务
+ *requestType:网络请求的类型
+ *results:需要上传的参数
+ *completionBlock:成功的回调
+ *errorBlock:失败的回调
+ */
++ (void)fetchWithType:(NSString *)requesttype Results:(NSString *)results
+               completion:(ComplettionBlock)completionBlock
+                    error:(ErrorBlock)errorBlock;
 /*
  *接收到得数据
  */

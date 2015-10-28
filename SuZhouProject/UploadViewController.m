@@ -72,6 +72,12 @@
     [super viewWillAppear:animated];
 }
 
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//    [_recorder deleteRecording];
+//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -665,8 +671,11 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
         [RequestHttps uploadWithResults:result withImages:images withRecordPath:filePath completion:^(NSDictionary *dict) {
-            if ([[dict objectForKey:@"success"] isEqualToString:@"true"]) {
+            if ([[dict objectForKey:@"success"] isEqualToString:@"True"]) {
                 [SVProgressHUD dismissWithSuccess:@"上传成功"];
+                //上传成功之后，把录音删除
+                [_recorder deleteRecording];
+                [self.navigationController popViewControllerAnimated:YES];
             }else{
                 [SVProgressHUD dismissWithError:@"上传失败"];
             }

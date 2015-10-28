@@ -144,12 +144,12 @@
                 self.upload_btn.hidden = NO;
                 self.end_btn.hidden = NO;
             }
-             else if ([[list[0] objectForKey:@"type"] isEqualToString:@"已巡查"])
-             {
+            else if ([[list[0] objectForKey:@"type"] isEqualToString:@"已巡查"])
+            {
                  self.start_btn.hidden = YES;
                  self.upload_btn.hidden = NO;
                  self.end_btn.hidden = YES;
-             }
+            }
         }else{
             [SVProgressHUD dismissWithSuccess:@"加载失败"];
         }
@@ -161,10 +161,30 @@
 //开始巡查
 - (IBAction)startPartrolAction:(id)sender
 {
-    self.start_btn.hidden = YES;
-    self.upload_btn.hidden = NO;
-    self.end_btn.hidden = NO;
+    //开启定位
+    [self startUpdateLocation];
     
+    NSString *result = [NSString stringWithFormat:@"%@$已巡查",self.taskId];
+    [SVProgressHUD showWithStatus:@"开始巡查.."];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [RequestHttps fetchWithType:@"UpdateState" Results:result completion:^(NSDictionary *dict) {
+            if ([[dict objectForKey:@"success"] isEqualToString:@"True"]) {
+                [SVProgressHUD dismissWithSuccess:@"开始巡查成功"];
+                self.start_btn.hidden = YES;
+                self.upload_btn.hidden = NO;
+                self.end_btn.hidden = NO;
+            }else{
+                [SVProgressHUD dismissWithError:@"开始巡查失败"];
+            }
+        } error:^(NSError *error) {
+             [SVProgressHUD dismissWithError:@"开始巡查失败"];
+        }];
+    });
+}
+
+//开启定位
+- (void)startUpdateLocation
+{
     //开启定位服务
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
@@ -179,7 +199,6 @@
     
     //开启定位功能
     [_locationManager startUpdatingLocation];
-    
 }
 
 //巡查上报
