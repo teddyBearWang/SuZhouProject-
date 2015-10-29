@@ -1,24 +1,22 @@
 //
-//  RootViewController.m
+//  FIlterChangedController.m
 //  SuZhouProject
-//
-//  Created by teddy on 15/9/29.
+//  *********变化信息筛选界面**********
+//  Created by teddy on 15/10/29.
 //  Copyright (c) 2015年 teddy. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "FIlterChangedController.h"
 
-@interface RootViewController ()
+@interface FIlterChangedController ()
 
 @end
 
-@implementation RootViewController
+@implementation FIlterChangedController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.view.backgroundColor = BG_COLOR;
 }
 
 - (void)didReceiveMemoryWarning {

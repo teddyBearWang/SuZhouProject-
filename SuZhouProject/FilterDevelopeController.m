@@ -1,24 +1,22 @@
 //
-//  RootViewController.m
+//  FilterDevelopeController.m
 //  SuZhouProject
-//
-//  Created by teddy on 15/9/29.
+//  *********开发利用筛选界面**********
+//  Created by teddy on 15/10/29.
 //  Copyright (c) 2015年 teddy. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "FilterDevelopeController.h"
 
-@interface RootViewController ()
+@interface FilterDevelopeController ()
 
 @end
 
-@implementation RootViewController
+@implementation FilterDevelopeController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.view.backgroundColor = BG_COLOR;
 }
 
 - (void)didReceiveMemoryWarning {

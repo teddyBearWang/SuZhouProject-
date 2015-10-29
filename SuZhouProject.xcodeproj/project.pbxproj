@@ -67,6 +67,12 @@
 		9F38CD6D1BC64B99009A3EEF /* TaskDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38CD6C1BC64B99009A3EEF /* TaskDetail.m */; };
 		9F38CD701BC64F3B009A3EEF /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38CD6F1BC64F3B009A3EEF /* UploadViewController.m */; };
 		9F38CD721BC6605D009A3EEF /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F38CD711BC6605D009A3EEF /* list.png */; };
+		9F4CF1691BE1FD4200052681 /* BasicInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CF1681BE1FD4200052681 /* BasicInfoController.m */; };
+		9F4CF16F1BE1FDEF00052681 /* FilterBasicInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CF16E1BE1FDEF00052681 /* FilterBasicInfoController.m */; };
+		9F4CF1731BE208C500052681 /* ChangedInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CF1721BE208C500052681 /* ChangedInfoController.m */; };
+		9F4CF1761BE208E900052681 /* FIlterChangedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CF1751BE208E900052681 /* FIlterChangedController.m */; };
+		9F4CF17A1BE20A9E00052681 /* DeveloperChangedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CF1791BE20A9E00052681 /* DeveloperChangedController.m */; };
+		9F4CF17D1BE20AF300052681 /* FilterDevelopeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CF17C1BE20AF300052681 /* FilterDevelopeController.m */; };
 		9F556B451BD4888A00726FA2 /* UserLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F556B441BD4888A00726FA2 /* UserLocation.m */; };
 		9F6201601BC8B58200B180BD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F62015F1BC8B58200B180BD /* AVFoundation.framework */; };
 		9F6201621BC8B58C00B180BD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6201611BC8B58C00B180BD /* AudioToolbox.framework */; };
@@ -279,6 +285,18 @@
 		9F38CD6E1BC64F3B009A3EEF /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
 		9F38CD6F1BC64F3B009A3EEF /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
 		9F38CD711BC6605D009A3EEF /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
+		9F4CF1671BE1FD4200052681 /* BasicInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicInfoController.h; sourceTree = "<group>"; };
+		9F4CF1681BE1FD4200052681 /* BasicInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicInfoController.m; sourceTree = "<group>"; };
+		9F4CF16D1BE1FDEF00052681 /* FilterBasicInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterBasicInfoController.h; sourceTree = "<group>"; };
+		9F4CF16E1BE1FDEF00052681 /* FilterBasicInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterBasicInfoController.m; sourceTree = "<group>"; };
+		9F4CF1711BE208C500052681 /* ChangedInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangedInfoController.h; sourceTree = "<group>"; };
+		9F4CF1721BE208C500052681 /* ChangedInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangedInfoController.m; sourceTree = "<group>"; };
+		9F4CF1741BE208E900052681 /* FIlterChangedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIlterChangedController.h; sourceTree = "<group>"; };
+		9F4CF1751BE208E900052681 /* FIlterChangedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FIlterChangedController.m; sourceTree = "<group>"; };
+		9F4CF1781BE20A9E00052681 /* DeveloperChangedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeveloperChangedController.h; sourceTree = "<group>"; };
+		9F4CF1791BE20A9E00052681 /* DeveloperChangedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeveloperChangedController.m; sourceTree = "<group>"; };
+		9F4CF17B1BE20AF300052681 /* FilterDevelopeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterDevelopeController.h; sourceTree = "<group>"; };
+		9F4CF17C1BE20AF300052681 /* FilterDevelopeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterDevelopeController.m; sourceTree = "<group>"; };
 		9F556B431BD4888A00726FA2 /* UserLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocation.h; sourceTree = "<group>"; };
 		9F556B441BD4888A00726FA2 /* UserLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocation.m; sourceTree = "<group>"; };
 		9F62015F1BC8B58200B180BD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -593,6 +611,39 @@
 			name = "image@3x";
 			sourceTree = "<group>";
 		};
+		9F4CF1661BE1FCC000052681 /* 基础信息 */ = {
+			isa = PBXGroup;
+			children = (
+				9F4CF1671BE1FD4200052681 /* BasicInfoController.h */,
+				9F4CF1681BE1FD4200052681 /* BasicInfoController.m */,
+				9F4CF16D1BE1FDEF00052681 /* FilterBasicInfoController.h */,
+				9F4CF16E1BE1FDEF00052681 /* FilterBasicInfoController.m */,
+			);
+			name = "基础信息";
+			sourceTree = "<group>";
+		};
+		9F4CF1701BE208AB00052681 /* 变化信息 */ = {
+			isa = PBXGroup;
+			children = (
+				9F4CF1711BE208C500052681 /* ChangedInfoController.h */,
+				9F4CF1721BE208C500052681 /* ChangedInfoController.m */,
+				9F4CF1741BE208E900052681 /* FIlterChangedController.h */,
+				9F4CF1751BE208E900052681 /* FIlterChangedController.m */,
+			);
+			name = "变化信息";
+			sourceTree = "<group>";
+		};
+		9F4CF1771BE20A6F00052681 /* 开发利用要素 */ = {
+			isa = PBXGroup;
+			children = (
+				9F4CF1781BE20A9E00052681 /* DeveloperChangedController.h */,
+				9F4CF1791BE20A9E00052681 /* DeveloperChangedController.m */,
+				9F4CF17B1BE20AF300052681 /* FilterDevelopeController.h */,
+				9F4CF17C1BE20AF300052681 /* FilterDevelopeController.m */,
+			);
+			name = "开发利用要素";
+			sourceTree = "<group>";
+		};
 		9F6201631BC8B62300B180BD /* recordImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -803,6 +854,9 @@
 		9FD16D171BBBB7B00004F7FA /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				9F4CF1771BE20A6F00052681 /* 开发利用要素 */,
+				9F4CF1701BE208AB00052681 /* 变化信息 */,
+				9F4CF1661BE1FCC000052681 /* 基础信息 */,
 				9FD16D0E1BBBB7360004F7FA /* ThirdViewController.h */,
 				9FD16D0F1BBBB7360004F7FA /* ThirdViewController.m */,
 			);
@@ -1053,6 +1107,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F4CF1691BE1FD4200052681 /* BasicInfoController.m in Sources */,
 				9F6201ED1BC90AC400B180BD /* ELCAlbumPickerController.m in Sources */,
 				9F6201B51BC8FE8C00B180BD /* CBProfilePhotoViewCell.m in Sources */,
 				9F6201F21BC90AC400B180BD /* ELCImagePickerController.m in Sources */,
@@ -1060,6 +1115,7 @@
 				9FD16D1C1BBBBA6C0004F7FA /* TaskCell.m in Sources */,
 				9F35561D1BC75B2B00798C02 /* ChangeTypeController.m in Sources */,
 				9FD16CF91BBA769A0004F7FA /* LoginViewController.m in Sources */,
+				9F4CF16F1BE1FDEF00052681 /* FilterBasicInfoController.m in Sources */,
 				9FD16CF31BBA75390004F7FA /* SecondViewController.m in Sources */,
 				9F6201F11BC90AC400B180BD /* ELCConsole.m in Sources */,
 				9F38CD701BC64F3B009A3EEF /* UploadViewController.m in Sources */,
@@ -1067,11 +1123,15 @@
 				9F6201F31BC90AC400B180BD /* ELCOverlayImageView.m in Sources */,
 				9F6201EF1BC90AC400B180BD /* ELCAssetCell.m in Sources */,
 				9FD16CFC1BBA76DE0004F7FA /* ChangePasswordController.m in Sources */,
+				9F4CF1731BE208C500052681 /* ChangedInfoController.m in Sources */,
 				9FD16CF61BBA75E60004F7FA /* CustomTabBarController.m in Sources */,
 				9FD16CED1BBA74E30004F7FA /* RootViewController.m in Sources */,
+				9F4CF1761BE208E900052681 /* FIlterChangedController.m in Sources */,
 				9FA3F99C1BCF95BA00097B5A /* SegtonInstance.m in Sources */,
 				9F35561A1BC7554900798C02 /* confirmPasswordController.m in Sources */,
+				9F4CF17D1BE20AF300052681 /* FilterDevelopeController.m in Sources */,
 				9FD16D211BBBBF2C0004F7FA /* TaskDetailController.m in Sources */,
+				9F4CF17A1BE20A9E00052681 /* DeveloperChangedController.m in Sources */,
 				9F6201EE1BC90AC400B180BD /* ELCAsset.m in Sources */,
 				9F3556521BC7AB8300798C02 /* RecordCell.m in Sources */,
 				9F38C1741BCB781800989036 /* MapPathController.m in Sources */,

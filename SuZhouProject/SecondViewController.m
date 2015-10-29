@@ -90,12 +90,32 @@
         if (list.count != 0) {
             [SVProgressHUD dismissWithSuccess:@"加载成功"];
             _taskList = list;
-            self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",list.count];
+            int num = [self NotPartrolTask:_taskList];
+            if (num > 0) {
+                //设置标注
+                self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",num];
+            }else{
+                self.tabBarItem.badgeValue  = nil;
+            }
+          
             [self.taskTableView reloadData];
         }else{
             [SVProgressHUD dismissWithError:@"数据为空"];
         }
     });
+}
+
+//得到没有巡查的任务数量
+- (int)NotPartrolTask:(NSArray *)list
+{
+    int kCount = 0;
+    for (NSDictionary *dict in list) {
+       NSString *state = [dict objectForKey:@"state"];
+        if ([state hasPrefix:@"未巡查"]) {
+            kCount++;
+        }
+    }
+    return kCount;
 }
 
 #pragma mark - UITableViewDataSource
