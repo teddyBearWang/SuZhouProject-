@@ -24,7 +24,7 @@
     {
         self.headImage.image = [UIImage imageNamed:@"status_none"];
     }
-    else if ([state isEqualToString:@"正在巡查"])
+    else if ([state isEqualToString:@"巡查中"])
     {
         self.headImage.image = [UIImage imageNamed:@"status_doing"];
     }

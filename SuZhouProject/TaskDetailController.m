@@ -30,6 +30,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *start_btn;
 //巡查上报按钮
 @property (weak, nonatomic) IBOutlet UIButton *upload_btn;
+//更新上报按钮
+@property (weak, nonatomic) IBOutlet UIButton *updateBtn;
+
 //结束按钮
 @property (weak, nonatomic) IBOutlet UIButton *end_btn;
 //任务列表
@@ -133,22 +136,25 @@
             _dataList = list;
             [self.taskTable reloadData];
             
-            if ([[list[0] objectForKey:@"type"] isEqualToString:@"未巡查"]) {
+            if ([[list[0] objectForKey:@"state"] isEqualToString:@"未巡查"]) {
                 self.start_btn.hidden = NO;
                 self.upload_btn.hidden = YES;
                 self.end_btn.hidden = YES;
+                self.updateBtn.hidden = YES;
             }
-            else if ([[list[0] objectForKey:@"type"] isEqualToString:@"巡查中"])
+            else if ([[list[0] objectForKey:@"state"] isEqualToString:@"巡查中"])
             {
                 self.start_btn.hidden = YES;
                 self.upload_btn.hidden = NO;
                 self.end_btn.hidden = NO;
+                self.updateBtn.hidden = YES;
             }
-            else if ([[list[0] objectForKey:@"type"] isEqualToString:@"已巡查"])
+            else if ([[list[0] objectForKey:@"state"] isEqualToString:@"已完成"])
             {
                  self.start_btn.hidden = YES;
-                 self.upload_btn.hidden = NO;
+                 self.upload_btn.hidden = YES;
                  self.end_btn.hidden = YES;
+                self.updateBtn.hidden = NO;//更新上报按钮，显示
             }
         }else{
             [SVProgressHUD dismissWithSuccess:@"加载失败"];
@@ -164,7 +170,7 @@
     //开启定位
     [self startUpdateLocation];
     
-    NSString *result = [NSString stringWithFormat:@"%@$已巡查",self.taskId];
+    NSString *result = [NSString stringWithFormat:@"%@$巡查中",self.taskId];
     [SVProgressHUD showWithStatus:@"开始巡查.."];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [RequestHttps fetchWithType:@"UpdateState" Results:result completion:^(NSDictionary *dict) {
@@ -173,6 +179,7 @@
                 self.start_btn.hidden = YES;
                 self.upload_btn.hidden = NO;
                 self.end_btn.hidden = NO;
+                
             }else{
                 [SVProgressHUD dismissWithError:@"开始巡查失败"];
             }
@@ -219,10 +226,30 @@
 //结束巡查
 - (IBAction)endPartrolAction:(id)sender
 {
-    if (![_locationManager locationServicesEnabled]) {
-        //关闭定位服务
-        [_locationManager stopUpdatingLocation];
-    }
+    
+    NSString *result = [NSString stringWithFormat:@"%@$已完成",self.taskId];
+    [SVProgressHUD showWithStatus:@"结束巡查中"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [RequestHttps fetchWithType:@"UpdateState" Results:result completion:^(NSDictionary *dict) {
+            if ([[dict objectForKey:@"success"] isEqualToString:@"True"]) {
+                [SVProgressHUD dismissWithSuccess:@"开始巡查成功"];
+                self.start_btn.hidden = YES;
+                self.upload_btn.hidden = YES;
+                self.end_btn.hidden = YES;
+                self.updateBtn.hidden = NO;//更新上报按钮，显示
+                
+                //关闭定位
+                if (![_locationManager locationServicesEnabled]) {
+                    //关闭定位服务
+                    [_locationManager stopUpdatingLocation];
+                }
+            }else{
+                [SVProgressHUD dismissWithError:@"结束巡查成功"];
+            }
+        } error:^(NSError *error) {
+            [SVProgressHUD dismissWithError:@"结束巡查失败"];
+        }];
+    });
 }
 
 - (void)watchMapPathAction

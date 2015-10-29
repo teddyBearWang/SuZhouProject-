@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--消息-->
@@ -420,20 +421,38 @@
                                     <constraint firstAttribute="height" constant="150" id="jvp-se-pPX"/>
                                 </constraints>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MgT-0O-L8E">
+                                <rect key="frame" x="60" y="528" width="200" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="O7k-eK-a1l"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="巡查上报">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="partrolUploadAction:" destination="F7i-Ld-9al" eventType="touchUpInside" id="iyY-xA-GSg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="MgT-0O-L8E" secondAttribute="trailing" constant="44" id="4gU-gt-br4"/>
                             <constraint firstItem="YKi-u7-nnJ" firstAttribute="leading" secondItem="o24-Hz-WkT" secondAttribute="trailing" id="4hX-T8-k05"/>
                             <constraint firstAttribute="trailing" secondItem="wDT-4A-jRO" secondAttribute="trailing" id="8Og-Wn-Oc7"/>
                             <constraint firstAttribute="bottom" secondItem="o24-Hz-WkT" secondAttribute="bottom" id="8fm-E2-CzE"/>
                             <constraint firstItem="o24-Hz-WkT" firstAttribute="width" secondItem="YKi-u7-nnJ" secondAttribute="width" id="939-Y9-mNs"/>
                             <constraint firstItem="eot-dH-fLw" firstAttribute="top" secondItem="wDT-4A-jRO" secondAttribute="bottom" id="I9b-nM-7uo"/>
                             <constraint firstAttribute="centerX" secondItem="eRP-0s-HfM" secondAttribute="centerX" id="KE1-Y4-Scw"/>
+                            <constraint firstItem="MgT-0O-L8E" firstAttribute="leading" secondItem="XPd-Kk-AP3" secondAttribute="leadingMargin" constant="44" id="NwJ-r9-AM8"/>
                             <constraint firstAttribute="trailing" secondItem="YKi-u7-nnJ" secondAttribute="trailing" id="OgC-7e-Waj"/>
                             <constraint firstAttribute="bottom" secondItem="w0y-bb-lyA" secondAttribute="bottom" id="T1V-vL-oWk"/>
                             <constraint firstAttribute="bottom" secondItem="YKi-u7-nnJ" secondAttribute="bottom" id="UMW-Gg-eKs"/>
                             <constraint firstAttribute="centerX" secondItem="w0y-bb-lyA" secondAttribute="centerX" id="dcm-Ik-Ryl"/>
                             <constraint firstItem="o24-Hz-WkT" firstAttribute="height" secondItem="YKi-u7-nnJ" secondAttribute="height" id="hYG-ka-cfJ"/>
+                            <constraint firstItem="owM-AV-h6j" firstAttribute="top" secondItem="MgT-0O-L8E" secondAttribute="bottom" id="lko-3W-RAe"/>
                             <constraint firstItem="o24-Hz-WkT" firstAttribute="leading" secondItem="XPd-Kk-AP3" secondAttribute="leading" id="ncx-vI-rdF"/>
                             <constraint firstItem="wDT-4A-jRO" firstAttribute="leading" secondItem="XPd-Kk-AP3" secondAttribute="leading" id="rss-E8-PSh"/>
                             <constraint firstAttribute="trailing" secondItem="eRP-0s-HfM" secondAttribute="trailing" id="sQe-qG-0u7"/>
@@ -449,6 +468,7 @@
                         <outlet property="mapShowView" destination="wDT-4A-jRO" id="Xyy-xE-bpw"/>
                         <outlet property="start_btn" destination="w0y-bb-lyA" id="NTU-Ni-33s"/>
                         <outlet property="taskTable" destination="eot-dH-fLw" id="yKk-3b-oGz"/>
+                        <outlet property="updateBtn" destination="MgT-0O-L8E" id="Z9Y-Wt-8AO"/>
                         <outlet property="upload_btn" destination="o24-Hz-WkT" id="AGC-OB-lkV"/>
                         <segue destination="8Gh-EX-H6W" kind="push" identifier="uploadPartrol" id="R0V-uI-Fq5"/>
                         <segue destination="S0c-O8-d7A" kind="push" identifier="mapPath" id="GWr-iK-91t"/>
