@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="AI4-1o-GO9" customClass="CusHeadImageView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="headImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="oui-Jg-Vib">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="基础信息" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qj4-lc-JjF">
+                    <rect key="frame" x="18" y="10" width="200" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Qj4-lc-JjF" firstAttribute="top" secondItem="AI4-1o-GO9" secondAttribute="top" constant="10" id="3QO-01-UHo"/>
+                <constraint firstAttribute="trailing" secondItem="oui-Jg-Vib" secondAttribute="trailing" id="BTU-It-fKq"/>
+                <constraint firstItem="Qj4-lc-JjF" firstAttribute="leading" secondItem="AI4-1o-GO9" secondAttribute="leading" constant="18" id="FSA-Eg-jnT"/>
+                <constraint firstAttribute="trailing" secondItem="Qj4-lc-JjF" secondAttribute="trailing" constant="102" id="SFR-Ax-8Cr"/>
+                <constraint firstItem="oui-Jg-Vib" firstAttribute="top" secondItem="AI4-1o-GO9" secondAttribute="top" id="Yif-d5-Qgo"/>
+                <constraint firstAttribute="bottom" secondItem="Qj4-lc-JjF" secondAttribute="bottom" constant="10" id="cDl-hY-xpM"/>
+                <constraint firstItem="oui-Jg-Vib" firstAttribute="leading" secondItem="AI4-1o-GO9" secondAttribute="leading" id="iPt-j0-zXn"/>
+                <constraint firstAttribute="bottom" secondItem="oui-Jg-Vib" secondAttribute="bottom" id="wmw-l7-Jbm"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="headBgImageView" destination="oui-Jg-Vib" id="kN8-YY-kpS"/>
+                <outlet property="headTitleLabel" destination="Qj4-lc-JjF" id="4I7-Xf-2fe"/>
+            </connections>
+            <point key="canvasLocation" x="544" y="311"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="headImage.png" width="320" height="50"/>
+    </resources>
+</document>

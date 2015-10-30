@@ -106,13 +106,30 @@
                     <view key="view" contentMode="scaleToFill" id="CFN-go-KPl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Cii-7R-wCa">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="kBb-xx-Nhx" id="m1u-PB-1uz"/>
+                                    <outlet property="delegate" destination="kBb-xx-Nhx" id="lx8-Mq-8Fz"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gtU-sL-h8K" firstAttribute="top" secondItem="Cii-7R-wCa" secondAttribute="bottom" id="43n-m2-enD"/>
+                            <constraint firstItem="Cii-7R-wCa" firstAttribute="top" secondItem="Red-aD-6xv" secondAttribute="bottom" id="ISg-Xh-SZv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Cii-7R-wCa" secondAttribute="trailing" constant="-16" id="QJC-Be-gxE"/>
+                            <constraint firstItem="Cii-7R-wCa" firstAttribute="leading" secondItem="CFN-go-KPl" secondAttribute="leadingMargin" constant="-16" id="vkN-LX-kXq"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="变化信息" id="6jA-yr-rxQ">
                         <barButtonItem key="backBarButtonItem" title="返回" id="MeC-6N-NyQ"/>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="changeTable" destination="Cii-7R-wCa" id="K5O-5q-qoH"/>
                         <segue destination="pRt-Xw-oHZ" kind="push" identifier="filterChangedInfo" id="ona-C8-Zc5"/>
                     </connections>
                 </viewController>
@@ -194,19 +211,85 @@
                     <view key="view" contentMode="scaleToFill" id="jB0-5F-b1i">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="82k-nN-vbH">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="fs2-SY-sj3" id="yOY-Vl-cn9"/>
+                                    <outlet property="delegate" destination="fs2-SY-sj3" id="cgm-XH-3RE"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="82k-nN-vbH" secondAttribute="bottom" id="54N-Cl-cGM"/>
+                            <constraint firstItem="82k-nN-vbH" firstAttribute="top" secondItem="jB0-5F-b1i" secondAttribute="top" id="dlq-2o-15Q"/>
+                            <constraint firstAttribute="trailing" secondItem="82k-nN-vbH" secondAttribute="trailing" id="eHl-zf-eMf"/>
+                            <constraint firstItem="82k-nN-vbH" firstAttribute="leading" secondItem="jB0-5F-b1i" secondAttribute="leading" id="ePN-hh-FDO"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="基础信息(河道)" id="o7z-Mo-zti">
                         <barButtonItem key="backBarButtonItem" title="返回" id="MU7-AA-mn6"/>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="infoTable" destination="82k-nN-vbH" id="xRu-vc-Qjr"/>
                         <segue destination="x9w-rg-Ob4" kind="push" identifier="filterBasicInfo" id="atU-x5-RVN"/>
+                        <segue destination="GOw-gW-jys" kind="push" identifier="basicInfoDetail" id="wgq-xm-OuG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SIj-ld-x7O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-912" y="-192"/>
+            <point key="canvasLocation" x="-1054" y="-233"/>
+        </scene>
+        <!--盘门内城河-->
+        <scene sceneID="M74-cI-JZC">
+            <objects>
+                <viewController id="GOw-gW-jys" customClass="BasicInfoDetailController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TIy-rH-DOn"/>
+                        <viewControllerLayoutGuide type="bottom" id="C5K-b9-Wte"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wIv-zS-7nM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HGb-rU-uqF">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="qER-W4-wrv"/>
+                                </constraints>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8kG-EV-Vfn">
+                                <rect key="frame" x="0.0" y="200" width="320" height="368"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="GOw-gW-jys" id="sqt-FT-SRY"/>
+                                    <outlet property="delegate" destination="GOw-gW-jys" id="tMO-6W-JSm"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HGb-rU-uqF" firstAttribute="leading" secondItem="wIv-zS-7nM" secondAttribute="leadingMargin" constant="-16" id="3KF-a9-mQD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8kG-EV-Vfn" secondAttribute="trailing" constant="-16" id="ZFb-jN-Oyz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HGb-rU-uqF" secondAttribute="trailing" constant="-16" id="Zmo-Pb-MU9"/>
+                            <constraint firstItem="8kG-EV-Vfn" firstAttribute="leading" secondItem="wIv-zS-7nM" secondAttribute="leadingMargin" constant="-16" id="f36-Xw-tDw"/>
+                            <constraint firstItem="HGb-rU-uqF" firstAttribute="top" secondItem="TIy-rH-DOn" secondAttribute="bottom" constant="-64" id="n3H-13-EJH"/>
+                            <constraint firstItem="8kG-EV-Vfn" firstAttribute="top" secondItem="HGb-rU-uqF" secondAttribute="bottom" id="u18-QW-R6W"/>
+                            <constraint firstItem="C5K-b9-Wte" firstAttribute="top" secondItem="8kG-EV-Vfn" secondAttribute="bottom" id="xWL-xC-8rw"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="盘门内城河" id="YQL-Sw-9xE"/>
+                    <connections>
+                        <outlet property="detailTable" destination="8kG-EV-Vfn" id="nzl-W9-0Xo"/>
+                        <outlet property="headerImage" destination="HGb-rU-uqF" id="kvC-OE-28p"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gyd-LF-ncf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-648" y="-224"/>
         </scene>
         <!--查询条件(河道)-->
         <scene sceneID="bhz-bI-GOM">
@@ -216,16 +299,167 @@
                         <viewControllerLayoutGuide type="top" id="i2i-mF-KjB"/>
                         <viewControllerLayoutGuide type="bottom" id="jdd-Qf-tr3"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hV3-2v-yna">
+                    <view key="view" contentMode="scaleToFill" id="hV3-2v-yna" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="F8S-IM-8pv">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="410"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7B2-0Z-Ocf">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="jRC-mx-0Qg">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="headerVIewIdentifier" id="aAz-h2-Ba0" customClass="CollectionHeaderView">
+                                    <rect key="frame" x="0.0" y="64" width="320" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="行政区划" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWW-S1-sCa">
+                                            <rect key="frame" x="16" y="14" width="77" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WaJ-xw-qgF">
+                                            <rect key="frame" x="101" y="10" width="45" height="30"/>
+                                            <state key="normal" title="金东区">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dbf-Kb-XlM">
+                                            <rect key="frame" x="150" y="15" width="20" height="20"/>
+                                        </imageView>
+                                    </subviews>
+                                    <connections>
+                                        <outlet property="arearLabel" destination="rWW-S1-sCa" id="DG2-KD-c5N"/>
+                                        <outlet property="arrowImageView" destination="dbf-Kb-XlM" id="0Cc-dn-mC9"/>
+                                        <outlet property="selectButton" destination="WaJ-xw-qgF" id="bji-so-TOs"/>
+                                    </connections>
+                                </collectionReusableView>
+                            </collectionView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vfc-IR-F6d">
+                                <rect key="frame" x="92" y="428" width="70" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="cu2-WU-UfL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zYn-bb-eQ5">
+                                <rect key="frame" x="189" y="428" width="70" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="D8t-bC-Irm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="~" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eD2-3h-wVH">
+                                <rect key="frame" x="170" y="432" width="11" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="07w-fQ-VZL"/>
+                                    <constraint firstAttribute="width" constant="11" id="I7C-9k-j8m"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="河道名称：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cE-My-f63">
+                                <rect key="frame" x="16" y="468" width="85" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="5R6-u2-XoR"/>
+                                    <constraint firstAttribute="height" constant="21" id="hmL-pq-32B"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入河道名称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zyg-f9-lBA">
+                                <rect key="frame" x="92" y="464" width="167" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="167" id="DAC-zk-skS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9p-H6-5na">
+                                <rect key="frame" x="30" y="528" width="260" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.31098124630000001" blue="0.1007501616" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Ncf-qi-zkI"/>
+                                    <constraint firstAttribute="width" constant="260" id="gtW-U4-mM8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="查询">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="queryInfoAction:" destination="x9w-rg-Ob4" eventType="touchUpInside" id="tLA-b0-uof"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="水域面积" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFx-L8-Fja">
+                                <rect key="frame" x="16" y="432" width="68" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="68" id="FKa-0h-zsD"/>
+                                    <constraint firstAttribute="height" constant="21" id="NkS-Re-dsr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="jdd-Qf-tr3" firstAttribute="top" secondItem="N9p-H6-5na" secondAttribute="bottom" id="1W5-ow-A2F"/>
+                            <constraint firstItem="zyg-f9-lBA" firstAttribute="top" secondItem="Vfc-IR-F6d" secondAttribute="bottom" constant="6" id="BFF-Fj-WgB"/>
+                            <constraint firstItem="Vfc-IR-F6d" firstAttribute="top" secondItem="F8S-IM-8pv" secondAttribute="bottom" constant="18" id="JL6-3b-m3j"/>
+                            <constraint firstItem="mFx-L8-Fja" firstAttribute="top" secondItem="F8S-IM-8pv" secondAttribute="bottom" constant="22" id="K4Z-Sa-Fpq"/>
+                            <constraint firstItem="eD2-3h-wVH" firstAttribute="leading" secondItem="Vfc-IR-F6d" secondAttribute="trailing" constant="8" id="KsU-K2-qsJ"/>
+                            <constraint firstItem="6cE-My-f63" firstAttribute="top" secondItem="mFx-L8-Fja" secondAttribute="bottom" constant="15" id="MaX-cM-jzT"/>
+                            <constraint firstAttribute="trailing" secondItem="F8S-IM-8pv" secondAttribute="trailing" id="QPy-Lq-Oen"/>
+                            <constraint firstItem="zyg-f9-lBA" firstAttribute="leading" secondItem="6cE-My-f63" secondAttribute="trailing" constant="-9" id="WLK-fa-8gd"/>
+                            <constraint firstItem="zYn-bb-eQ5" firstAttribute="top" secondItem="F8S-IM-8pv" secondAttribute="bottom" constant="18" id="Yzn-Qt-lDR"/>
+                            <constraint firstItem="eD2-3h-wVH" firstAttribute="top" secondItem="F8S-IM-8pv" secondAttribute="bottom" constant="22" id="ZGz-ka-c7F"/>
+                            <constraint firstItem="zYn-bb-eQ5" firstAttribute="leading" secondItem="Vfc-IR-F6d" secondAttribute="trailing" constant="27" id="bQ3-8h-BVs"/>
+                            <constraint firstItem="Vfc-IR-F6d" firstAttribute="leading" secondItem="mFx-L8-Fja" secondAttribute="trailing" constant="8" id="bcR-K5-amJ"/>
+                            <constraint firstItem="6cE-My-f63" firstAttribute="leading" secondItem="hV3-2v-yna" secondAttribute="leadingMargin" id="dFD-dL-BRj"/>
+                            <constraint firstItem="jdd-Qf-tr3" firstAttribute="top" secondItem="F8S-IM-8pv" secondAttribute="bottom" constant="158" id="dWO-Nj-uJd"/>
+                            <constraint firstItem="F8S-IM-8pv" firstAttribute="leading" secondItem="hV3-2v-yna" secondAttribute="leading" id="evd-Ce-haA"/>
+                            <constraint firstItem="mFx-L8-Fja" firstAttribute="leading" secondItem="hV3-2v-yna" secondAttribute="leadingMargin" id="fzl-zY-N2h"/>
+                            <constraint firstAttribute="centerX" secondItem="N9p-H6-5na" secondAttribute="centerX" id="hqu-o4-ePp"/>
+                            <constraint firstItem="F8S-IM-8pv" firstAttribute="top" secondItem="hV3-2v-yna" secondAttribute="top" id="zSM-LS-tb2"/>
+                        </constraints>
+                        <connections>
+                            <action selector="tapBackground:" destination="x9w-rg-Ob4" eventType="touchDown" id="keA-aM-3Rm"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="查询条件(河道)" id="ocR-vZ-Tn2"/>
+                    <connections>
+                        <outlet property="filterCollectionView" destination="F8S-IM-8pv" id="EZe-lM-fNs"/>
+                        <outlet property="firstTextField" destination="Vfc-IR-F6d" id="1lA-2R-ooy"/>
+                        <outlet property="queryButton" destination="N9p-H6-5na" id="I8C-6O-lDU"/>
+                        <outlet property="riverNameTextField" destination="zyg-f9-lBA" id="XQL-Hs-EC6"/>
+                        <outlet property="rivilerNameLabel" destination="6cE-My-f63" id="xJI-pW-gug"/>
+                        <outlet property="secondTextField" destination="zYn-bb-eQ5" id="NVm-3C-WHt"/>
+                        <outlet property="waterAreaLabel" destination="mFx-L8-Fja" id="mBh-Pn-E9p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XEa-yo-gn1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-481" y="-198"/>
+            <point key="canvasLocation" x="-632" y="-897"/>
         </scene>
         <!--地图显示-->
         <scene sceneID="DSc-Rn-csI">

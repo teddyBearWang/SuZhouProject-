@@ -7,9 +7,15 @@
 //
 
 #import "ChangedInfoController.h"
+#import "BasicInfoCell.h"
 
-@interface ChangedInfoController ()
 
+@interface ChangedInfoController ()<UITableViewDataSource,UITableViewDelegate>
+{
+     NSArray *_infoDataList;//数据源s
+}
+
+@property (weak, nonatomic) IBOutlet UITableView *changeTable;
 @end
 
 @implementation ChangedInfoController
@@ -19,13 +25,8 @@
     // Do any additional setup after loading the view.
     
     UIButton *filterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    filterBtn.frame = (CGRect){0,0,50,30};
-    filterBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    filterBtn.layer.borderWidth = 0.3;
-    filterBtn.layer.cornerRadius = 5;
-    filterBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [filterBtn setTitle:@"筛选" forState:UIControlStateNormal];
-    [filterBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    filterBtn.frame = (CGRect){0,0,30,30};
+    [filterBtn setBackgroundImage:[UIImage imageNamed:@"filter"] forState:UIControlStateNormal];
     [filterBtn addTarget:self action:@selector(filterAction:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *filterItem = [[UIBarButtonItem alloc] initWithCustomView:filterBtn];
@@ -50,5 +51,46 @@
 //
 //    }
 //}
+
+#pragma amark - UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // return _infoDataList.count;
+    return 4;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BasicInfoCell *InfoCell = (BasicInfoCell *)[[[NSBundle mainBundle] loadNibNamed:@"BasicInfoCell" owner:nil options:nil] lastObject];
+    InfoCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    InfoCell.nameLabel.text = @"环城河段1";
+    InfoCell.lengthImage.image = [UIImage imageNamed:@"length"];
+    InfoCell.lengthLabel.text = @"面积:2345 km";
+    InfoCell.areaImage.image = [UIImage imageNamed:@"change"];
+    InfoCell.areaLabel.text = @"林地->池塘";
+    return InfoCell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:(CGRect){0,0,kScreenWidth,1}];
+    return view;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 @end

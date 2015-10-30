@@ -7,12 +7,17 @@
 //
 
 #import "ThirdViewController.h"
+#import "CusHeadImageView.h"
 
 @interface ThirdViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSArray *_List1;//数据源
     NSArray *_List2;//数据源
     NSArray *_List3;//数据源
+    
+    NSArray *_images1;//图片源
+    NSArray *_images2;//图片源
+    NSArray *_images3;//图片源
 }
 @property (weak, nonatomic) IBOutlet UITableView *dataTable;
 
@@ -46,8 +51,11 @@
     self.dataTable.dataSource = self;
     
     _List1 = @[@"河道: 数量100条 面积100k㎡",@"湖泊: 数量100个 面积100k㎡",@"塘坝: 数量100个 面积100k㎡"];
+    _images1 = @[@"rivier",@"lakes",@"batang"];
     _List2 = @[@"水域增加: 变化点20处 面积100㎡",@"水域减少: 变化点20处 面积100㎡",@"跨河建筑工程: 变化点20处 面积100㎡",@"开发利用变化: 变化点20处 面积100㎡"];
+    _images2 = @[@"add",@"decrease",@"kuahe",@"developer"];
     _List3 = @[@"水域增加: 变化点20处 面积100㎡"];
+    _images3 = @[@"developer"];
 }
 
 //切换界面的时候
@@ -95,21 +103,25 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.font = [UIFont systemFontOfSize:14];
+    cell.textLabel.font = [UIFont systemFontOfSize:13];
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     switch (indexPath.section) {
         case 0:
         {
             cell.textLabel.text = _List1[indexPath.row];
+            cell.imageView.image = [UIImage imageNamed:_images1[indexPath.row]];
         }
             break;
         case 1:
         {
             cell.textLabel.text = _List2[indexPath.row];
+            cell.imageView.image = [UIImage imageNamed:_images2[indexPath.row]];
         }
             break;
         case 2:
         {
             cell.textLabel.text = _List3[indexPath.row];
+            cell.imageView.image = [UIImage imageNamed:_images3[indexPath.row]];
         }
             break;
         default:
@@ -137,36 +149,37 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 30;
+    return 50;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30)];
-    textLabel.backgroundColor = [UIColor lightGrayColor];
-    textLabel.textColor = [UIColor blueColor];
-    textLabel.font = [UIFont systemFontOfSize:15];
+//    UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30)];
+//    textLabel.backgroundColor = [UIColor lightGrayColor];
+//    textLabel.textColor = [UIColor blueColor];
+//    textLabel.font = [UIFont systemFontOfSize:15];
+    CusHeadImageView *headImage = (CusHeadImageView *)[[[NSBundle mainBundle] loadNibNamed:@"cusHeaderView" owner:nil options:nil] lastObject];
     switch (section) {
         case 0:
         {
-            textLabel.text = @"   基础信息";
+            headImage.headTitleLabel.text = @"   基础信息";
         }
             break;
         case 1:
         {
-            textLabel.text = @"   变化信息";
+            headImage.headTitleLabel.text = @"   变化信息";
         }
             break;
         case 2:
         {
-            textLabel.text = @"   利用开发要素";
+            headImage.headTitleLabel.text = @"   利用开发要素";
         }
             break;
         default:
             return nil;
             break;
     }
-    return textLabel;
+    return headImage;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
