@@ -10,4 +10,6 @@
 
 @interface FIlterChangedController : RootViewController
 
+@property (nonatomic, strong) NSString *filterType;//筛选类型
+
 @end

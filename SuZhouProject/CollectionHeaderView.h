@@ -1,7 +1,7 @@
 //
 //  CollectionHeaderView.h
 //  SuZhouProject
-//
+//  ***********基础信息collectionView的headerView**********
 //  Created by teddy on 15/10/30.
 //  Copyright (c) 2015年 teddy. All rights reserved.
 //

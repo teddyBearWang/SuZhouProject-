@@ -177,7 +177,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(70, 40);
+    return CGSizeMake(70, 30);
 }
 
 static NSInteger _oldSelectLevelIndex;//上一次选择 等级

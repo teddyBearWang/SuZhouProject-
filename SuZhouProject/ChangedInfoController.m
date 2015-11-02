@@ -44,14 +44,6 @@
     [self performSegueWithIdentifier:@"filterChangedInfo" sender:nil];
 }
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    id theSegue = segue.destinationViewController;
-//    if ([segue.identifier isEqualToString:@"filterBasicInfo"]) {
-//
-//    }
-//}
-
 #pragma amark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -89,8 +81,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self performSegueWithIdentifier:@"changInfoDetail" sender:nil];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    //筛选
+    if ([segue.identifier isEqualToString:@"filterChangedInfo"]) {
+        id theSegue = segue.destinationViewController;
+        [theSegue setValue:@"变化信息" forKey:@"filterType"];
+        
+    }
+    //详情
+    else if ([segue.identifier isEqualToString:@"changInfoDetail"])
+    {
+        id theSegue = segue.destinationViewController;
+        [theSegue setValue:@"变化信息" forKey:@"typeInfo"];
+    }
+}
 
 @end
