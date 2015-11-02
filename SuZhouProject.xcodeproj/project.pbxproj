@@ -110,6 +110,9 @@
 		9F5155EB1BE733DA0069AAF4 /* ChangeDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F5155EA1BE733DA0069AAF4 /* ChangeDetailHeaderView.xib */; };
 		9F5155EE1BE735920069AAF4 /* ChangeDetaiHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5155ED1BE735920069AAF4 /* ChangeDetaiHeader.m */; };
 		9F5155F11BE742020069AAF4 /* DetailMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5155F01BE742020069AAF4 /* DetailMapController.m */; };
+		9F5155F41BE758070069AAF4 /* MessageDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5155F31BE758070069AAF4 /* MessageDetailController.m */; };
+		9F5155F71BE75ACF0069AAF4 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F5155F61BE75ACF0069AAF4 /* MessageCell.xib */; };
+		9F5155FA1BE75D9D0069AAF4 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5155F91BE75D9D0069AAF4 /* MessageCell.m */; };
 		9F556B451BD4888A00726FA2 /* UserLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F556B441BD4888A00726FA2 /* UserLocation.m */; };
 		9F6201601BC8B58200B180BD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F62015F1BC8B58200B180BD /* AVFoundation.framework */; };
 		9F6201621BC8B58C00B180BD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6201611BC8B58C00B180BD /* AudioToolbox.framework */; };
@@ -380,6 +383,11 @@
 		9F5155ED1BE735920069AAF4 /* ChangeDetaiHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeDetaiHeader.m; sourceTree = "<group>"; };
 		9F5155EF1BE742020069AAF4 /* DetailMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailMapController.h; sourceTree = "<group>"; };
 		9F5155F01BE742020069AAF4 /* DetailMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailMapController.m; sourceTree = "<group>"; };
+		9F5155F21BE758070069AAF4 /* MessageDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetailController.h; sourceTree = "<group>"; };
+		9F5155F31BE758070069AAF4 /* MessageDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetailController.m; sourceTree = "<group>"; };
+		9F5155F61BE75ACF0069AAF4 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		9F5155F81BE75D9D0069AAF4 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		9F5155F91BE75D9D0069AAF4 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		9F556B431BD4888A00726FA2 /* UserLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocation.h; sourceTree = "<group>"; };
 		9F556B441BD4888A00726FA2 /* UserLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocation.m; sourceTree = "<group>"; };
 		9F62015F1BC8B58200B180BD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -777,6 +785,16 @@
 			name = "开发利用要素";
 			sourceTree = "<group>";
 		};
+		9F5155F51BE75A7E0069AAF4 /* customCell */ = {
+			isa = PBXGroup;
+			children = (
+				9F5155F61BE75ACF0069AAF4 /* MessageCell.xib */,
+				9F5155F81BE75D9D0069AAF4 /* MessageCell.h */,
+				9F5155F91BE75D9D0069AAF4 /* MessageCell.m */,
+			);
+			name = customCell;
+			sourceTree = "<group>";
+		};
 		9F6201631BC8B62300B180BD /* recordImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -955,8 +973,11 @@
 		9FD16D141BBBB76B0004F7FA /* message */ = {
 			isa = PBXGroup;
 			children = (
+				9F5155F51BE75A7E0069AAF4 /* customCell */,
 				9FD16CEE1BBA752E0004F7FA /* FirstViewController.h */,
 				9FD16CEF1BBA752E0004F7FA /* FirstViewController.m */,
+				9F5155F21BE758070069AAF4 /* MessageDetailController.h */,
+				9F5155F31BE758070069AAF4 /* MessageDetailController.m */,
 			);
 			name = message;
 			sourceTree = "<group>";
@@ -1211,6 +1232,7 @@
 				9F33047F1BE35B46001EE5D4 /* change@3x.png in Resources */,
 				9F62017D1BC8B64100B180BD /* record_animate_12.png in Resources */,
 				9F38CD451BC60E3B009A3EEF /* user@2x.png in Resources */,
+				9F5155F71BE75ACF0069AAF4 /* MessageCell.xib in Resources */,
 				9FD16CD01BBA6ECB0004F7FA /* Images.xcassets in Resources */,
 				9F38CD5A1BC639ED009A3EEF /* message@2x.png in Resources */,
 				9F6201781BC8B64100B180BD /* record_animate_07.png in Resources */,
@@ -1288,6 +1310,7 @@
 				9F6201F11BC90AC400B180BD /* ELCConsole.m in Sources */,
 				9F38CD701BC64F3B009A3EEF /* UploadViewController.m in Sources */,
 				9FD16CC51BBA6ECB0004F7FA /* AppDelegate.mm in Sources */,
+				9F5155F41BE758070069AAF4 /* MessageDetailController.m in Sources */,
 				9F6201F31BC90AC400B180BD /* ELCOverlayImageView.m in Sources */,
 				9F6201EF1BC90AC400B180BD /* ELCAssetCell.m in Sources */,
 				9FD16CFC1BBA76DE0004F7FA /* ChangePasswordController.m in Sources */,
@@ -1306,6 +1329,7 @@
 				9F4CF17A1BE20A9E00052681 /* DeveloperChangedController.m in Sources */,
 				9F6201EE1BC90AC400B180BD /* ELCAsset.m in Sources */,
 				9F3556521BC7AB8300798C02 /* RecordCell.m in Sources */,
+				9F5155FA1BE75D9D0069AAF4 /* MessageCell.m in Sources */,
 				9F38C1741BCB781800989036 /* MapPathController.m in Sources */,
 				9FD16D101BBBB7360004F7FA /* ThirdViewController.m in Sources */,
 				9F556B451BD4888A00726FA2 /* UserLocation.m in Sources */,

@@ -23,7 +23,7 @@
     
     
     self.delegate = self;
-    self.title = @"消息";
+    self.title = @"任务";
     
     //修改选中的图片颜色和字体颜色
     self.tabBar.selectedImageTintColor = [UIColor redColor];

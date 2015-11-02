@@ -6,6 +6,24 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="Uwi-wx-dXx">
+            <objects>
+                <viewController id="VTe-dm-qKx" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bqi-Ol-nXL"/>
+                        <viewControllerLayoutGuide type="bottom" id="8vV-uC-ZT9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vs1-Sj-kRa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jb4-aS-eCC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3982" y="652"/>
+        </scene>
         <!--消息-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
@@ -17,13 +35,32 @@
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="J2c-lw-qZA">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="9pv-A4-QxB" id="XY4-rO-gOW"/>
+                                    <outlet property="delegate" destination="9pv-A4-QxB" id="GE6-OE-mo6"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="J2c-lw-qZA" secondAttribute="trailing" constant="-16" id="GFh-di-KJm"/>
+                            <constraint firstItem="J2c-lw-qZA" firstAttribute="top" secondItem="pyo-5D-KGD" secondAttribute="bottom" id="crq-D3-XKP"/>
+                            <constraint firstItem="cbV-IM-Lf5" firstAttribute="top" secondItem="J2c-lw-qZA" secondAttribute="bottom" id="mQF-vy-kH8"/>
+                            <constraint firstItem="J2c-lw-qZA" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-16" id="vyV-yX-wWP"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="消息" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="messageTable" destination="J2c-lw-qZA" id="siH-Sk-0oh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3472" y="768"/>
+            <point key="canvasLocation" x="-3572" y="652"/>
         </scene>
         <!--任务-->
         <scene sceneID="wg7-f3-ORb">
