@@ -21,7 +21,7 @@
     //设置返回按钮的颜色
     self.navigationBar.tintColor = [UIColor whiteColor];
     //设置navigationbar的背景颜色
-    self.navigationBar.barTintColor = [UIColor colorWithRed:45/255.0 green:65/255.0 blue:96/255.0 alpha:1.0];
+    self.navigationBar.barTintColor = [UIColor colorWithRed:48/255.0 green:64/255.0 blue:97/255.0 alpha:1.0];
     self.navigationBar.translucent = NO;//不模糊
     
     [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
