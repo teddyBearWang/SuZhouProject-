@@ -68,7 +68,7 @@
 //网络验证
 - (void)requestWebAction:(NSString *)valueString
 {
-    [SVProgressHUD showWithStatus:@"登录中..."];
+    [SVProgressHUD showWithStatus:nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if ([RequestHttps fetchWithType:@"Login" Results:valueString]) {
             [self updateUI];
@@ -85,7 +85,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         NSArray *requestData = [RequestHttps requrstJsonData];
         if (requestData.count != 0) {
-            [SVProgressHUD dismissWithSuccess:@"登陆成功"];
+            [SVProgressHUD dismissWithSuccess:nil];
             //登陆成功
             [self performSegueWithIdentifier:@"Login" sender:nil];
             //将个人信息保存在本地

@@ -10,6 +10,8 @@
 
 @interface BasicInfoDetailController : RootViewController
 
-@property (nonatomic, strong) NSString *passParameter;//传递的参数
+@property (nonatomic, copy) NSString *resuqestType;//传递的参数
+
+@property (nonatomic, copy) NSString *smid;//河道、湖泊、塘坝id
 
 @end

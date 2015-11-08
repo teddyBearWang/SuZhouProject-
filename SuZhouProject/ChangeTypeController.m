@@ -26,7 +26,7 @@
     self.typeTable.delegate = self;
     self.typeTable.dataSource = self;
     
-    _list = @[@"水域变化",@"水域变化",@"水域变化",@"水域变化",@"水域变化",@"水域变化",@"水域变化",@"水域变化"];
+    _list = @[@"水域增加",@"水域减少",@"跨河建设工程",@"开发利用变化"];
     
 }
 

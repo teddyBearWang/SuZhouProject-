@@ -14,6 +14,8 @@
 {
     NSArray *_list1;//数据源1，信息列表的数据源
     NSArray *_list2;//数据源2，审批列表的数据源
+    
+    NSDictionary *_dict;//总得数据源
 }
 
 //变化前的图片
@@ -41,6 +43,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self getwebData];
     self.infoTableVIew.delegate =self;
     self.infoTableVIew.dataSource = self;
     self.infoTableVIew.bounces = NO;
@@ -52,7 +55,7 @@
     locationBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
     locationBtn.layer.borderWidth = 0.3;
     locationBtn.layer.cornerRadius = 5.0;
-    locationBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    locationBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [locationBtn setTitle:@"地图定位" forState:UIControlStateNormal];
     [locationBtn addTarget:self action:@selector(mapLocationAction:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -60,6 +63,39 @@
     self.navigationItem.rightBarButtonItem = right;
     
     self.title = self.typeInfo;//区别
+}
+
+/*
+ *获取详情
+ *simd:主键id
+ */
+- (void)getwebData
+{
+    
+    [SVProgressHUD show];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [RequestHttps fetchWithType:@"GetChangeInfo" Results:self.smid completion:^(NSArray *datas) {
+            //成功
+            if (datas.count == 0) {
+                [SVProgressHUD dismissWithError:@"数据为空"];
+            }else{
+                [SVProgressHUD dismissWithSuccess:nil];
+                _dict = datas[0];
+                _list1 = [_dict objectForKey:@"info"];
+                _list2 = [_dict objectForKey:@"approvalInfo"];
+                
+                self.beforeDateLabel.text = [_dict objectForKey:@"beforeDate"];
+                self.beforeTypeLabel.text = [NSString stringWithFormat:@"变化前: %@",[_dict objectForKey:@"beforeType"]];
+                
+                self.afterDateLabel.text = [_dict objectForKey:@"afterDate"];
+                self.afterTypeLabel.text = [NSString stringWithFormat:@"变化后: %@",[_dict objectForKey:@"afterType"]];
+                [self.infoTableVIew reloadData];
+            }
+        } error:^(NSError *error) {
+            //失败
+            [SVProgressHUD dismissWithError:@"加载失败"];
+        }];
+    });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,22 +120,26 @@
 {
     if (section == 0) {
         //若为信息列表
-      //  return _list1.count;
-        return 5;
+        return _list1.count;
     }else{
-      //  return _list2.count;
-         return 8;
+        return _list2.count;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TaskDetail *cell = (TaskDetail *)[[[NSBundle mainBundle] loadNibNamed:@"TaskDetail" owner:nil options:nil] lastObject];
-    cell.positionLabel.font = [UIFont systemFontOfSize:16];
+    cell.positionLabel.font = [UIFont systemFontOfSize:14];
     if (indexPath.section == 0) {
         //信息列表
+        NSDictionary *dict = _list1[indexPath.row];
+        cell.positionLabel.text = [dict objectForKey:@"type"];
+        cell.contentLabel.text = [dict objectForKey:@"value"];
     }else{
         //审批列表
+        NSDictionary *dict = _list2[indexPath.row];
+        cell.positionLabel.text = [dict objectForKey:@"type"];
+        cell.contentLabel.text = [dict objectForKey:@"value"];
     }
     return cell;
 }
@@ -117,6 +157,10 @@
 {
     if (section == 0) {
         ChangeDetaiHeader *header = (ChangeDetaiHeader *)[[[NSBundle mainBundle] loadNibNamed:@"ChangeDetailHeaderView" owner:nil options:nil] lastObject];
+        header.positionLabel.text = [_dict objectForKey:@"position"];
+        header.typeImageView.image = [UIImage imageNamed:@"area"];
+        header.changeDetaiLabel.text = [NSString stringWithFormat:@"变化面积: %@",[_dict objectForKey:@"changeArea"]];
+        
         return header;
     }else{
         UILabel *headerLabel = [[UILabel alloc] initWithFrame:(CGRect){0,0,kScreenWidth,30}];

@@ -115,7 +115,7 @@
 #pragma mark - getWebData
 - (void)getRequestJsonData:(NSString *)results
 {
-    [SVProgressHUD showWithStatus:@"加载中"];
+    [SVProgressHUD showWithStatus:nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if ([RequestHttps fetchWithType:@"GetTaskInfo" Results:results]) {
             [self updateUI];
@@ -132,7 +132,7 @@
     dispatch_sync(dispatch_get_main_queue(), ^{
         NSArray *list = [RequestHttps requrstJsonData];
         if (list.count != 0) {
-            [SVProgressHUD dismissWithSuccess:@"加载成功"];
+            [SVProgressHUD dismissWithSuccess:nil];
             _dataList = list;
             [self.taskTable reloadData];
             
@@ -171,15 +171,15 @@
     [self startUpdateLocation];
     
     NSString *result = [NSString stringWithFormat:@"%@$巡查中",self.taskId];
-    [SVProgressHUD showWithStatus:@"开始巡查.."];
+    [SVProgressHUD showWithStatus:nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [RequestHttps fetchWithType:@"UpdateState" Results:result completion:^(NSDictionary *dict) {
+        [RequestHttps fetchWithType:@"UpdateState" Results:result completion:^(NSArray *datas) {
+            NSDictionary *dict = datas[0];
             if ([[dict objectForKey:@"success"] isEqualToString:@"True"]) {
-                [SVProgressHUD dismissWithSuccess:@"开始巡查成功"];
+                [SVProgressHUD dismissWithSuccess:nil];
                 self.start_btn.hidden = YES;
                 self.upload_btn.hidden = NO;
                 self.end_btn.hidden = NO;
-                
             }else{
                 [SVProgressHUD dismissWithError:@"开始巡查失败"];
             }
@@ -228,11 +228,12 @@
 {
     
     NSString *result = [NSString stringWithFormat:@"%@$已完成",self.taskId];
-    [SVProgressHUD showWithStatus:@"结束巡查中"];
+    [SVProgressHUD showWithStatus:nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [RequestHttps fetchWithType:@"UpdateState" Results:result completion:^(NSDictionary *dict) {
+        [RequestHttps fetchWithType:@"UpdateState" Results:result completion:^(NSArray *datas) {
+            NSDictionary *dict = datas[0];
             if ([[dict objectForKey:@"success"] isEqualToString:@"True"]) {
-                [SVProgressHUD dismissWithSuccess:@"开始巡查成功"];
+                [SVProgressHUD dismissWithSuccess:nil];
                 self.start_btn.hidden = YES;
                 self.upload_btn.hidden = YES;
                 self.end_btn.hidden = YES;
@@ -244,7 +245,7 @@
                     [_locationManager stopUpdatingLocation];
                 }
             }else{
-                [SVProgressHUD dismissWithError:@"结束巡查成功"];
+                [SVProgressHUD dismissWithError:nil];
             }
         } error:^(NSError *error) {
             [SVProgressHUD dismissWithError:@"结束巡查失败"];

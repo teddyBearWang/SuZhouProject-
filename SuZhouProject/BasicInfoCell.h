@@ -20,6 +20,8 @@
 //面积标签
 @property (weak, nonatomic) IBOutlet UILabel *areaLabel;
 
+@property (assign) BOOL _isPond;//是否为塘坝
+
 //给cell赋值
 - (void)updateCellWith:(NSDictionary *)dict;
 

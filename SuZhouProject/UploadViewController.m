@@ -283,9 +283,10 @@
 //回调传值
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    ChangeTypeController *change = segue.destinationViewController;
+    ChangeTypeController *change = (ChangeTypeController *)segue.destinationViewController;
     [change changeType:^(NSString *selecedType) {
         _selectTypeString = selecedType;
+        [self.detailTable reloadData];
     }];
 }
 
@@ -660,7 +661,6 @@
     NSString *pathString = [[NSString alloc] initWithData:pathData encoding:NSUTF8StringEncoding];
     //任务id$flag$描述$轨迹$类型
     NSString *result = [NSString stringWithFormat:@"%@$%@$%@$%@$%@",self.taskId,flag,_contentString,pathString,_selectTypeString];
-  //  NSString *result = [NSString stringWithFormat:@"%@$%@$%@$$%@",self.taskId,flag,_contentString,_selectTypeString];
     return result;
 }
 
@@ -670,11 +670,14 @@
     NSString *result = [self appendResults:flag];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
-        [RequestHttps uploadWithResults:result withImages:images withRecordPath:filePath completion:^(NSDictionary *dict) {
+        [RequestHttps uploadWithResults:result withImages:images withRecordPath:filePath completion:^(NSArray *datas) {
+            NSDictionary *dict = datas[0];
             if ([[dict objectForKey:@"success"] isEqualToString:@"True"]) {
                 [SVProgressHUD dismissWithSuccess:@"上传成功"];
-                //上传成功之后，把录音删除
-                [_recorder deleteRecording];
+                //上传成功之后，若是录音文件存在把录音删除
+                if ([self isExist]) {
+                    [_recorder deleteRecording];
+                }
                 [self.navigationController popViewControllerAnimated:YES];
             }else{
                 [SVProgressHUD dismissWithError:@"上传失败"];

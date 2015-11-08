@@ -13,6 +13,8 @@
 - (void)updateNameLabelWithText:(NSString *)name
 {
     self.nameLabel.text = name;
+    self.nameLabel.numberOfLines = 0;
+    self.nameLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.layer.cornerRadius = 5.0;
     self.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.layer.borderWidth = 0.3;

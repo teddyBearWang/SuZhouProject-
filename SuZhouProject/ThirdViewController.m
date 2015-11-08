@@ -11,13 +11,15 @@
 
 @interface ThirdViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
-    NSArray *_List1;//数据源
-    NSArray *_List2;//数据源
-    NSArray *_List3;//数据源
+    NSMutableArray *_List1;//数据源
+    NSMutableArray *_List2;//数据源
+    NSMutableArray *_List3;//数据源
     
     NSArray *_images1;//图片源
     NSArray *_images2;//图片源
     NSArray *_images3;//图片源
+    
+    NSString *_selectRow;//选择的行数传递的参数
 }
 @property (weak, nonatomic) IBOutlet UITableView *dataTable;
 
@@ -50,18 +52,69 @@
     self.dataTable.delegate  = self;
     self.dataTable.dataSource = self;
     
-    _List1 = @[@"河道: 数量100条 面积100k㎡",@"湖泊: 数量100个 面积100k㎡",@"塘坝: 数量100个 面积100k㎡"];
+    //_List1 = @[@"河道: 数量100条 面积100k㎡",@"湖泊: 数量100个 面积100k㎡",@"塘坝: 数量100个 面积100k㎡"];
     _images1 = @[@"rivier",@"lakes",@"batang"];
-    _List2 = @[@"水域增加: 变化点20处 面积100㎡",@"水域减少: 变化点20处 面积100㎡",@"跨河建筑工程: 变化点20处 面积100㎡",@"开发利用变化: 变化点20处 面积100㎡"];
+   // _List2 = @[@"水域增加: 变化点20处 面积100㎡",@"水域减少: 变化点20处 面积100㎡",@"跨河建筑工程: 变化点20处 面积100㎡",@"开发利用变化: 变化点20处 面积100㎡"];
     _images2 = @[@"add",@"decrease",@"kuahe",@"developer"];
-    _List3 = @[@"水域增加: 变化点20处 面积100㎡"];
+   // _List3 = @[@"水域增加: 变化点20处 面积100㎡"];
     _images3 = @[@"developer"];
+}
+
+//获取网络数据
+- (void)getWebData
+{
+    [SVProgressHUD showWithStatus:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [RequestHttps fetchWithType:@"Information" Results:@"" completion:^(NSArray *datas) {
+            //成功
+            if (datas.count == 0) {
+                [SVProgressHUD dismissWithError:@"数据为空"];
+                return;
+            }
+            if (_List1 == nil) {
+                _List1 = [NSMutableArray array];
+            }else{
+                [_List1 removeAllObjects];
+            }
+            if (_List2 == nil) {
+                _List2 = [NSMutableArray array];
+            }else{
+                [_List2 removeAllObjects];
+            }
+            if (_List3 == nil) {
+                _List3 = [NSMutableArray array];;
+            }else{
+                [_List3 removeAllObjects];
+            }
+            [SVProgressHUD dismissWithSuccess:nil];
+            for (NSDictionary *dict in datas) {
+                NSString *type = [dict objectForKey:@"type1"];
+                if ([type isEqualToString:@"基础信息"]) {
+                    //基础信息数据源
+                    [_List1 addObject:dict];
+                }
+                else if ([type isEqualToString:@"变化信息"])
+                {
+                    //变化信息数据源
+                    [_List2 addObject:dict];
+                }else{
+                    //开发利用要素数据源
+                    [_List3 addObject:dict];
+                }
+            }
+            [self.dataTable reloadData];
+        } error:^(NSError *error) {
+        //失败
+            [SVProgressHUD dismissWithError:@"加载数据失败"];
+        }];
+    });
 }
 
 //切换界面的时候
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+      [self getWebData];
     
 }
 
@@ -103,24 +156,29 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.font = [UIFont systemFontOfSize:13];
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.textLabel.numberOfLines = 0;
     switch (indexPath.section) {
         case 0:
         {
-            cell.textLabel.text = _List1[indexPath.row];
+            NSDictionary *dict = _List1[indexPath.row];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@:数量%@条 面积%@k㎡", [dict objectForKey:@"type2"], [dict objectForKey:@"num"], [dict objectForKey:@"area"]];
             cell.imageView.image = [UIImage imageNamed:_images1[indexPath.row]];
         }
             break;
         case 1:
         {
-            cell.textLabel.text = _List2[indexPath.row];
+            NSDictionary *dict = _List2[indexPath.row];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@:数量%@条 面积%@k㎡", [dict objectForKey:@"type2"], [dict objectForKey:@"num"], [dict objectForKey:@"area"]];
             cell.imageView.image = [UIImage imageNamed:_images2[indexPath.row]];
         }
             break;
         case 2:
         {
-            cell.textLabel.text = _List3[indexPath.row];
+            NSDictionary *dict = _List3[indexPath.row];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@:数量%@条 面积%@k㎡", [dict objectForKey:@"type2"], [dict objectForKey:@"num"], [dict objectForKey:@"area"]];
             cell.imageView.image = [UIImage imageNamed:_images3[indexPath.row]];
         }
             break;
@@ -154,10 +212,6 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-//    UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30)];
-//    textLabel.backgroundColor = [UIColor lightGrayColor];
-//    textLabel.textColor = [UIColor blueColor];
-//    textLabel.font = [UIFont systemFontOfSize:15];
     CusHeadImageView *headImage = (CusHeadImageView *)[[[NSBundle mainBundle] loadNibNamed:@"cusHeaderView" owner:nil options:nil] lastObject];
     switch (section) {
         case 0:
@@ -187,12 +241,23 @@
     switch (indexPath.section) {
         case 0:
         {
+            if (indexPath.row == 0) {
+                _selectRow = @"GetRiverlist";//获取河道列表的服务
+            }
+            else if (indexPath.row == 1)
+            {
+                _selectRow = @"GetLakelist";//获取湖泊列表的服务
+            }else{
+                _selectRow = @"GetPondlist";//获取湖泊列表的服务
+            }
             //基础信息
             [self performSegueWithIdentifier:@"basicInfo" sender:nil];
         }
             break;
         case 1:
         {
+            NSDictionary *dict = _List2[indexPath.row];
+            _selectRow = [dict objectForKey:@"type2"];
             //变化信息
              [self performSegueWithIdentifier:@"changedInfo" sender:nil];
         }
@@ -211,16 +276,18 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    id theSegue = segue.destinationViewController;
     if ([segue.identifier isEqualToString:@"basicInfo"]) {
-        [theSegue setValue:@"基础信息" forKey:@"basicType"];
+        id theSegue = segue.destinationViewController;
+        [theSegue setValue:_selectRow forKey:@"basicType"];
     }
     else if ([segue.identifier isEqualToString:@"changedInfo"])
     {
-        [theSegue setValue:@"变化信息" forKey:@"changeType"];
+        id theSegue = segue.destinationViewController;
+        [theSegue setValue:_selectRow forKey:@"changeType"];
     }
     else
     {
+        id theSegue = segue.destinationViewController;
          [theSegue setValue:@"开发利用要素" forKey:@"developeType"];
     }
 }

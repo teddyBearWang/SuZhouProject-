@@ -71,7 +71,7 @@
 #pragma mark - getWebData
 - (void)getRequestJsonData:(NSString *)results
 {
-    [SVProgressHUD showWithStatus:@"加载中"];
+    [SVProgressHUD showWithStatus:nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if ([RequestHttps fetchWithType:@"GetTask" Results:results]) {
             [self updateUI];
@@ -88,7 +88,7 @@
     dispatch_sync(dispatch_get_main_queue(), ^{
         NSArray *list = [RequestHttps requrstJsonData];
         if (list.count != 0) {
-            [SVProgressHUD dismissWithSuccess:@"加载成功"];
+            [SVProgressHUD dismissWithSuccess:nil];
             _taskList = list;
             int num = [self NotPartrolTask:_taskList];
             if (num > 0) {

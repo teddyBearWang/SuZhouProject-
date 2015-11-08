@@ -16,6 +16,14 @@
 #define UserImageWidth 30
 #define UserImageHeight 30
 
+#import "MJRefresh.h"
+
+#define MJDuration  2.0
+
+#import "RequestHttps.h"
+#import "SVProgressHUD.h"
+
+
 //，屏幕宽度
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 

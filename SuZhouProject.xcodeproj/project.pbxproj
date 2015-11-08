@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F0F86891BEF2AE0008A3B2A /* DeveloperInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0F86881BEF2AE0008A3B2A /* DeveloperInfoController.m */; };
 		9F2D3B7E1BE8589A00905362 /* mineBgImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F2D3B7D1BE8589A00905362 /* mineBgImage@2x.png */; };
 		9F2D3B801BE858A000905362 /* mineBgImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F2D3B7F1BE858A000905362 /* mineBgImage@3x.png */; };
 		9F2D3B821BE85C8C00905362 /* userInfo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F2D3B811BE85C8C00905362 /* userInfo@3x.png */; };
@@ -200,6 +201,8 @@
 
 /* Begin PBXFileReference section */
 		65BED042795B2A491575352C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F0F86871BEF2AE0008A3B2A /* DeveloperInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeveloperInfoController.h; sourceTree = "<group>"; };
+		9F0F86881BEF2AE0008A3B2A /* DeveloperInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeveloperInfoController.m; sourceTree = "<group>"; };
 		9F2D3B7D1BE8589A00905362 /* mineBgImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mineBgImage@2x.png"; sourceTree = "<group>"; };
 		9F2D3B7F1BE858A000905362 /* mineBgImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mineBgImage@3x.png"; sourceTree = "<group>"; };
 		9F2D3B811BE85C8C00905362 /* userInfo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userInfo@3x.png"; sourceTree = "<group>"; };
@@ -878,6 +881,8 @@
 				9F4CF1791BE20A9E00052681 /* DeveloperChangedController.m */,
 				9F5155EF1BE742020069AAF4 /* DetailMapController.h */,
 				9F5155F01BE742020069AAF4 /* DetailMapController.m */,
+				9F0F86871BEF2AE0008A3B2A /* DeveloperInfoController.h */,
+				9F0F86881BEF2AE0008A3B2A /* DeveloperInfoController.m */,
 			);
 			name = "开发利用要素";
 			sourceTree = "<group>";
@@ -1444,6 +1449,7 @@
 				9F35561A1BC7554900798C02 /* confirmPasswordController.m in Sources */,
 				9F3304681BE30A45001EE5D4 /* BasicInfoCell.m in Sources */,
 				9FD16D211BBBBF2C0004F7FA /* TaskDetailController.m in Sources */,
+				9F0F86891BEF2AE0008A3B2A /* DeveloperInfoController.m in Sources */,
 				9F4CF17A1BE20A9E00052681 /* DeveloperChangedController.m in Sources */,
 				9F6201EE1BC90AC400B180BD /* ELCAsset.m in Sources */,
 				9F3556521BC7AB8300798C02 /* RecordCell.m in Sources */,
@@ -1583,8 +1589,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: roger ace (W6A2225E87)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: roger ace (W6A2225E87)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Dingchuan Information Technology Co., Ltd";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hangzhou Dingchuan Information Technology Co., Ltd";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/SuZhouProject/PrefixHeader.pch";
@@ -1596,7 +1602,7 @@
 					"$(PROJECT_DIR)/SuZhouProject",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cc81206d-87a4-496b-ba62-0a64a4413fcd";
+				PROVISIONING_PROFILE = "89f4f55a-d7d4-47e4-887b-061abdf921f6";
 			};
 			name = Debug;
 		};
@@ -1606,8 +1612,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: roger ace (W6A2225E87)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: roger ace (W6A2225E87)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Dingchuan Information Technology Co., Ltd";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hangzhou Dingchuan Information Technology Co., Ltd";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/SuZhouProject/PrefixHeader.pch";
@@ -1619,7 +1625,7 @@
 					"$(PROJECT_DIR)/SuZhouProject",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cc81206d-87a4-496b-ba62-0a64a4413fcd";
+				PROVISIONING_PROFILE = "89f4f55a-d7d4-47e4-887b-061abdf921f6";
 			};
 			name = Release;
 		};

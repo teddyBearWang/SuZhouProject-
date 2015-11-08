@@ -15,6 +15,7 @@
     NSArray *_list1;//数据源
     NSArray *_list2;//数据源
     NSString *_selectArea;//选择的地区
+    NSString *_selectLevel;//选择等级
     NSInteger _sectionOneCount;//section0的row数量，因为是可变的
     
 }
@@ -45,17 +46,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self getwebData];
+    
     self.filterCollectionView.delegate = self;
     self.filterCollectionView.dataSource = self;
     self.filterCollectionView.backgroundColor = BG_COLOR;
-   // self.view.backgroundColor = [UIColor yellowColor];
+    self.view.backgroundColor = [UIColor yellowColor];
     
-    _list1 = @[@"全市",@"相城区",@"吴中区",@"虎丘区",@"姑苏区",@"相城区",@"吴中区",@"虎丘区",@"太仓市"];
+   // _list1 = @[@"全市",@"相城区",@"吴中区",@"虎丘区",@"姑苏区",@"相城区",@"吴中区",@"虎丘区",@"太仓市"];
     
-    _list2 = @[@"全部",@"省级",@"市管",@"县级",@"乡镇级"];
-    
-    _selectArea = @"全部";
-    _sectionOneCount = _list1.count;
+   // _list2 = @[@"全部",@"省级",@"市管",@"县级",@"乡镇级"];
     
     //必须注册nib类
     [self.filterCollectionView registerNib:[UINib nibWithNibName:@"FilterCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"filterIdentifier"];
@@ -75,13 +76,49 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - getWebData
+
+/*
+ *获取筛选条件
+ */
+- (void)getwebData
+{
+    [SVProgressHUD show];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [RequestHttps fetchWithType:@"GetParam" Results:self.requestParameter completion:^(NSArray *datas) {
+            //成功
+            if (datas.count == 0) {
+                [SVProgressHUD dismissWithError:@"数据为空"];
+            }else{
+                [SVProgressHUD dismissWithSuccess:nil];
+                NSDictionary *dict = datas[0];
+                _list1 = [dict objectForKey:@"region"];
+                if (![self.filterType isEqualToString:@"塘坝等级"]) {
+                    //含有等级筛选条件
+                    NSArray *list = [self.requestParameter componentsSeparatedByString:@"$"];
+                    _list2 = [dict objectForKey:[list lastObject]];//数据源赋值
+
+                }
+                [self.filterCollectionView reloadData];
+                //初始化
+                _selectArea = [_list1[0] objectForKey:@"value"];
+                _selectLevel = [_list2[0] objectForKey:@"value"];
+            }
+        } error:^(NSError *error) {
+            //失败
+            [SVProgressHUD dismissWithError:@"加载失败"];
+        }];
+    });
+}
+
 #pragma mark - NSNotification
 //键盘即将出现
 - (void)keyboardWillShow:(NSNotification *)notification
 {
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.5];
-    self.view.center = CGPointMake(self.view.center.x, self.view.center.y+150);
+    self.view.center = CGPointMake(self.view.center.x, self.view.center.y+50);
     [UIView commitAnimations];
 }
 
@@ -90,7 +127,7 @@
 {
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.5];
-    self.view.center = CGPointMake(self.view.center.x, self.view.center.y-150);
+    self.view.center = CGPointMake(self.view.center.x, self.view.center.y-50);
     [UIView commitAnimations];
     
 }
@@ -99,7 +136,11 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 2;
+    if (_list2.count == 0) {
+        return 1;
+    }else{
+        return 2;
+    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -107,7 +148,7 @@
     switch (section) {
         case 0:
         {
-            return _sectionOneCount;
+            return _list1.count;
         }
             break;
         case 1:
@@ -129,7 +170,8 @@
     switch (indexPath.section) {
         case 0:
         {
-            [filterCell updateNameLabelWithText:_list1[indexPath.row]];
+            NSDictionary *dict = _list1[indexPath.row];
+            [filterCell updateNameLabelWithText:[dict objectForKey:@"value"]];
             if (indexPath.row == _oldAreaIndex) {
                 filterCell.backgroundColor = [UIColor orangeColor];
             }
@@ -137,7 +179,8 @@
             break;
         case 1:
         {
-            [filterCell updateNameLabelWithText:_list2[indexPath.row]];
+            NSDictionary *dict = _list2[indexPath.row];
+            [filterCell updateNameLabelWithText:[dict objectForKey:@"value"]];
             if (indexPath.row == _oldSelectLevelIndex) {
                 filterCell.backgroundColor = [UIColor orangeColor];
             }
@@ -159,14 +202,14 @@
         if (indexPath.section == 0) {
             //section 0
             headerView.arearLabel.text = @"行政区划";
-            headerView.selectButton.hidden = NO;
-            headerView.arrowImageView.hidden = NO;
+            headerView.selectButton.hidden = YES;
+            headerView.arrowImageView.hidden = YES;
             [headerView.selectButton setTitle:_selectArea forState:UIControlStateNormal];
             //关于展开的代码
             //[headerView.selectButton addTarget:self action:@selector(selectRivierAreaAction:) forControlEvents:UIControlEventTouchUpInside];
         }else{
             //section 1
-            headerView.arearLabel.text = @"河道等级";
+            headerView.arearLabel.text = self.filterType;
             headerView.selectButton.hidden = YES;
             headerView.arrowImageView.hidden = YES;
         }
@@ -184,12 +227,11 @@ static NSInteger _oldSelectLevelIndex;//上一次选择 等级
 static NSInteger _oldAreaIndex;//上一次选择 地区
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"点击了section %ld row %ld",indexPath.section,indexPath.row);
     switch (indexPath.section) {
         case 0:
         {
-            //区域选择
-            _selectArea = _list1[indexPath.row];
+            //选择的区域
+             _selectArea = [_list1[indexPath.row] objectForKey:@"value"];
             NSIndexPath *oldIndex = [NSIndexPath indexPathForItem:_oldAreaIndex inSection:0];
             //上一次选择的cell
             FilterCollectionCell *oldCell = (FilterCollectionCell *)[collectionView cellForItemAtIndexPath:oldIndex];
@@ -203,11 +245,12 @@ static NSInteger _oldAreaIndex;//上一次选择 地区
             _sectionOneCount = 0;
             [self.filterCollectionView reloadData];
              */
-             NSLog(@"collectionView 的内容高度：%lf",self.filterCollectionView.contentSize.height);
         }
             break;
         case 1:
         {
+            //选择的等级
+            _selectLevel = [_list2[indexPath.row] objectForKey:@"value"];
             NSIndexPath *oldIndex = [NSIndexPath indexPathForItem:_oldSelectLevelIndex inSection:1];
             //上一次选择的cell
              FilterCollectionCell *oldCell = (FilterCollectionCell *)[collectionView cellForItemAtIndexPath:oldIndex];
@@ -239,6 +282,9 @@ static NSInteger _oldAreaIndex;//上一次选择 地区
 - (IBAction)queryInfoAction:(id)sender
 {
     NSLog(@"查询数据");
+    //传递选择参数
+    [self.delegate passFilterValue:_selectArea riverLevel:_selectLevel startArea:self.firstTextField.text endArea:self.secondTextField.text name:self.riverNameTextField.text];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //点击背景取消键盘

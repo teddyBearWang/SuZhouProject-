@@ -35,6 +35,13 @@ static AFHTTPRequestOperation *_operation = nil;
     return ret;
 }
 
+/*
+ *新的网络请求服务
+ *requestType:网络请求的类型
+ *results:需要上传的参数
+ *completionBlock:成功的回调
+ *errorBlock:失败的回调
+ */
 + (void)fetchWithType:(NSString *)requesttype Results:(NSString *)results
            completion:(ComplettionBlock)completionBlock
                 error:(ErrorBlock)errorBlock
@@ -49,7 +56,7 @@ static AFHTTPRequestOperation *_operation = nil;
     _operation = [manager POST:REQUEST_URL parameters:parmater success:^(AFHTTPRequestOperation *operation, id responseObject) {
         //成功
         NSArray *data = [NSJSONSerialization JSONObjectWithData:_operation.responseData  options:NSJSONReadingMutableContainers error:nil];
-        completionBlock(data[0]);
+        completionBlock(data);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //失败
         errorBlock(error);
@@ -103,7 +110,7 @@ static AFHTTPRequestOperation *_operation = nil;
         NSLog(@"得到的数据时:%@",responseObject);
         NSLog(@"得到的数据三:%@",operation.responseString);
          NSLog(@"得到的数据时:%@",data);
-        completionBlock(data[0]);
+        completionBlock(data);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSArray *data = [NSJSONSerialization JSONObjectWithData:operation.responseData  options:NSJSONReadingMutableContainers error:nil];
         NSLog(@"得到的数据时:%@",data);

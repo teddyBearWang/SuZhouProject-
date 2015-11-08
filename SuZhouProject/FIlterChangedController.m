@@ -10,6 +10,12 @@
 #import "FilterCollectionCell.h"
 #import "ChangeReusableView.h"
 
+
+static NSString *_selectArea;//选择的地区
+static NSString *_selectRiverLevel;//水域等级
+static NSString *_selectBeforeType;//选择的变化前类型
+static NSString *_selectAfterType;//选择的变化后的类型
+static NSString *_selectResonable;//选择的是否合理
 @interface FIlterChangedController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UITextViewDelegate>
 {
     NSArray *_list1;//数据源
@@ -17,10 +23,11 @@
     NSArray *_list3;//数据源
     NSArray *_list4;//数据源
     NSArray *_list5;//数据源
-    NSString *_selectArea;//选择的地区
-    NSString *_selectBeforeType;//选择的变化前类型
-    NSString *_selectAfterType;//选择的变化后的类型
     NSInteger _sectionOneCount;//section0的row数量，因为是可变的
+    
+    NSString *_selectStartArea;//开始面积
+    NSString *_selectEndArea;//结束面积
+    NSString *_selectRiverName;//水域名称
 }
 
 //条件collectionView
@@ -50,21 +57,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
+    [self getwebData];
     self.title = self.filterType;
-    
-    _list1 = @[@"全市",@"相城区",@"吴中区",@"虎丘区",@"姑苏区",@"相城区",@"吴中区",@"虎丘区",@"太仓市"];
-    
-    _list2 = @[@"全部",@"市管河道",@"市管湖泊"];
-    
-    _list3 = @[@"河流",@"湖泊",@"池塘",@"山塘",@"河流",@"湖泊",@"池塘",@"山塘",@"河流",@"湖泊",@"池塘",@"山塘"];
-    _list4 = _list3;
-    _list5 = @[@"全部",@"合理",@"有疑议",@"维护变化"];
-    
-    _selectArea = @"全部";
-    _selectBeforeType = @"林地";
-    _selectAfterType = @"池塘";
-    _sectionOneCount = _list1.count;
+
+    _oldSelectLevelIndex = 0;//上一次选择 等级
+     _oldAreaIndex = 0;//上一次选择 地区
+    _oldBeforeTypeIndex = 0;//上一次选择 变化前类型
+    _oldAfterTypeIndex = 0;//上一次选择 变化后类型
+    _oldResonableIndex = 0;//上一次选择 是否合理
+    _selectStartArea = self.firstTextField.text;
+    _selectEndArea = self.secondTextField.text;
+    _selectRiverName = self.watersNameTextField.text;
     
     self.filterCollectionView.delegate = self;
     self.filterCollectionView.dataSource = self;
@@ -105,6 +108,46 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - getWebData
+
+/*
+ *获取筛选条件
+ */
+- (void)getwebData
+{
+    [SVProgressHUD show];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [RequestHttps fetchWithType:@"GetParam" Results:@"region$water_level$change_before$change_after$reasonable" completion:^(NSArray *datas) {
+            //成功
+            if (datas.count == 0) {
+                [SVProgressHUD dismissWithError:@"数据为空"];
+            }else{
+                [SVProgressHUD dismissWithSuccess:nil];
+                NSDictionary *dict = datas[0];
+                //数据源赋值
+                _list1 = [dict objectForKey:@"region"]; //行政区划
+                _list2 = [dict objectForKey:@"water_level"];//水域等级
+                _list3 = [dict objectForKey:@"change_before"];//变化前类型
+                _list4 = [dict objectForKey:@"change_after"];//变化后类型
+                _list5 = [dict objectForKey:@"reasonable"];
+                [self.filterCollectionView reloadData];
+                //初始化
+                _selectArea = [_list1[0] objectForKey:@"value"];
+                _selectRiverLevel = [_list2[0] objectForKey:@"value"];
+                _selectBeforeType = [_list3[0] objectForKey:@"value"];
+                _selectAfterType = [_list4[0] objectForKey:@"value"];
+                _selectResonable = [_list5[0] objectForKey:@"value"];
+                _selectStartArea = @"";
+                _selectEndArea = @"";
+                _selectRiverName = @"";
+            }
+        } error:^(NSError *error) {
+            //失败
+            [SVProgressHUD dismissWithError:@"加载失败"];
+        }];
+    });
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -158,7 +201,7 @@
         case 0:
         {
             //行政区划
-            [filterCell updateNameLabelWithText:_list1[indexPath.row]];
+            [filterCell updateNameLabelWithText:[_list1[indexPath.row] objectForKey:@"value"]];
             if (indexPath.row == _oldAreaIndex) {
                 filterCell.backgroundColor = [UIColor orangeColor];
             }
@@ -167,16 +210,16 @@
         case 1:
         {
             //水域等级
-            [filterCell updateNameLabelWithText:_list2[indexPath.row]];
+            [filterCell updateNameLabelWithText:[_list2[indexPath.row] objectForKey:@"value"]];
             if (indexPath.row == _oldSelectLevelIndex) {
                 filterCell.backgroundColor = [UIColor orangeColor];
             }
         }
-            
+            break;
         case 2:
         {
             //变化前类型
-            [filterCell updateNameLabelWithText:_list3[indexPath.row]];
+            [filterCell updateNameLabelWithText:[_list3[indexPath.row] objectForKey:@"value"]];
             if (indexPath.row == _oldBeforeTypeIndex) {
                 filterCell.backgroundColor = [UIColor orangeColor];
             }
@@ -185,7 +228,7 @@
         case 3:
         {
             //变化后类型
-            [filterCell updateNameLabelWithText:_list4[indexPath.row]];
+            [filterCell updateNameLabelWithText:[_list4[indexPath.row] objectForKey:@"value"]];
             if (indexPath.row == _oldAfterTypeIndex) {
                 filterCell.backgroundColor = [UIColor orangeColor];
             }
@@ -194,7 +237,7 @@
         case 4:
         {
             //是否合理
-            [filterCell updateNameLabelWithText:_list5[indexPath.row]];
+            [filterCell updateNameLabelWithText:[_list5[indexPath.row] objectForKey:@"value"]];
             if (indexPath.row == _oldResonableIndex) {
                 filterCell.backgroundColor = [UIColor orangeColor];
             }
@@ -213,11 +256,12 @@
     //表示headerVIew
     if (kind == UICollectionElementKindSectionHeader) {
         ChangeReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ChangeReusableView" forIndexPath:indexPath];
+        headerView.backgroundColor = BG_COLOR;
         switch (indexPath.section) {
             case 0:
             {
                 headerView.TypeLabel.text = @"行政区划";
-                headerView.valueButton.hidden = NO;
+                headerView.valueButton.hidden = YES;
                 [headerView.valueButton setTitle:_selectArea forState:UIControlStateNormal];
             }
                 break;
@@ -231,14 +275,14 @@
             case 2:
             {
                 headerView.TypeLabel.text = @"变化前类型";
-                headerView.valueButton.hidden = NO;
+                headerView.valueButton.hidden = YES;
                 [headerView.valueButton setTitle:_selectBeforeType forState:UIControlStateNormal];
             }
                 break;
             case 3:
             {
                 headerView.TypeLabel.text = @"变化后类型";
-                headerView.valueButton.hidden = NO;
+                headerView.valueButton.hidden = YES;
                 [headerView.valueButton setTitle:_selectBeforeType forState:UIControlStateNormal];
             }
                 break;
@@ -268,12 +312,11 @@ static NSInteger _oldAfterTypeIndex;//上一次选择 变化后类型
 static NSInteger _oldResonableIndex;//上一次选择 是否合理
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"点击了section %ld row %ld",indexPath.section,indexPath.row);
     switch (indexPath.section) {
         case 0:
         {
             //区域选择
-            _selectArea = _list1[indexPath.row];
+            _selectArea = [_list1[indexPath.row] objectForKey:@"value"];
             NSIndexPath *oldIndex = [NSIndexPath indexPathForItem:_oldAreaIndex inSection:0];
             //上一次选择的cell
             FilterCollectionCell *oldCell = (FilterCollectionCell *)[collectionView cellForItemAtIndexPath:oldIndex];
@@ -291,6 +334,7 @@ static NSInteger _oldResonableIndex;//上一次选择 是否合理
             break;
         case 1:
         {
+            _selectRiverLevel = [_list2[indexPath.row] objectForKey:@"value"];
             //水域等级
             NSIndexPath *oldIndex = [NSIndexPath indexPathForItem:_oldSelectLevelIndex inSection:1];
             //上一次选择的cell
@@ -305,6 +349,7 @@ static NSInteger _oldResonableIndex;//上一次选择 是否合理
             break;
         case 2:
         {
+            _selectBeforeType = [_list3[indexPath.row] objectForKey:@"value"];
             //变化前类型
             NSIndexPath *oldIndex = [NSIndexPath indexPathForItem:_oldBeforeTypeIndex inSection:2];
             //上一次选择的cell
@@ -319,6 +364,7 @@ static NSInteger _oldResonableIndex;//上一次选择 是否合理
             break;
         case 3:
         {
+            _selectAfterType = [_list4[indexPath.row] objectForKey:@"value"];
             //变化后类型
             NSIndexPath *oldIndex = [NSIndexPath indexPathForItem:_oldAfterTypeIndex inSection:3];
             //上一次选择的cell
@@ -333,6 +379,7 @@ static NSInteger _oldResonableIndex;//上一次选择 是否合理
             break;
         case 4:
         {
+            _selectResonable = [_list5[indexPath.row] objectForKey:@"value"];
             //是否合理
             NSIndexPath *oldIndex = [NSIndexPath indexPathForItem:_oldResonableIndex inSection:4];
             //上一次选择的cell
@@ -364,7 +411,8 @@ static NSInteger _oldResonableIndex;//上一次选择 是否合理
 //查询
 - (IBAction)queryInfoAction:(id)sender
 {
-    NSLog(@"查询数据");
+    [self.delegate changePassFilterValue:_selectArea riverLevel:_selectRiverLevel beforeType:_selectBeforeType afterType:_selectAfterType isResonable:_selectResonable startArea:_selectStartArea endArea:_selectEndArea name:_selectRiverName];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //点击背景取消键盘

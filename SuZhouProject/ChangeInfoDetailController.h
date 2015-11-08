@@ -11,5 +11,6 @@
 @interface ChangeInfoDetailController : RootViewController
 
 @property (nonatomic, strong) NSString *typeInfo;//信息类型，表示变化信息还是开发利用要素信息
+@property (nonatomic, strong) NSString *smid;//id
 
 @end

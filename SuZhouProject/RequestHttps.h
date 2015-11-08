@@ -10,7 +10,7 @@
 #import <AFNetworking.h>
 
 //定义一个返回block
-typedef void (^ComplettionBlock)(NSDictionary *dict);
+typedef void (^ComplettionBlock)(NSArray *datas);
 typedef void (^ErrorBlock)(NSError *error);
 @interface RequestHttps : NSObject
 
