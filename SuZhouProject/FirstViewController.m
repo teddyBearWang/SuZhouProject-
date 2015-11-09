@@ -13,6 +13,8 @@
 @interface FirstViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray *_infoDataList; //数据源
+    
+    NSDictionary *_selectDict;//选择的dict
 }
 @property (weak, nonatomic) IBOutlet UITableView *messageTable;
 
@@ -24,12 +26,53 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"消息";
-    _infoDataList = [NSMutableArray arrayWithObjects:@"这是一个新的巡查内容，请你按时去完成巡查并登记上报",@"这是一个新的巡查内容，请你按时去完成巡查并登记上报",@"这是一个新的巡查内容，请你按时去完成巡查并登记上报",@"这是一个新的巡查内容，请你按时去完成巡查并登记上报", nil];
+//    _infoDataList = [NSMutableArray arrayWithObjects:@"这是一个新的巡查内容，请你按时去完成巡查并登记上报",@"这是一个新的巡查内容，请你按时去完成巡查并登记上报",@"这是一个新的巡查内容，请你按时去完成巡查并登记上报",@"这是一个新的巡查内容，请你按时去完成巡查并登记上报", nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getWebData];
+}
+
+#pragma mark - HTTP
+//获取网络数据
+- (void)getWebData
+{
+    
+    NSUserDefaults *users = [NSUserDefaults standardUserDefaults];
+    NSDictionary *userDict = [users objectForKey:@"UserInfo"];
+    [SVProgressHUD showWithStatus:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [RequestHttps fetchWithType:@"GetMessageList" Results:[userDict objectForKey:@"loginid"] completion:^(NSArray *datas) {
+            //成功
+            if (datas.count == 0) {
+                [SVProgressHUD dismissWithError:@"数据为空"];
+                return;
+            }
+            [SVProgressHUD dismissWithSuccess:nil];
+            if (_infoDataList == nil) {
+                _infoDataList = [NSMutableArray array];
+            }
+            else if (_infoDataList.count != 0)
+            {
+                [_infoDataList removeAllObjects];
+            }
+            for (NSDictionary *dict in datas) {
+                [_infoDataList addObject:dict];
+            }
+     
+            [self.messageTable reloadData];
+        } error:^(NSError *error) {
+            //失败
+            [SVProgressHUD dismissWithError:@"加载数据失败"];
+        }];
+    });
 }
 
 #pragma amark - UITableViewDataSource
@@ -42,7 +85,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MessageCell *InfoCell = (MessageCell *)[[[NSBundle mainBundle] loadNibNamed:@"MessageCell" owner:nil options:nil] lastObject];
-    [InfoCell updateCellUI:nil];
+    NSDictionary *dict = _infoDataList[indexPath.row];
+    [InfoCell updateCellUI:dict];
     InfoCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return InfoCell;
 }
@@ -65,6 +109,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    _selectDict = _infoDataList[indexPath.row];
     [self performSegueWithIdentifier:@"messageDetail" sender:nil];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -87,9 +132,6 @@
         [self.messageTable deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
     }
-//    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-//    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -30,7 +30,15 @@
     self.userImageView.layer.borderWidth = 2.0;
     self.userImageView.layer.cornerRadius = 30;
     self.userImageView.clipsToBounds = YES;
-    
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSUserDefaults *users = [NSUserDefaults standardUserDefaults];
+    NSDictionary *uerDict = [users objectForKey:@"UserInfo"];
+    self.userNameLabel.text = [uerDict objectForKey:@"username"];
 }
 
 - (void)didReceiveMemoryWarning {

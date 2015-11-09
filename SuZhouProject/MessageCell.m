@@ -18,6 +18,6 @@
 {
     self.contentLabel.numberOfLines = 0;
     self.contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    self.contentLabel.text = @"这是一个新的巡查内容，请你按时去完成巡查并登记上上报";
+    self.contentLabel.text = [dict objectForKey:@"message_content"];
 }
 @end

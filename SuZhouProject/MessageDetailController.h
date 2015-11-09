@@ -10,6 +10,6 @@
 
 @interface MessageDetailController : RootViewController
 
-@property (nonatomic, strong) NSString *passParameter;//传递参数
+@property (nonatomic, strong) NSDictionary *passParameter;//传递参数
 
 @end

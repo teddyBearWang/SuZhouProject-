@@ -75,6 +75,10 @@
             }
             NSDictionary *dict = datas[0];
             if ([[dict objectForKey:@"success"] isEqualToString:@"True"]) {
+                if ([[self.passDict objectForKey:@"type_e"] isEqualToString:@"username"]) {
+                    //表示修改名字成功之后，将存在本地的信息也一起修改掉
+                    [userDict setValue:@"self.valueField.text" forKey:@"username"];
+                }
                 [SVProgressHUD dismissWithSuccess:nil];
                 [self.navigationController popViewControllerAnimated:YES];
             }else{
