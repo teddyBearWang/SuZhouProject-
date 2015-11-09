@@ -10,8 +10,7 @@
 
 @interface EditInfoController : RootViewController
 
-@property (nonatomic, strong) NSString *passKey;//keyLabelName
+@property (nonatomic, strong) NSDictionary *passDict;//keyLabelName
 
-@property (nonatomic, strong) NSString *passvalue;//valueFieldName
 
 @end

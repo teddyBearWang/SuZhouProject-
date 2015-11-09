@@ -117,7 +117,47 @@
 //确定
 - (IBAction)confirmPassAction:(id)sender
 {
+    UITextField *first = (UITextField *)[self.view viewWithTag:101];
+    UITextField *second = (UITextField *)[self.view viewWithTag:102];
+    if (first.text.length == 0 || second.text.length == 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"密码不能为空" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    
+    if ([first.text isEqualToString:second.text]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"两次密码不一致" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }else{
+        //加载
+        [self changePSW:first.text];
+    }
+}
 
+//获取网络数据
+- (void)changePSW:(NSString *)psw
+{
+    
+    NSUserDefaults *users = [NSUserDefaults standardUserDefaults];
+    NSDictionary *userDict = [users objectForKey:@"UserInfo"];
+    [SVProgressHUD showWithStatus:nil];
+    NSString *result = [NSString stringWithFormat:@"%@$%@",[userDict objectForKey:@"loginid"],psw];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [RequestHttps fetchWithType:@"ChangePsw" Results:result completion:^(NSArray *datas) {
+            //成功
+            if (datas.count == 0) {
+                [SVProgressHUD dismissWithError:@"修改密码失败"];
+                return;
+            }
+            [SVProgressHUD dismissWithSuccess:nil];
+            //返回主界面
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+        } error:^(NSError *error) {
+            //失败
+            [SVProgressHUD dismissWithError:@"修改密码失败"];
+        }];
+    });
 }
 
 //点击背景取消键盘

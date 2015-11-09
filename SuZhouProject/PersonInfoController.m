@@ -12,9 +12,10 @@
 @interface PersonInfoController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSArray *_infoList;//数据源
+    NSArray *_questionList;//数据源问题验证
+    NSDictionary *_sourceDictionary;//源数据
     
-    NSString *_selectKeyName;//传递到下一个界面的keyName
-    NSString *_selectValueName;//传递到下一个界面的valueName
+    NSDictionary *_passDictionary;//传递到下一个界面的dict
 }
 
 //个人信息
@@ -27,7 +28,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _infoList = @[@"所在部门",@"职务",@"手机",@"座机",@"地址"];
+    //_infoList = @[@"所在部门",@"职务",@"手机",@"座机",@"地址"];
+    
+    [self getWebData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +54,33 @@
     }
 }
 
+//获取网络数据
+- (void)getWebData
+{
+    
+    NSUserDefaults *users = [NSUserDefaults standardUserDefaults];
+    NSDictionary *userDict = [users objectForKey:@"UserInfo"];
+    [SVProgressHUD showWithStatus:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [RequestHttps fetchWithType:@"GetUserInfo" Results:[userDict objectForKey:@"loginid"] completion:^(NSArray *datas) {
+            //成功
+            if (datas.count == 0) {
+                [SVProgressHUD dismissWithError:@"数据为空"];
+                return;
+            }
+            [SVProgressHUD dismissWithSuccess:nil];
+            _sourceDictionary = datas[0];
+            _infoList = (NSArray *)[_sourceDictionary objectForKey:@"detailInfo"];
+            _questionList = (NSArray *)[_sourceDictionary objectForKey:@"security"];
+            [self.infoTableView reloadData];
+        } error:^(NSError *error) {
+            //失败
+            [SVProgressHUD dismissWithError:@"加载数据失败"];
+        }];
+    });
+}
+
+
 #pragma amark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -73,7 +103,7 @@
             break;
         case 2:
         {
-            return 2;
+            return _questionList.count;
         }
             break;
         default:
@@ -91,23 +121,23 @@
     switch (indexPath.section) {
         case 0:
         {
-            cell.postionLabel.text = @"真实姓名";
-            cell.valueLabel.text = @"郭建国";
+            NSArray *NameInfo = (NSArray *)[_sourceDictionary objectForKey:@"infoName"];
+            cell.postionLabel.text = [NameInfo[0] objectForKey:@"type_c"];
+            cell.valueLabel.text = [NameInfo[0] objectForKey:@"value"];
         }
             break;
         case 1:
         {
-            cell.postionLabel.text = _infoList[indexPath.row];
+            NSDictionary *dict = _infoList[indexPath.row];
+            cell.postionLabel.text = [dict objectForKey:@"type_c"];
+            cell.valueLabel.text = [dict objectForKey:@"value"];
         }
             break;
         case 2:
         {
-            cell.valueLabel.hidden = YES;
-            if (indexPath.row == 0) {
-               cell.postionLabel.text = @"安全问题";
-            }else{
-                cell.postionLabel.text = @"问题答案";
-            }
+            NSDictionary *dict = _questionList[indexPath.row];
+            cell.postionLabel.text = [dict objectForKey:@"type_c"];
+             cell.valueLabel.text = [dict objectForKey:@"value"];
         }
             break;
         default:
@@ -152,24 +182,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        //编辑信息
-        _selectKeyName = @"真实姓名";
-        _selectValueName = @"郭建国";
+        NSArray *NameInfo = (NSArray *)[_sourceDictionary objectForKey:@"infoName"];
+        _passDictionary = NameInfo[0];
     }
     else if (indexPath.section == 1)
     {
-        _selectKeyName = _infoList[indexPath.row];
-        _selectValueName = @"苏州市河道管理局";
+        _passDictionary = _infoList[indexPath.row];
     }
     else if (indexPath.section == 2)
     {
-        if (indexPath.row == 0) {
-            _selectKeyName = @"安全问题";
-            _selectValueName = @"";
-        }else{
-            _selectKeyName = @"问题答案";
-            _selectValueName = @"";
-        }
+        _passDictionary = _questionList[indexPath.row];
     }
     [self performSegueWithIdentifier:@"editInfo" sender:nil];
 
@@ -180,8 +202,7 @@
 {
     if ([segue.identifier isEqualToString:@"editInfo"]) {
         id theSegue = segue.destinationViewController;
-        [theSegue setValue:_selectKeyName forKey:@"passKey"];
-        [theSegue setValue:_selectValueName forKey:@"passvalue"];
+        [theSegue setValue:_passDictionary forKey:@"passDict"];
     }
 }
 @end

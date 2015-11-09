@@ -104,7 +104,7 @@
     if ([self.resuqestType isEqualToString:@"GetRiverInfo"]) {
         //河道
         basicHeader.riverLevelLabel.text = [NSString stringWithFormat:@"河流等级: %@",[_dict objectForKey:@"river_level"]];
-        basicHeader.firstLabel.text = [NSString stringWithFormat:@"长度: %@ k㎡",[_dict objectForKey:@"length"]];
+        basicHeader.firstLabel.text = [NSString stringWithFormat:@"长度: %@ ㎡",[_dict objectForKey:@"length"]];
          basicHeader.secondLabel.text = [NSString stringWithFormat:@"面积: %@ km",[_dict objectForKey:@"area"]];
     }
     else if ([self.resuqestType isEqualToString:@"GetLakeInfo"])
@@ -112,7 +112,7 @@
         //湖泊
         basicHeader.riverLevelLabel.text = [NSString stringWithFormat:@"河流等级: %@",[_dict objectForKey:@"lake_level"]];
         basicHeader.firstImageView.image = [UIImage imageNamed:@"area"];
-        basicHeader.firstLabel.text = [NSString stringWithFormat:@"面积: %@ k㎡",[_dict objectForKey:@"area"]];
+        basicHeader.firstLabel.text = [NSString stringWithFormat:@"面积: %@ ㎡",[_dict objectForKey:@"area"]];
         basicHeader.secondLabel.hidden = YES;
         basicHeader.secondImageView.hidden = YES;
     }
@@ -121,7 +121,7 @@
         //湖泊
         basicHeader.riverLevelLabel.hidden = YES;
         basicHeader.firstImageView.image = [UIImage imageNamed:@"area"];
-        basicHeader.firstLabel.text = [NSString stringWithFormat:@"面积: %@ k㎡",[_dict objectForKey:@"area"]];
+        basicHeader.firstLabel.text = [NSString stringWithFormat:@"面积: %@ ㎡",[_dict objectForKey:@"area"]];
         basicHeader.secondLabel.hidden = YES;
         basicHeader.secondImageView.hidden = YES;
     }

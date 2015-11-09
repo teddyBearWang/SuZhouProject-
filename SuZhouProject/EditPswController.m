@@ -63,5 +63,37 @@
         [alert show];
         return;
     }
+    
+    [self updatePSWAction];
+}
+
+//修改密码
+- (void)updatePSWAction
+{
+    NSUserDefaults *users = [NSUserDefaults standardUserDefaults];
+    NSDictionary *userDict = [users objectForKey:@"UserInfo"];
+    [SVProgressHUD showWithStatus:nil];
+    NSString *results = [NSString stringWithFormat:@"%@$%@$%@",[userDict objectForKey:@"loginid"],self.oldPswField.text,self.aNewPswField.text];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [RequestHttps fetchWithType:@"UpdatePsw" Results:results completion:^(NSArray *datas) {
+            //成功
+            if (datas.count == 0) {
+                [SVProgressHUD dismissWithError:@"修改密码失败"];
+                return;
+            }
+            NSDictionary *dict = datas[0];
+            if ([[dict objectForKey:@"success"] isEqualToString:@"True"]) {
+                [SVProgressHUD dismissWithSuccess:nil];
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                [SVProgressHUD dismissWithError:@"修改密码失败"];
+            }
+            
+        } error:^(NSError *error) {
+            //失败
+            [SVProgressHUD dismissWithError:@"修改密码失败"];
+        }];
+    });
+
 }
 @end

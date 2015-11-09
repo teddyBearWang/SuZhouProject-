@@ -566,7 +566,6 @@
                                             </state>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <connections>
                                         <outlet property="TypeLabel" destination="Wuz-NH-ZjO" id="kCn-WW-aXv"/>
                                         <outlet property="valueButton" destination="TCN-W2-xaS" id="QKn-N0-tk3"/>

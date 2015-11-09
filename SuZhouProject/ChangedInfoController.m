@@ -181,7 +181,7 @@
     NSDictionary *dict = _infoDataList[indexPath.row];
     InfoCell.nameLabel.text = [dict objectForKey:@"name"];
     InfoCell.lengthImage.image = [UIImage imageNamed:@"length"];
-    InfoCell.lengthLabel.text = [NSString stringWithFormat:@"%@ k㎡",[dict objectForKey:@"area"]];
+    InfoCell.lengthLabel.text = [NSString stringWithFormat:@"%@ ㎡",[dict objectForKey:@"area"]];
     InfoCell.areaImage.image = [UIImage imageNamed:@"change"];
     InfoCell.areaLabel.text = [NSString stringWithFormat:@"%@ -> %@",[dict objectForKey:@"before"],[dict objectForKey:@"after"]];
     return InfoCell;

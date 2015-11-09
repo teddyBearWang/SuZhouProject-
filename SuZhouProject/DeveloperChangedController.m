@@ -167,7 +167,7 @@
     InfoCell.lengthImage.image = [UIImage imageNamed:@"area"];
     // @"面积:2345 k㎡";
 
-    InfoCell.lengthLabel.text = [NSString stringWithFormat:@"%@ k㎡",[dict objectForKey:@"area"]];
+    InfoCell.lengthLabel.text = [NSString stringWithFormat:@"%@ ㎡",[dict objectForKey:@"area"]];
     InfoCell.areaImage.image = [UIImage imageNamed:@"change"];
     InfoCell.areaLabel.text = [dict objectForKey:@"water"];
     return InfoCell;

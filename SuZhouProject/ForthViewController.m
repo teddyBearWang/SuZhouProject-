@@ -57,7 +57,8 @@
 #pragma amark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-     return 3;
+     //return 3;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -80,13 +81,13 @@
             cell.imageView.image = [UIImage imageNamed:@"passChange"];
         }
             break;
-        case 2:
-        {
-            //密码修改
-            cell.textLabel.text = @"任务委托";
-            cell.imageView.image = [UIImage imageNamed:@"delegateImage"];
-        }
-            break;
+//        case 2:
+//        {
+//            //任务委托
+//            cell.textLabel.text = @"任务委托";
+//            cell.imageView.image = [UIImage imageNamed:@"delegateImage"];
+//        }
+//            break;
         default:
             break;
     }
@@ -124,12 +125,12 @@
             [self performSegueWithIdentifier:@"eidtPassword" sender:nil];
         }
             break;
-        case 2:
-        {
-            //任务委托
-            [self performSegueWithIdentifier:@"delegateTask" sender:nil];
-        }
-            break;
+//        case 2:
+//        {
+//            //任务委托
+//            [self performSegueWithIdentifier:@"delegateTask" sender:nil];
+//        }
+//            break;
         default:
             break;
     }

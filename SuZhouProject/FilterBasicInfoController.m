@@ -52,7 +52,7 @@
     self.filterCollectionView.delegate = self;
     self.filterCollectionView.dataSource = self;
     self.filterCollectionView.backgroundColor = BG_COLOR;
-    self.view.backgroundColor = [UIColor yellowColor];
+    //self.view.backgroundColor = [UIColor yellowColor];
     
    // _list1 = @[@"全市",@"相城区",@"吴中区",@"虎丘区",@"姑苏区",@"相城区",@"吴中区",@"虎丘区",@"太仓市"];
     

@@ -84,10 +84,10 @@
                 _list1 = [_dict objectForKey:@"info"];
                 _list2 = [_dict objectForKey:@"approvalInfo"];
                 
-                self.beforeDateLabel.text = [_dict objectForKey:@"beforeDate"];
+                self.beforeDateLabel.text = [NSString stringWithFormat:@"%@年",[_dict objectForKey:@"beforeDate"]];
                 self.beforeTypeLabel.text = [NSString stringWithFormat:@"变化前: %@",[_dict objectForKey:@"beforeType"]];
                 
-                self.afterDateLabel.text = [_dict objectForKey:@"afterDate"];
+                self.afterDateLabel.text = [NSString stringWithFormat:@"%@年",[_dict objectForKey:@"afterDate"]];
                 self.afterTypeLabel.text = [NSString stringWithFormat:@"变化后: %@",[_dict objectForKey:@"afterType"]];
                 [self.infoTableVIew reloadData];
             }
@@ -159,7 +159,7 @@
         ChangeDetaiHeader *header = (ChangeDetaiHeader *)[[[NSBundle mainBundle] loadNibNamed:@"ChangeDetailHeaderView" owner:nil options:nil] lastObject];
         header.positionLabel.text = [_dict objectForKey:@"position"];
         header.typeImageView.image = [UIImage imageNamed:@"area"];
-        header.changeDetaiLabel.text = [NSString stringWithFormat:@"变化面积: %@",[_dict objectForKey:@"changeArea"]];
+        header.changeDetaiLabel.text = [NSString stringWithFormat:@"变化面积: %@ ㎡",[_dict objectForKey:@"changeArea"]];
         
         return header;
     }else{

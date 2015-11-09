@@ -71,6 +71,7 @@ static NSString *_selectResonable;//选择的是否合理
     
     self.filterCollectionView.delegate = self;
     self.filterCollectionView.dataSource = self;
+    self.filterCollectionView.backgroundColor = BG_COLOR;
     //必须注册nib类
     [self.filterCollectionView registerNib:[UINib nibWithNibName:@"FilterCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"filterIdentifier"];
     
@@ -195,7 +196,6 @@ static NSString *_selectResonable;//选择的是否合理
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     FilterCollectionCell *filterCell = (FilterCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"filterIdentifier" forIndexPath:indexPath];
-//    FilterCollectionCell *filterCell = (FilterCollectionCell *)[[[NSBundle mainBundle] loadNibNamed:@"FilterCell" owner:nil options:nil] lastObject];
     filterCell.backgroundColor = BG_COLOR;
     switch (indexPath.section) {
         case 0:

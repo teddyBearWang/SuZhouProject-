@@ -52,11 +52,8 @@
     self.dataTable.delegate  = self;
     self.dataTable.dataSource = self;
     
-    //_List1 = @[@"河道: 数量100条 面积100k㎡",@"湖泊: 数量100个 面积100k㎡",@"塘坝: 数量100个 面积100k㎡"];
     _images1 = @[@"rivier",@"lakes",@"batang"];
-   // _List2 = @[@"水域增加: 变化点20处 面积100㎡",@"水域减少: 变化点20处 面积100㎡",@"跨河建筑工程: 变化点20处 面积100㎡",@"开发利用变化: 变化点20处 面积100㎡"];
     _images2 = @[@"add",@"decrease",@"kuahe",@"developer"];
-   // _List3 = @[@"水域增加: 变化点20处 面积100㎡"];
     _images3 = @[@"developer"];
 }
 
@@ -164,21 +161,21 @@
         case 0:
         {
             NSDictionary *dict = _List1[indexPath.row];
-            cell.textLabel.text = [NSString stringWithFormat:@"%@:数量%@条 面积%@k㎡", [dict objectForKey:@"type2"], [dict objectForKey:@"num"], [dict objectForKey:@"area"]];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@:数量%@条 面积%@㎡", [dict objectForKey:@"type2"], [dict objectForKey:@"num"], [dict objectForKey:@"area"]];
             cell.imageView.image = [UIImage imageNamed:_images1[indexPath.row]];
         }
             break;
         case 1:
         {
             NSDictionary *dict = _List2[indexPath.row];
-            cell.textLabel.text = [NSString stringWithFormat:@"%@:数量%@条 面积%@k㎡", [dict objectForKey:@"type2"], [dict objectForKey:@"num"], [dict objectForKey:@"area"]];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@:数量%@条 面积%@㎡", [dict objectForKey:@"type2"], [dict objectForKey:@"num"], [dict objectForKey:@"area"]];
             cell.imageView.image = [UIImage imageNamed:_images2[indexPath.row]];
         }
             break;
         case 2:
         {
             NSDictionary *dict = _List3[indexPath.row];
-            cell.textLabel.text = [NSString stringWithFormat:@"%@:数量%@条 面积%@k㎡", [dict objectForKey:@"type2"], [dict objectForKey:@"num"], [dict objectForKey:@"area"]];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@:数量%@条 面积%@㎡", [dict objectForKey:@"type2"], [dict objectForKey:@"num"], [dict objectForKey:@"area"]];
             cell.imageView.image = [UIImage imageNamed:_images3[indexPath.row]];
         }
             break;
@@ -248,7 +245,7 @@
             {
                 _selectRow = @"GetLakelist";//获取湖泊列表的服务
             }else{
-                _selectRow = @"GetPondlist";//获取湖泊列表的服务
+                _selectRow = @"GetPondlist";//获取塘坝列表的服务
             }
             //基础信息
             [self performSegueWithIdentifier:@"basicInfo" sender:nil];

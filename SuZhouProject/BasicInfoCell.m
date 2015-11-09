@@ -31,7 +31,7 @@
     if (self._isPond) {
         //塘坝
         self.nameLabel.text = [dict objectForKey:@"name"];
-        self.lengthLabel.text = [NSString stringWithFormat:@"面积:%@ k㎡",[dict objectForKey:@"area"]];
+        self.lengthLabel.text = [NSString stringWithFormat:@"面积:%@ ㎡",[dict objectForKey:@"area"]];
         //塘坝没有长度，所以将长度隐藏s
         self.areaLabel.hidden = YES;
         self.areaImage.hidden = YES;
@@ -39,7 +39,7 @@
         //水库、河道
         self.nameLabel.text = [dict objectForKey:@"name"];
         self.lengthLabel.text = [NSString stringWithFormat:@"长度:%@ km",[dict objectForKey:@"length"]];
-        self.areaLabel.text = [NSString stringWithFormat:@"面积:%@ k㎡",[dict objectForKey:@"area"]];
+        self.areaLabel.text = [NSString stringWithFormat:@"面积:%@ ㎡",[dict objectForKey:@"area"]];
     }
 }
 
