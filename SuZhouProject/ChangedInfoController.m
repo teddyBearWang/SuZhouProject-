@@ -183,6 +183,8 @@
     InfoCell.lengthImage.image = [UIImage imageNamed:@"length"];
     InfoCell.lengthLabel.text = [NSString stringWithFormat:@"%@ ㎡",[dict objectForKey:@"area"]];
     InfoCell.areaImage.image = [UIImage imageNamed:@"change"];
+    InfoCell.areaLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    InfoCell.areaLabel.numberOfLines = 0;
     InfoCell.areaLabel.text = [NSString stringWithFormat:@"%@ -> %@",[dict objectForKey:@"before"],[dict objectForKey:@"after"]];
     return InfoCell;
 }

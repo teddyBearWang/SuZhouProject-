@@ -107,7 +107,7 @@
 //地图定位
 - (void)mapLocationAction:(id)sender
 {
-    [self performSegueWithIdentifier:@"detailMap" sender:nil];
+    [self performSegueWithIdentifier:@"changeDetailMap" sender:nil];
 }
 
 #pragma mark - UITableVIewDataSource
@@ -174,6 +174,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"changeDetailMap"]) {
+        id theSegue = segue.destinationViewController;
+        [theSegue setValue:_dict forKey:@"PassParamter"];
+    }
 }
 
 @end

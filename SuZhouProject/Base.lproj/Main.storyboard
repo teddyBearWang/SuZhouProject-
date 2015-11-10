@@ -227,7 +227,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VCF-bn-QFs">
                                 <rect key="frame" x="0.0" y="64" width="160" height="190"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AYr-jC-boU">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="before.png" translatesAutoresizingMaskIntoConstraints="NO" id="AYr-jC-boU">
                                         <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="160" id="RoT-tO-KKG"/>
@@ -270,7 +270,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mre-TU-pkI">
                                 <rect key="frame" x="160" y="64" width="160" height="190"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sLd-7P-1HZ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="after.png" translatesAutoresizingMaskIntoConstraints="NO" id="sLd-7P-1HZ">
                                         <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="160" id="pSB-yD-A71"/>
@@ -341,7 +341,7 @@
                         <outlet property="beforeImageView" destination="AYr-jC-boU" id="GFN-Cj-QXK"/>
                         <outlet property="beforeTypeLabel" destination="j9R-ku-5xA" id="cMi-6F-qKv"/>
                         <outlet property="infoTableVIew" destination="o0i-ud-k1X" id="M7K-LT-q0i"/>
-                        <segue destination="pI1-uA-iOh" kind="push" identifier="detailMap" id="5Xk-rh-wB2"/>
+                        <segue destination="pI1-uA-iOh" kind="push" identifier="changeDetailMap" id="5Xk-rh-wB2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wq9-u2-Vj7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -384,7 +384,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAq-Pj-TQk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-610" y="1765"/>
+            <point key="canvasLocation" x="-610" y="1773"/>
         </scene>
         <!--地图显示-->
         <scene sceneID="ENi-Ss-Eut">
@@ -403,7 +403,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vNW-Hk-R2E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-167" y="1075"/>
+            <point key="canvasLocation" x="105" y="733"/>
         </scene>
         <!--开发利用要素-->
         <scene sceneID="x5w-4C-V1G">
@@ -670,15 +670,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HGb-rU-uqF">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="qER-W4-wrv"/>
-                                </constraints>
-                            </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8kG-EV-Vfn">
-                                <rect key="frame" x="0.0" y="200" width="320" height="368"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="8kG-EV-Vfn">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="GOw-gW-jys" id="sqt-FT-SRY"/>
                                     <outlet property="delegate" destination="GOw-gW-jys" id="tMO-6W-JSm"/>
@@ -687,19 +681,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="HGb-rU-uqF" firstAttribute="leading" secondItem="wIv-zS-7nM" secondAttribute="leadingMargin" constant="-16" id="3KF-a9-mQD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8kG-EV-Vfn" secondAttribute="trailing" constant="-16" id="ZFb-jN-Oyz"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="HGb-rU-uqF" secondAttribute="trailing" constant="-16" id="Zmo-Pb-MU9"/>
                             <constraint firstItem="8kG-EV-Vfn" firstAttribute="leading" secondItem="wIv-zS-7nM" secondAttribute="leadingMargin" constant="-16" id="f36-Xw-tDw"/>
-                            <constraint firstItem="HGb-rU-uqF" firstAttribute="top" secondItem="TIy-rH-DOn" secondAttribute="bottom" constant="-64" id="n3H-13-EJH"/>
-                            <constraint firstItem="8kG-EV-Vfn" firstAttribute="top" secondItem="HGb-rU-uqF" secondAttribute="bottom" id="u18-QW-R6W"/>
+                            <constraint firstItem="8kG-EV-Vfn" firstAttribute="top" secondItem="TIy-rH-DOn" secondAttribute="bottom" id="lK2-dO-MAW"/>
                             <constraint firstItem="C5K-b9-Wte" firstAttribute="top" secondItem="8kG-EV-Vfn" secondAttribute="bottom" id="xWL-xC-8rw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="盘门内城河" id="YQL-Sw-9xE"/>
                     <connections>
                         <outlet property="detailTable" destination="8kG-EV-Vfn" id="nzl-W9-0Xo"/>
-                        <outlet property="headerImage" destination="HGb-rU-uqF" id="kvC-OE-28p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gyd-LF-ncf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1875,6 +1865,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="after.png" width="160" height="160"/>
+        <image name="before.png" width="160" height="160"/>
         <image name="bg_image.png" width="320" height="147"/>
         <image name="mineBgImage.png" width="320" height="170"/>
         <image name="useHeaderImage.png" width="60" height="60"/>

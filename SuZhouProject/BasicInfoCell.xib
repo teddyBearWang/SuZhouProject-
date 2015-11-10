@@ -23,10 +23,10 @@
                         <rect key="frame" x="21" y="41" width="30" height="30"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="area.png" translatesAutoresizingMaskIntoConstraints="NO" id="O8G-9q-MHh">
-                        <rect key="frame" x="164" y="41" width="30" height="30"/>
+                        <rect key="frame" x="158" y="41" width="30" height="30"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="长度:2653k㎡" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBp-1n-UP8">
-                        <rect key="frame" x="196" y="41" width="101" height="30"/>
+                        <rect key="frame" x="186" y="41" width="126" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.35273710664335667" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>

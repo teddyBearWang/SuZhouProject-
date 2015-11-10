@@ -8,19 +8,18 @@
 
 #import "TaskDetailController.h"
 #import "TaskDetail.h"
-#import "BMapKit.h"
 #import "MapPathController.h"
 #import "SVProgressHUD.h"
 #import "RequestHttps.h"
 #import <CoreLocation/CoreLocation.h>
 #import "SegtonInstance.h"
 #import "UserLocation.h"
+#import "SZMap.h"
 
 @interface TaskDetailController ()<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate>
 {
     NSArray *_dataList; //数据源
-    BMKMapView *_mapView;
-   // BMKLocationService *_locationService;//定位服务
+    SZMapView *_szMapView;
     CLLocationManager *_locationManager;//自动的定位服务
     SegtonInstance *_instance;//单例
     UserLocation *_userLocation;//用户的信息
@@ -66,12 +65,20 @@
     if (_instance.pathsArray == nil) {
         _instance.pathsArray = [NSMutableArray array];
     }
-//
-    _mapView = [[BMKMapView alloc] initWithFrame:self.mapShowView.frame];
-    _mapView.mapType = BMKMapTypeSatellite;
-    _mapView.showsUserLocation = YES;
-    [self.mapShowView addSubview:_mapView];
+
     
+    SZSatelliteSource *onlineSource = [[SZSatelliteSource alloc] initWithApiKey:@""];
+    _szMapView = [[SZMapView alloc] initWithFrame:self.mapShowView.frame andTilesource:onlineSource];
+    _szMapView.zoom = 3;
+    _szMapView.debugTiles = FALSE;
+    //由于瓦片不是针对于retina屏幕分割的，需要激活这个功能正常显示
+    _szMapView.adjustTilesForRetinaDisplay = YES;
+    _szMapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    //定位到苏州市规划局附近
+    [_szMapView setCenterCoordinate:CLLocationCoordinate2DMake(31.2995098457, 120.6245023013)];
+    [self.mapShowView addSubview:_szMapView];
+    
+    [self polygon];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -82,6 +89,30 @@
         [RequestHttps cancelRequest];
         [SVProgressHUD dismiss];
     }
+}
+
+/***
+ 根据给定的位置坐标,画一条一个封闭区域
+ */
+- (void)polygon {
+    NSLog(@"polygon");
+    //先清除现有的标注层
+    [_szMapView removeAllAnnotations]; //随机生成5个位置坐标,将他们放置在一个数组中
+    NSArray *locations = [NSArray arrayWithObjects:[ [CLLocation alloc]
+                                                    initWithLatitude:31.351595 longitude:120.635000], [[CLLocation alloc]
+                                                                                                       initWithLatitude:31.323595 longitude:120.575542], [[CLLocation alloc]
+                                                                                                                                                          initWithLatitude:31.283560 longitude:120.568450],[[CLLocation alloc]
+                                                                                                                                                                                                            initWithLatitude:31.283560 longitude:120.655845], [[CLLocation alloc]
+                                                                                                                                                                                                                                                               initWithLatitude:31.344666 longitude:120.655016], nil]; //创建一个多边形标注
+    RMPolygonAnnotation *shape = [[RMPolygonAnnotation alloc]
+                                  initWithMapView:_szMapView points:locations];
+    
+    //设定线条颜色为蓝
+    [shape setLineColor:[UIColor blueColor]]; //设定填充色为半透明蓝
+    [shape setFillColor:[UIColor colorWithRed:0.0 green:0.0 blue:1.0
+                                        alpha:0.5]];
+    //将标注贴到地图上
+    [_szMapView addAnnotation:shape];
 }
 
 - (void)viewWillAppear:(BOOL)animated

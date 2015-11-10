@@ -10,4 +10,6 @@
 
 @interface DetailMapController : RootViewController
 
+@property (nonatomic, strong) NSDictionary *PassParamter;//传递的参数
+
 @end
