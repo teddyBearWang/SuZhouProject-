@@ -167,9 +167,16 @@
 //开始巡查
 - (IBAction)startPartrolAction:(id)sender
 {
-    //开启定位
-    [self startUpdateLocation];
     
+    //得开始判断，是不是存在正在巡查的任务，若是存在，则需要停止
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    if ([[user objectForKey:Partrol_State] isEqualToString:@"YES"]) {
+        //表示存在正在巡查的任务
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"您存在正在巡查的任务,请先结束该巡查任务" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    //若无正在巡查的任务，则开始调取开始巡查的服务
     NSString *result = [NSString stringWithFormat:@"%@$巡查中",self.taskId];
     [SVProgressHUD showWithStatus:nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -177,9 +184,14 @@
             NSDictionary *dict = datas[0];
             if ([[dict objectForKey:@"success"] isEqualToString:@"True"]) {
                 [SVProgressHUD dismissWithSuccess:nil];
+                //开启定位
+                [self startUpdateLocation];
                 self.start_btn.hidden = YES;
                 self.upload_btn.hidden = NO;
                 self.end_btn.hidden = NO;
+                //表示有任务正在巡查
+                [user setValue:@"YES" forKey:Partrol_State];
+                [user synchronize];
             }else{
                 [SVProgressHUD dismissWithError:@"开始巡查失败"];
             }
@@ -244,6 +256,10 @@
                     //关闭定位服务
                     [_locationManager stopUpdatingLocation];
                 }
+                //将正在巡查的标志变成“NO”
+                NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+                [user setValue:@"NO" forKey:Partrol_State];
+                [user synchronize];
             }else{
                 [SVProgressHUD dismissWithError:nil];
             }

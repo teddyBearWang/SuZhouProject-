@@ -66,8 +66,8 @@
 //获取消息列表
 - (void)getWebData
 {
-    NSUserDefaults *users = [NSUserDefaults standardUserDefaults];
-    NSDictionary *userDict = [users objectForKey:@"UserInfo"];
+//    NSUserDefaults *users = [NSUserDefaults standardUserDefaults];
+//    NSDictionary *userDict = [users objectForKey:@"UserInfo"];
     [SVProgressHUD showWithStatus:nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [RequestHttps fetchWithType:@"GetParam" Results:@"change_type" completion:^(NSArray *datas) {
@@ -77,7 +77,7 @@
                 return;
             }
             [SVProgressHUD dismissWithSuccess:nil];
-            _list = [datas[0] objectForKey:@"region"];
+            _list = [datas[0] objectForKey:@"change_type"];
             [self.typeTable reloadData];
         } error:^(NSError *error) {
             //失败
@@ -135,7 +135,7 @@ static NSInteger _selectRow;
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     _selectRow = indexPath.row;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    self.changBlock(_list[indexPath.row]);//传递参数
+    self.changBlock([_list[indexPath.row] objectForKey:@"value"]);//传递参数
     [self.navigationController popViewControllerAnimated:YES];
 }
 

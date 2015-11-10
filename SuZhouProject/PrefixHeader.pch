@@ -34,4 +34,7 @@
 
 //网络请求的地址
 #define REQUEST_URL @"http://115.236.2.245:48056/szsydtServ/Data.ashx"
+
+//巡查状态
+#define Partrol_State @"partrolState"
 #endif
