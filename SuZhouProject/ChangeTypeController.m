@@ -26,13 +26,19 @@
     self.typeTable.delegate = self;
     self.typeTable.dataSource = self;
     
-    _list = @[@"水域增加",@"水域减少",@"跨河建设工程",@"开发利用变化"];
+//    _list = @[@"水域增加",@"水域减少",@"跨河建设工程",@"开发利用变化"];
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getWebData];
 }
 
 - (void)viewWillLayoutSubviews
@@ -56,6 +62,30 @@
     self.changBlock = block;
 }
 
+#pragma mark - HTTP
+//获取消息列表
+- (void)getWebData
+{
+    NSUserDefaults *users = [NSUserDefaults standardUserDefaults];
+    NSDictionary *userDict = [users objectForKey:@"UserInfo"];
+    [SVProgressHUD showWithStatus:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [RequestHttps fetchWithType:@"GetParam" Results:@"change_type" completion:^(NSArray *datas) {
+            //成功
+            if (datas.count == 0) {
+                [SVProgressHUD dismissWithError:@"数据为空"];
+                return;
+            }
+            [SVProgressHUD dismissWithSuccess:nil];
+            _list = [datas[0] objectForKey:@"region"];
+            [self.typeTable reloadData];
+        } error:^(NSError *error) {
+            //失败
+            [SVProgressHUD dismissWithError:@"加载数据失败"];
+        }];
+    });
+}
+
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -71,7 +101,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     cell.textLabel.font = [UIFont systemFontOfSize:15];
-    cell.textLabel.text = _list[indexPath.row];
+    NSDictionary *dict = _list[indexPath.row];
+    cell.textLabel.text = [dict objectForKey:@"value"];
     return cell;
 }
 

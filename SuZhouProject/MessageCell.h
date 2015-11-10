@@ -11,8 +11,6 @@
 @interface MessageCell : UITableViewCell
 //状态视图
 @property (weak, nonatomic) IBOutlet UIView *statueView;
-//时间标签
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 //内容标签
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 

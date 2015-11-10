@@ -30,7 +30,10 @@
     
     UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     deleteBtn.frame = (CGRect){0,0,50,30};
-    [deleteBtn setBackgroundImage:[UIImage imageNamed:@"delegate"] forState:UIControlStateNormal];
+    deleteBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    deleteBtn.layer.borderWidth = 0.3;
+    [deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
+   // [deleteBtn setBackgroundImage:[UIImage imageNamed:@"delegate"] forState:UIControlStateNormal];
     [deleteBtn addTarget:self action:@selector(deleteMessageAction:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithCustomView:deleteBtn];
@@ -39,7 +42,7 @@
     
     self.contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.contentLabel.numberOfLines = 0;
-    self.contentLabel.text = @"  2015-10-23 \n  你呗安排了新的巡查任务.巡查地点，太湖南段1.巡查内容：太湖湖面垃圾 \n";
+    self.contentLabel.text = [self.passParameter objectForKey:@"message_content"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,8 +52,29 @@
 
 - (void)deleteMessageAction:(UIButton *)button
 {
-    self.bgView.hidden = YES;
-    [self.navigationController popViewControllerAnimated:YES];
+    //self.bgView.hidden = YES;
+//    
+//    NSUserDefaults *users = [NSUserDefaults standardUserDefaults];
+//    NSDictionary *userDict = [users objectForKey:@"UserInfo"];
+    [SVProgressHUD showWithStatus:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [RequestHttps fetchWithType:@"DelMessage" Results:[self.passParameter objectForKey:@"id"] completion:^(NSArray *datas) {
+            //成功
+            if (datas.count == 0) {
+                [SVProgressHUD dismissWithError:@"删除失败"];
+                return;
+            }
+            if ([[datas[0] objectForKey:@"success"] isEqualToString:@"True"]) {
+                [SVProgressHUD dismissWithSuccess:nil];
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                [SVProgressHUD dismissWithError:@"删除失败"];
+            }
+        } error:^(NSError *error) {
+            //失败
+            [SVProgressHUD dismissWithError:@"删除失败"];
+        }];
+    });
 }
 
 @end
