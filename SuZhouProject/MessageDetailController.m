@@ -30,6 +30,7 @@
     
     UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     deleteBtn.frame = (CGRect){0,0,50,30};
+    deleteBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     deleteBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
     deleteBtn.layer.borderWidth = 0.3;
     [deleteBtn setTitle:@"删除" forState:UIControlStateNormal];

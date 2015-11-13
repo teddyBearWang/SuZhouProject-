@@ -194,6 +194,7 @@
 		9FD16D1C1BBBBA6C0004F7FA /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16D1B1BBBBA6C0004F7FA /* TaskCell.m */; };
 		9FD16D1E1BBBBA7C0004F7FA /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD16D1D1BBBBA7C0004F7FA /* TaskCell.xib */; };
 		9FD16D211BBBBF2C0004F7FA /* TaskDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16D201BBBBF2C0004F7FA /* TaskDetailController.m */; };
+		9FE3D52D1BF303EA00C566C8 /* DeviceToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE3D52C1BF303EA00C566C8 /* DeviceToken.m */; };
 		E61C4DD736D0924DB277F1A1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BED042795B2A491575352C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -526,6 +527,8 @@
 		9FD16D1D1BBBBA7C0004F7FA /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
 		9FD16D1F1BBBBF2C0004F7FA /* TaskDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailController.h; sourceTree = "<group>"; };
 		9FD16D201BBBBF2C0004F7FA /* TaskDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailController.m; sourceTree = "<group>"; };
+		9FE3D52B1BF303EA00C566C8 /* DeviceToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceToken.h; sourceTree = "<group>"; };
+		9FE3D52C1BF303EA00C566C8 /* DeviceToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceToken.m; sourceTree = "<group>"; };
 		DCEA0BB5ECCF9EA4855411E3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E79B0B490794D6F11F512556 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -739,6 +742,8 @@
 				9FD16CEC1BBA74E30004F7FA /* RootViewController.m */,
 				9FD16CF41BBA75E60004F7FA /* CustomTabBarController.h */,
 				9FD16CF51BBA75E60004F7FA /* CustomTabBarController.m */,
+				9FE3D52B1BF303EA00C566C8 /* DeviceToken.h */,
+				9FE3D52C1BF303EA00C566C8 /* DeviceToken.m */,
 			);
 			name = until;
 			sourceTree = "<group>";
@@ -1452,6 +1457,7 @@
 				9F2D3BA41BE8995100905362 /* DelegateTaskController.m in Sources */,
 				9F5155EE1BE735920069AAF4 /* ChangeDetaiHeader.m in Sources */,
 				9F4CF1731BE208C500052681 /* ChangedInfoController.m in Sources */,
+				9FE3D52D1BF303EA00C566C8 /* DeviceToken.m in Sources */,
 				9FD16CF61BBA75E60004F7FA /* CustomTabBarController.m in Sources */,
 				9F2D3B991BE8825600905362 /* PersonInfoCell.m in Sources */,
 				9FD16CED1BBA74E30004F7FA /* RootViewController.m in Sources */,
@@ -1614,7 +1620,7 @@
 					"$(PROJECT_DIR)/SuZhouProject",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "89f4f55a-d7d4-47e4-887b-061abdf921f6";
+				PROVISIONING_PROFILE = "a5d99cf0-5c59-4e70-a7e3-fe7f4c9fe08f";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
@@ -1638,7 +1644,7 @@
 					"$(PROJECT_DIR)/SuZhouProject",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "89f4f55a-d7d4-47e4-887b-061abdf921f6";
+				PROVISIONING_PROFILE = "a5d99cf0-5c59-4e70-a7e3-fe7f4c9fe08f";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;

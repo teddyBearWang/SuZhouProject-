@@ -75,10 +75,10 @@
     _szMapView.adjustTilesForRetinaDisplay = YES;
     _szMapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     //定位到苏州市规划局附近
-    [_szMapView setCenterCoordinate:CLLocationCoordinate2DMake(31.2995098457, 120.6245023013)];
+    //[_szMapView setCenterCoordinate:CLLocationCoordinate2DMake(31.2995098457, 120.6245023013)];
     [self.mapShowView addSubview:_szMapView];
     
-    [self polygon];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -94,18 +94,30 @@
 /***
  根据给定的位置坐标,画一条一个封闭区域
  */
-- (void)polygon {
+- (void)polygonWithPoints:(NSArray *)points {
     NSLog(@"polygon");
     //先清除现有的标注层
     [_szMapView removeAllAnnotations]; //随机生成5个位置坐标,将他们放置在一个数组中
-    NSArray *locations = [NSArray arrayWithObjects:[ [CLLocation alloc]
-                                                    initWithLatitude:31.351595 longitude:120.635000], [[CLLocation alloc]
-                                                                                                       initWithLatitude:31.323595 longitude:120.575542], [[CLLocation alloc]
-                                                                                                                                                          initWithLatitude:31.283560 longitude:120.568450],[[CLLocation alloc]
-                                                                                                                                                                                                            initWithLatitude:31.283560 longitude:120.655845], [[CLLocation alloc]
-                                                                                                                                                                                                                                                               initWithLatitude:31.344666 longitude:120.655016], nil]; //创建一个多边形标注
+//    NSArray *locations = [NSArray arrayWithObjects:[ [CLLocation alloc]
+//                                                    initWithLatitude:31.351595 longitude:120.635000], [[CLLocation alloc]
+//                                                                                                       initWithLatitude:31.323595 longitude:120.575542], [[CLLocation alloc]
+//                                                                                                                                                          initWithLatitude:31.283560 longitude:120.568450],[[CLLocation alloc]
+//                                                                                                                                                                                                            initWithLatitude:31.283560 longitude:120.655845], [[CLLocation alloc]
+//                                                                                                                                                                                                                                                               initWithLatitude:31.344666 longitude:120.655016], nil]; //创建一个多边形标注
+    
+    NSMutableArray *locationArr = [NSMutableArray arrayWithCapacity:points.count];
+    for (int i=0;i<points.count;i++) {
+        NSDictionary *dict = [points objectAtIndex:i];
+        double lat = [[dict objectForKey:@"y"] doubleValue];
+        double lon = [[dict objectForKey:@"x"] doubleValue];
+        if (i == 0) {
+            [_szMapView setCenterCoordinate:CLLocationCoordinate2DMake(lat, lon)];
+        }
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:lat longitude:lon];
+        [locationArr addObject:location];
+    }
     RMPolygonAnnotation *shape = [[RMPolygonAnnotation alloc]
-                                  initWithMapView:_szMapView points:locations];
+                                  initWithMapView:_szMapView points:(NSArray *)locationArr];
     
     //设定线条颜色为蓝
     [shape setLineColor:[UIColor blueColor]]; //设定填充色为半透明蓝
@@ -165,6 +177,9 @@
         if (list.count != 0) {
             [SVProgressHUD dismissWithSuccess:nil];
             _dataList = list;
+              NSArray *points = [list[0] objectForKey:@"location"];
+            //在地图上划区域
+            [self polygonWithPoints:points];
             [self.taskTable reloadData];
             
             if ([[list[0] objectForKey:@"state"] isEqualToString:@"未巡查"]) {
@@ -188,7 +203,7 @@
                 self.updateBtn.hidden = NO;//更新上报按钮，显示
             }
         }else{
-            [SVProgressHUD dismissWithSuccess:@"加载失败"];
+            [SVProgressHUD dismissWithError:@"加载失败"];
         }
     });
 }

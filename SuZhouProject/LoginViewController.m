@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "RequestHttps.h"
 #import "SVProgressHUD.h"
+#import "DeviceToken.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *bgImageView; //顶部背景图片
@@ -60,7 +61,9 @@
         [alert show];
         return;
     }
-    NSString *result = [NSString stringWithFormat:@"%@$%@",self.userTextFiled.text,self.passwordTextField.text];
+    //NSString *result = [NSString stringWithFormat:@"%@$%@$%@",self.userTextFiled.text,self.passwordTextField.text,[DeviceToken deviceVendor]];
+    NSString *result = [NSString stringWithFormat:@"%@$%@$76E89D30-2304-4988-B96A-15E58D3544B8",self.userTextFiled.text,self.passwordTextField.text];
+    NSLog(@"生成的识别码是:%@",[DeviceToken deviceVendor]);
     [self requestWebAction:result];
    
 }
@@ -84,14 +87,15 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSArray *requestData = [RequestHttps requrstJsonData];
-        if (requestData.count != 0) {
+        NSDictionary *dict = requestData[0];
+        if ([[dict objectForKey:@"success"] isEqualToString:@"True"]) {
             [SVProgressHUD dismissWithSuccess:nil];
             //登陆成功
             [self performSegueWithIdentifier:@"Login" sender:nil];
             //将个人信息保存在本地
-            [self saveInfo:requestData[0]];
+            [self saveInfo:[dict objectForKey:@"results"]];
         }else{
-            [SVProgressHUD dismissWithError:@"登录失败"];
+            [SVProgressHUD dismissWithError:[dict objectForKey:@"results"]];
         }
     });
 }
